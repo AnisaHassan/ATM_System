@@ -46,8 +46,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Console.cs" />
+    <Compile Include="DataCalculator.cs" />
+    <Compile Include="IDataCalculator.cs" />
+    <Compile Include="IPrint.cs" />
+    <Compile Include="ISeperationChecker.cs" />
+    <Compile Include="ISeperationHandler.cs" />
+    <Compile Include="ITrackReciever.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeperationChecker.cs" />
+    <Compile Include="TrackInfo.cs" />
     <Compile Include="TrackReciever.cs" />
   </ItemGroup>
   <ItemGroup>

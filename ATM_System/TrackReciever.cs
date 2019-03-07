@@ -7,7 +7,7 @@ using TransponderReceiver;
 
 namespace ATM_System
 {
-    public class TrackReciever
+    public class TrackReciever : ITrackReciever
     {
         private ITransponderReceiver receiver;
 
