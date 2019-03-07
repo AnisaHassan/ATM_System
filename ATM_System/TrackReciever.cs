@@ -11,7 +11,7 @@ namespace ATM_System
     {
         private ITransponderReceiver receiver;
         public Plane TransponderReceivedData { get; set; }
- 
+
         public event EventHandler<TrackedDataEventArgs> TrackedDataReady;
 
         // Using constructor injection for dependency/ies
