@@ -7,18 +7,21 @@ using TransponderReceiver;
 
 namespace ATM_System
 {
-    public class TrackReciever
+    public class TrackReciever : EventArgs
     {
         private ITransponderReceiver receiver;
 
         // Using constructor injection for dependency/ies
-        public TrackReciever(ITransponderReceiver receiver)
+        public TrackReciever(ITransponderReceiver receiver, List<string> recevivedData)
         {
             // This will store the real or the fake transponder data receiver
             this.receiver = receiver;
 
             // Attach to the event of the real or the fake TDR
             this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
+
+            this.ReveivedData = recevivedData;
+
         }
 
         private void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
@@ -29,5 +32,7 @@ namespace ATM_System
                 System.Console.WriteLine($"Transponderdata {data}");
             }
         }
+
+        public List<string> ReveivedData { get; }
     }
 }
