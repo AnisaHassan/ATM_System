@@ -7,12 +7,15 @@ using TransponderReceiver;
 
 namespace ATM_System
 {
-    public class TrackReciever : EventArgs
+    public class TrackReciever : ITrackReciever
     {
         private ITransponderReceiver receiver;
+        public Plane TransponderReceivedData { get; set; }
+ 
+        public event EventHandler<TrackedDataEventArgs> TrackedDataReady;
 
         // Using constructor injection for dependency/ies
-        public TrackReciever(ITransponderReceiver receiver, List<string> recevivedData)
+        public TrackReciever(ITransponderReceiver receiver)
         {
             // This will store the real or the fake transponder data receiver
             this.receiver = receiver;
@@ -20,7 +23,7 @@ namespace ATM_System
             // Attach to the event of the real or the fake TDR
             this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
 
-            this.ReveivedData = recevivedData;
+            
 
         }
 
@@ -29,10 +32,25 @@ namespace ATM_System
             // Just display data
             foreach (var data in e.TransponderData)
             {
-                System.Console.WriteLine($"Transponderdata {data}");
+                //System.Console.WriteLine($"Transponderdata {data}");
+
+                //Videre sende Information
+                TransponderReceivedData = TrackedInfo(data);
+
+                TrackedDataReady.Invoke(sender, new TrackedDataEventArgs(TransponderReceivedData));
+                
             }
+            
         }
 
-        public List<string> ReveivedData { get; }
+        public Plane TrackedInfo(string data)
+        {
+            string[] inputFields;
+            inputFields = data.Split(';');
+            TransponderReceivedData = new Plane(Convert.ToString(inputFields[0]), Convert.ToInt32(inputFields[1]), Convert.ToInt32(inputFields[2]), Convert.ToInt32(inputFields[3]), Convert.ToString(inputFields[4]), "", 0);
+
+            return TransponderReceivedData;
+        }
+
     }
 }

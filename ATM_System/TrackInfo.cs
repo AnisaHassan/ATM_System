@@ -7,22 +7,30 @@ using System.Threading.Tasks;
 
 namespace ATM_System
 {
-    class TrackInfo
+    public class TrackInfo
     {
-        private string _tag { get; set; }
-        private int _xcoor { get; set; }
-        private int _ycoor { get; set; }
-        private int _altitude { get; set; }
-        private DateTime _date; 
+        private ITrackReciever trackInfo;
+       
+        public Plane TrackedDataInfo { get; set; }
 
-        public TrackInfo (string tag, int xcoor, int ycoor, int altitude, DateTime date)
+        public TrackInfo(ITrackReciever trackInfo)
         {
-            _tag = tag;
-            _xcoor = xcoor;
-            _ycoor = ycoor;
-            _altitude = altitude;
-            _date = date; 
+            // This will store the real or the fake transponder data receiver
+            this.trackInfo = trackInfo;
+
+            // Attach to the event of the real or the fake TDR
+            this.trackInfo.TrackedDataReady += ReceiverOnTrackInfoDataReady;
         }
+
+        private void ReceiverOnTrackInfoDataReady(object sender, TrackedDataEventArgs e)
+        {
+            TrackedDataInfo = e.TrackedInfo;
+
+            System.Console.WriteLine("Transponderdata Tag: {0} Position: {1},{2} Altitude: {3}, Datetime: {4}", TrackedDataInfo._tag, TrackedDataInfo._xcoor, TrackedDataInfo._ycoor, TrackedDataInfo._altitude, TrackedDataInfo._time);
+        }
+
+       
+
 
     }
 

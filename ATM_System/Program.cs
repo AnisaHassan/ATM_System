@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TransponderReceiver;
+using ATM_System;
 
 namespace ATM_System
 {
@@ -16,7 +17,9 @@ namespace ATM_System
             var receiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
 
             // Dependency injection with the real TDR
-            var system = new ATM_System.TrackReciever(receiver);
+            var trackInfoRecieved = new TrackReciever(receiver);
+
+            var trackInfo = new TrackInfo(trackInfoRecieved);
 
             // Let the real TDR execute in the background
             while (true)

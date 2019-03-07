@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ATM_System
 {
-    interface ITrackReciever
+   public interface ITrackReciever
     {
+        event EventHandler<TrackedDataEventArgs> TrackedDataReady;
+
     }
 }
