@@ -29,14 +29,14 @@ namespace ATM_System
 
         private void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
         {
-            // Just display data
+
             foreach (var data in e.TransponderData)
             {
+                //Just display data
                 //System.Console.WriteLine($"Transponderdata {data}");
 
-                //Videre sende Information
+                // Move data to TrackInfo
                 TransponderReceivedData = TrackedInfo(data);
-
                 TrackedDataReady.Invoke(sender, new TrackedDataEventArgs(TransponderReceivedData));
                 
             }
@@ -45,6 +45,7 @@ namespace ATM_System
 
         public Plane TrackedInfo(string data)
         {
+            //Convert string to usable data.
             string[] inputFields;
             inputFields = data.Split(';');
             TransponderReceivedData = new Plane(Convert.ToString(inputFields[0]), Convert.ToInt32(inputFields[1]), Convert.ToInt32(inputFields[2]), Convert.ToInt32(inputFields[3]), Convert.ToString(inputFields[4]), "", 0);
