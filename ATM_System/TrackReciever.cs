@@ -14,6 +14,8 @@ namespace ATM_System
 
         public event EventHandler<TrackedDataEventArgs> TrackedDataReady;
 
+        public List<Plane> RecievedTrackData;
+
         // Using constructor injection for dependency/ies
         public TrackReciever(ITransponderReceiver receiver)
         {
@@ -27,7 +29,7 @@ namespace ATM_System
 
         }
 
-        private void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
+        public void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
         {
 
             foreach (var data in e.TransponderData)
@@ -38,9 +40,10 @@ namespace ATM_System
                 // Move data to TrackInfo
                 TransponderReceivedData = TrackedInfo(data);
                 TrackedDataReady.Invoke(sender, new TrackedDataEventArgs(TransponderReceivedData));
+        
                 
             }
-            
+
         }
 
         public Plane TrackedInfo(string data)

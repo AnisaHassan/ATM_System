@@ -10,6 +10,9 @@ namespace ATM_System
     public class TrackInfo
     {
         private ITrackReciever trackInfo;
+
+        public List<Plane> RecievedData_;
+      
        
         public Plane TrackedDataInfo { get; set; }
 
@@ -20,6 +23,7 @@ namespace ATM_System
 
             // Attach to the event of the real or the fake TDR
             this.trackInfo.TrackedDataReady += ReceiverOnTrackInfoDataReady;
+
         }
 
         private void ReceiverOnTrackInfoDataReady(object sender, TrackedDataEventArgs e)
@@ -29,8 +33,19 @@ namespace ATM_System
             System.Console.WriteLine("Transponderdata Tag: {0} Position: {1},{2} Altitude: {3}, Datetime: {4}", TrackedDataInfo._tag, TrackedDataInfo._xcoor, TrackedDataInfo._ycoor, TrackedDataInfo._altitude, TrackedDataInfo._time);
         }
 
-       
+        //public void AirSpace(List<Track> trackList)
+        
+            {
+               // foreach (var track in trackList.ToList())
+                {
+                    //if (track._xcoor <= 90000 && track._xcoor >= 10000 && track._ycoor >= 10000 &&
+                        //track._xcoor <= 90000)
+                        //trackList.Add(track);
+                   
+                }
 
+         
+        }
 
     }
 
