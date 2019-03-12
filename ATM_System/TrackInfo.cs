@@ -39,7 +39,7 @@ namespace ATM_System
                // foreach (var track in trackList.ToList())
                 {
                     //if (track._xcoor <= 90000 && track._xcoor >= 10000 && track._ycoor >= 10000 &&
-                        //track._xcoor <= 90000)
+                        //track._ycoor <= 90000)
                         //trackList.Add(track);
                    
                 }
