@@ -11,7 +11,7 @@ namespace ATM_System
     {
         private ITrackReciever trackInfo;
 
-        public List<Plane> RecievedData_;
+        //public List<Plane> RecievedData;
       
        
         public Plane TrackedDataInfo { get; set; }
@@ -40,7 +40,7 @@ namespace ATM_System
                 {
                     //if (track._xcoor <= 90000 && track._xcoor >= 10000 && track._ycoor >= 10000 &&
                         //track._ycoor <= 90000)
-                        //trackList.Add(track);
+                        //trackList.Add(RecievedData);
                    
                 }
 
