@@ -10,23 +10,33 @@ namespace ATM_System
 {
     public class TrackInfo
     {
+        private ITrackReciever _dataReciever;
         public List<Plane> TrackedDataInfo { get; set; }
         private IDataCalculator _dataCalculator;
-        private List<Plane> gammelliste;
-        private List<Plane> dataliste;
+       
 
-        public TrackInfo()
+        public TrackInfo(ITrackReciever dataReciever)
         {
-         
+            // This will store the real or the fake transponder data receiver
+            this._dataReciever = dataReciever;
+
+            // Attach to the event of the real or the fake TDR
+            this._dataReciever.TrackedDataReady += ReceiverOnTrackedDataReady;
+
         }
+
+        
 
         public TrackInfo(IDataCalculator dataCalculator)
         {
             _dataCalculator = dataCalculator;
-            gammelliste = new List<Plane>();
         }
 
-      public void AirSpace(List<Plane> planelist)
+        private void ReceiverOnTrackedDataReady(object sender, TrackedDataEventArgs e)
+        {
+            AirSpace(TrackedDataInfo);
+        }
+        public void AirSpace(List<Plane> planelist)
 
         {
             TrackedDataInfo = new List<Plane>();
@@ -40,10 +50,6 @@ namespace ATM_System
                 //Mangler du ikke {} omkring planelist.Add(_plane); ???
 
             }
-
-            dataliste = new List<Plane>();
-
-            gammelliste = dataliste;
 
         }
 

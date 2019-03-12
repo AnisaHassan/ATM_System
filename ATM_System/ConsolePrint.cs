@@ -23,13 +23,7 @@ namespace ATM_System
                                              ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
                                              plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
                 }
-            }
-
-
-
-
-
-                
+            }               
         }
     }
 }

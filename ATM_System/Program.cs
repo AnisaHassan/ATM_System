@@ -19,7 +19,6 @@ namespace ATM_System
             
             ITrackReciever trackReciever = new TrackReciever(receiver, trackInfo);
             IPrint console = new ConsolePrint();
-            trackInfo.Printlist();
 
             Console.ReadKey();
 

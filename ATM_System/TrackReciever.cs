@@ -9,18 +9,20 @@ namespace ATM_System
 {
     public class TrackReciever : ITrackReciever
     {
+        public event EventHandler<TrackedDataEventArgs> TrackedDataReady;
+
+        private ITransponderReceiver receiver;
         private TrackInfo _trackinfo;
         public List<Plane> ReceivedDataList { get; set; }
 
         // Using constructor injection for dependency/ies
         public TrackReciever(ITransponderReceiver receiver, TrackInfo trackInfo)
         {
-            receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
-            //// This will store the real or the fake transponder data receiver
-            //this.receiver = receiver;
+            // This will store the real or the fake transponder data receiver
+            this.receiver = receiver;
 
-            //// Attach to the event of the real or the fake TDR
-            //this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
+            // Attach to the event of the real or the fake TDR
+            this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
 
             _trackinfo = trackInfo;
         }
@@ -28,20 +30,16 @@ namespace ATM_System
         private void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
         {
             var list = e.TransponderData;
-            ReceivedDataList = TrackedInfo(list);
-            _trackinfo.Print(ReceivedDataList);
 
+            foreach (var data in list)
+            {
+                // Move data to TrackInfo
+                ReceivedDataList = TrackedInfo(list);
+                _trackinfo.AirSpace(ReceivedDataList);
 
-            //foreach (var data in e.TransponderData)
-            //{
-            //    //Just display data
-            //    //System.Console.WriteLine($"Transponderdata {data}");
+                TrackedDataReady.Invoke(sender, new TrackedDataEventArgs(ReceivedDataList));
 
-            //    // Move data to TrackInfo
-            //    ReceivedDataList = TrackedInfo(data);
-            //    TrackedDataReady.Invoke(sender, new TrackedDataEventArgs(ReceivedDataList));
-
-            //}
+            }
 
         }
 

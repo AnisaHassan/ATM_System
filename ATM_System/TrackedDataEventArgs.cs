@@ -15,5 +15,8 @@ namespace ATM_System
         {
             this.TrackedInfo = trackedInfo;
         }
+
+
+       
     }
 }
