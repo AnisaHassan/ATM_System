@@ -8,9 +8,10 @@ namespace ATM_System
 {
     public class TrackedDataEventArgs :EventArgs
     {
-        public Plane TrackedInfo;
+        //public Plane TrackedInfo;
 
-        public TrackedDataEventArgs(Plane trackedInfo)
+        public List<Plane> TrackedInfo { get; }
+        public TrackedDataEventArgs(List<Plane> trackedInfo)
         {
             this.TrackedInfo = trackedInfo;
         }

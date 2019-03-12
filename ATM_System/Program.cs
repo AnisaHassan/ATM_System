@@ -15,11 +15,14 @@ namespace ATM_System
         {
             // Using the real transponder data receiver
             var receiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
-
+            TrackInfo trackInfo = new TrackInfo();
+            List<Plane> list = new List<Plane>();
             // Dependency injection with the real TDR
-            var trackInfoRecieved = new TrackReciever(receiver);
+            var trackInfoRecieved = new TrackReciever(receiver, trackInfo);
 
-            var trackInfo = new TrackInfo(trackInfoRecieved);
+            trackInfo.Airspace(list);
+
+           // var trackedInfo = new TrackInfo(trackInfoRecieved);
 
             // Let the real TDR execute in the background
             while (true)
