@@ -33,19 +33,19 @@ namespace ATM_System
 
 
 
-        //    //System.Console.WriteLine("Transponderdata Tag: {0} Position: {1},{2} Altitude: {3}, Datetime: {4}", TrackedDataInfo._tag, TrackedDataInfo._xcoor, TrackedDataInfo._ycoor, TrackedDataInfo._altitude, TrackedDataInfo._time);
-        //}
+        //public void AirSpace(List<Track> trackList)
+        
+            {
+               // foreach (var track in trackList.ToList())
+                {
+                    //if (track._xcoor <= 90000 && track._xcoor >= 10000 && track._ycoor >= 10000 &&
+                        //track._ycoor <= 90000)
+                        //trackList.Add(RecievedData);
+                   
+                }
 
-        public void Airspace(List<Plane> planeliste)
-        {
-            //foreach (var plane in TrackedDataInfo)
-            //{
-            //    System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
-            //                             plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month + "/" + plane._time.Day +
-            //                             ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" + plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
-            //}
+         
         }
-
 
     }
 

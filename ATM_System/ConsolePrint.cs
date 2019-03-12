@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATM_System
 {
-    class Console : IPrint
+    class ConsolePrint : IPrint
     {
     }
 }
