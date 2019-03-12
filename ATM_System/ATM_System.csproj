@@ -48,11 +48,11 @@
   <ItemGroup>
     <Compile Include="ConsolePrint.cs" />
     <Compile Include="DataCalculator.cs" />
-    <Compile Include="IDataCalculator.cs" />
-    <Compile Include="IPrint.cs" />
-    <Compile Include="ISeperationChecker.cs" />
-    <Compile Include="ISeperationHandler.cs" />
-    <Compile Include="ITrackReciever.cs" />
+    <Compile Include="Interfaces\IDataCalculator.cs" />
+    <Compile Include="Interfaces\IPrint.cs" />
+    <Compile Include="Interfaces\ISeperationChecker.cs" />
+    <Compile Include="Interfaces\ISeperationHandler.cs" />
+    <Compile Include="Interfaces\ITrackReciever.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Plane.cs" />
     <Compile Include="Program.cs" />
