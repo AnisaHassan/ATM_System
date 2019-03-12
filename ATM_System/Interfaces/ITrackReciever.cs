@@ -8,7 +8,9 @@ namespace ATM_System
 {
    public interface ITrackReciever
     {
-        event EventHandler<TrackedDataEventArgs> TrackedDataReady;
+        //event EventHandler<TrackedDataEventArgs> TrackedDataReady;
+        List<Plane> TrackedInfo(List<string> planeliste);
+
 
     }
 }
