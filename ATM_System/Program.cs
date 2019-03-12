@@ -14,19 +14,16 @@ namespace ATM_System
         static void Main(string[] args)
         {
             // Using the real transponder data receiver
-            var receiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
+            ITransponderReceiver receiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
             TrackInfo trackInfo = new TrackInfo();
-            List<Plane> list = new List<Plane>();
-            // Dependency injection with the real TDR
-            var trackInfoRecieved = new TrackReciever(receiver, trackInfo);
+            
+            ITrackReciever trackReciever = new TrackReciever(receiver, trackInfo);
+            IPrint console = new ConsolePrint();
+            trackInfo.Printlist();
 
-            trackInfo.Airspace(list);
+            Console.ReadKey();
 
-           // var trackedInfo = new TrackInfo(trackInfoRecieved);
 
-            // Let the real TDR execute in the background
-            while (true)
-                Thread.Sleep(1000);
         }
     }
 }

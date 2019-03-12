@@ -29,7 +29,7 @@ namespace ATM_System
         {
             var list = e.TransponderData;
             ReceivedDataList = TrackedInfo(list);
-            _trackinfo.Airspace(ReceivedDataList);
+            _trackinfo.Print(ReceivedDataList);
 
 
             //foreach (var data in e.TransponderData)

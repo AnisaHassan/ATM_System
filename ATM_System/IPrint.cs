@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ATM_System
 {
-    interface IPrint
+    public interface IPrint
     {
+        void PrintPlane(List<Plane> planelise);
+
     }
 }
