@@ -12,8 +12,7 @@ namespace ATM_System
     {
         private ITrackReciever _dataReciever;
         public List<Plane> TrackedDataInfo { get; set; }
-        private IDataCalculator _dataCalculator;
-       
+
 
         public TrackInfo(ITrackReciever dataReciever)
         {
@@ -21,15 +20,15 @@ namespace ATM_System
             this._dataReciever = dataReciever;
 
             // Attach to the event of the real or the fake TDR
-            this._dataReciever.TrackedDataReady += ReceiverOnTrackedDataReady;
+            this._dataReciever.TrackedDataReady += AirSpace;
 
         }
 
-       
 
-        private void ReceiverOnTrackedDataReady(object sender, TrackedDataEventArgs e)
+
+        private void AirSpace(object sender, TrackedDataEventArgs e)
         {
-            //AirSpace(TrackedDataInfo);
+            // AirSpace(TrackedDataInfo);
 
             foreach (var plane in TrackedDataInfo)
             {
@@ -43,22 +42,20 @@ namespace ATM_System
                                   plane._compassCourse + " degrees\n");
             }
         }
+
+
+
         public void AirSpace(List<Plane> planelist)
 
         {
             TrackedDataInfo = new List<Plane>();
 
-            foreach (var _plane in planelist)
-            {
-                if (_plane._xcoor <= 90000 && _plane._xcoor >= 10000 && _plane._ycoor >= 10000 &&
-                    _plane._ycoor <= 90000)
 
                     TrackedDataInfo.Add(_plane);
+                //Mangler du ikke {} omkring planelist.Add(_plane); ???
+
             }
-           
-
-        }
-
-    }
 
 }
+
+

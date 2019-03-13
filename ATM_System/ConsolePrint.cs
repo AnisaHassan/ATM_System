@@ -11,19 +11,19 @@ namespace ATM_System
         public void PrintPlane(List<Plane> planeliste)
         {
 
-            if (planeliste.Count != 0)
-            {
-                foreach (var plane in planeliste)
-                {
-                    System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
-                                             " meters\nY-coordinate: " +
-                                             plane._ycoor + " meters\nAltitude: " + plane._altitude +
-                                             " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
-                                             "/" + plane._time.Day +
-                                             ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
-                                             plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
-                }
-            }               
+            //if (planelise.Count != 0)
+            //{
+            //    foreach (var plane in planelise)
+            //    {
+            //        System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
+            //                                 " meters\nY-coordinate: " +
+            //                                 plane._ycoor + " meters\nAltitude: " + plane._altitude +
+            //                                 " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
+            //                                 "/" + plane._time.Day +
+            //                                 ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
+            //                                 plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
+            //    }
+            //}               
         }
     }
 }
