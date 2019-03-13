@@ -8,7 +8,7 @@ namespace ATM_System
 {
     public interface IPrint
     {
-        void PrintPlane(List<Plane> planelise);
+        void PrintPlane(List<Plane> planeliste);
 
     }
 }

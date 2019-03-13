@@ -8,7 +8,7 @@ namespace ATM_System
 {
     public class ConsolePrint : IPrint
     {
-        public void PrintPlane(List<Plane> planelise)
+        public void PrintPlane(List<Plane> planeliste)
         {
 
             //if (planelise.Count != 0)
