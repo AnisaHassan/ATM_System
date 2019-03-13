@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM_System", "ATM_System\ATM_System.csproj", "{8D354DC0-D99F-47D0-8D93-6A7E022BEF92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirTM.Unit.Test", "AirTM.Unit.Test\AirTM.Unit.Test.csproj", "{2DAA2D61-BF83-4C68-B175-DCB5DE79119D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirTM_Unit_Test", "AirTM.Unit.Test\AirTM_Unit_Test.csproj", "{2DAA2D61-BF83-4C68-B175-DCB5DE79119D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
