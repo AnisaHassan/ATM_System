@@ -38,8 +38,7 @@ namespace ATM_System
 
                 //_trackinfo.AirSpace(ReceivedDataList);
 
-                TrackedDataReady.Invoke(sender, new TrackedDataEventArgs(ReceivedDataList));
-
+                TrackedDataReady?.Invoke(sender, new TrackedDataEventArgs(ReceivedDataList));
             }
 
         }

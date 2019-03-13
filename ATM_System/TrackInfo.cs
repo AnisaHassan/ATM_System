@@ -29,9 +29,9 @@ namespace ATM_System
 
         private void ReceiverOnTrackedDataReady(object sender, TrackedDataEventArgs e)
         {
-            //AirSpace(TrackedDataInfo);
+            // AirSpace(TrackedDataInfo);
 
-            foreach (var plane in TrackedDataInfo)
+            foreach (var plane in e.TrackedInfo)
             {
 
                 Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
@@ -43,6 +43,9 @@ namespace ATM_System
                                   plane._compassCourse + " degrees\n");
             }
         }
+
+
+
         public void AirSpace(List<Plane> planelist)
 
         {
