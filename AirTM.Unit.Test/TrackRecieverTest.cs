@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATM_System
+namespace AirTM.Unit.Test
 {
-    public interface ITrackInfo
+    class TrackRecieverTest
     {
-        event EventHandler<DataCalcEventArgs> AirspaceDataReady;
     }
 }

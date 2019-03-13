@@ -29,7 +29,7 @@ namespace ATM.Unit.Test
 
             _planeList.Add(plane_);
 
-            //uut.AirspaceDataReady(_planeList);
+           
 
             Assert.That(_planeList.Count, Is.EqualTo(1));
         }
