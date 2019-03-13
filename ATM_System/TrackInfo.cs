@@ -19,10 +19,7 @@ namespace ATM_System
 
         //Used to new Event 
         public event EventHandler<DataCalcEventArgs> AirspaceDataReady;
-        //public List<Plane> ListOfPlanesInAirspace { get; set; }
 
-
-        //public List<Plane> DataInfo { get; set; }
         public TrackInfo(ITrackReciever dataReciever)
         {
             // This will store the real or the fake transponder data receiver
@@ -45,23 +42,10 @@ namespace ATM_System
                 {
                     TrackedDataInfo.Add(plane);
 
-                    //Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
-                    //                  plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " +
-                    //                  plane._time.Year + "/" + plane._time.Month + "/" + plane._time.Day +
-                    //                  ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
-                    //                  plane._time.Second + " and " + plane._time.Millisecond +
-                    //                  " milliseconds \nVelocity: " + plane._velocity + " m/s\nCourse: " +
-                    //                  plane._compassCourse + " degrees\n");
-
                 }
 
-                //ListOfPlanesInAirspace = new List<Plane>();
-                //ListOfPlanesInAirspace = TrackedDataInfo;
+                //Send information videre
                 AirspaceDataReady?.Invoke(sender, new DataCalcEventArgs(TrackedDataInfo));
-
-
-
-
 
             }
         }

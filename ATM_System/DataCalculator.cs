@@ -24,6 +24,7 @@ namespace ATM_System
 
             foreach (var plane in e.DataList)
             {
+
                 //Bar for at se om listen er kommet med (Det er den (: )
                 Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
                                   plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " +
