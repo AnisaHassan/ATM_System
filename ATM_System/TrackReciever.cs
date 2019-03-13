@@ -26,6 +26,7 @@ namespace ATM_System
            
         }
 
+        public TrackReciever() { }
         private void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
         {
             var list = e.TransponderData;
