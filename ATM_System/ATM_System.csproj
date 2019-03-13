@@ -54,6 +54,7 @@
     <Compile Include="Interfaces\ISeperationChecker.cs" />
     <Compile Include="Interfaces\ISeperationHandler.cs" />
     <Compile Include="Interfaces\ITrackReciever.cs" />
+    <Compile Include="ITrackInfo.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Plane.cs" />
     <Compile Include="Program.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using TransponderReceiver;
@@ -12,6 +13,7 @@ namespace ATM_System
     {
         private ITrackReciever _dataReciever;
         public List<Plane> TrackedDataInfo { get; set; }
+        public EventHandler<DataCalcEventArgs> dataEvent;
 
 
         public TrackInfo(ITrackReciever dataReciever)
@@ -45,6 +47,8 @@ namespace ATM_System
                                       plane._compassCourse + " degrees\n");
 
                 }
+
+                dataEvent?.Invoke(sender, new DataCalcEventArgs(TrackedDataInfo));
 
 
 

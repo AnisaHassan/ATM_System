@@ -8,14 +8,34 @@ namespace ATM_System
 {
     class DataCalculator : IDataCalculator
     {
-        public void CalculateVelocity(Plane planeOld, Plane planeNew)
-        {
-            double distance = Math.Sqrt(Math.Pow(planeOld._xcoor - planeNew._xcoor, 2) +
-                                     Math.Pow(planeOld._ycoor - planeNew._ycoor, 2) +
-                                     Math.Pow(planeOld._altitude - planeNew._altitude, 2));
-            double time = (planeOld._time - planeNew._time).TotalSeconds;
+        private ITrackInfo _dataCalc;
+        public List<Plane> planeOld { get; set; }
 
-            planeNew._velocity = (distance / time);
+        public List<Plane> planeNew { get; set; }
+
+        public DataCalculator(ITrackInfo dataCalc)
+        {
+            this._dataCalc = dataCalc;
+
+            this._dataCalc.dataEvent += CalculateVelocity;
+        }
+
+     
+        public void CalculateVelocity(object sender, DataCalcEventArgs e)
+        {
+            planeOld = new List<Plane>();
+            planeNew = new List<Plane>();
+
+            foreach (var p in e.DataList)
+            {
+                double distance = Math.Sqrt(Math.Pow(p._xcoor - planeNew._xcoor, 2) +
+                                            Math.Pow(planeOld._ycoor - planeNew._ycoor, 2) +
+                                            Math.Pow(planeOld._altitude - planeNew._altitude, 2));
+                double time = (planeOld._time - planeNew._time).TotalSeconds;
+
+                planeNew._velocity = (distance / time);
+            }
+           
         }
 
         public void CalculateCourse(Plane planeOld, Plane planeNew)
