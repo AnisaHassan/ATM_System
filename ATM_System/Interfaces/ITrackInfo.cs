@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ATM_System
 {
-    public class ITrackInfo
+    public interface ITrackInfo
     {
-        public event EventHandler<DataCalcEventArgs> AirspaceDataReady;
+        event EventHandler<DataCalcEventArgs> AirspaceDataReady;
     }
 }
