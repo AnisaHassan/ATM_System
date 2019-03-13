@@ -30,7 +30,7 @@ namespace ATM_System
              TrackedDataInfo = new List<Plane>();
 
 
-            foreach (var plane in TrackedDataInfo)
+            foreach (var plane in e.TrackedInfo)
             {
                 if (plane._xcoor <= 90000 && plane._xcoor >= 10000 && plane._ycoor >= 10000 && plane._ycoor <= 90000)
                 {
