@@ -21,23 +21,20 @@ namespace ATM_System
 
             // Attach to the event of the real or the fake TDR
             this._dataReciever.TrackedDataReady += AirSpace;
-
         }
 
 
 
         private void AirSpace(object sender, TrackedDataEventArgs e)
         {
+             TrackedDataInfo = new List<Plane>();
+
 
             foreach (var plane in e.TrackedInfo)
             {
-                if (plane._xcoor <= 90000 && plane._xcoor >= 10000 && plane._ycoor >= 10000 &&
-                    plane._ycoor <= 90000)
-                
+                if (plane._xcoor <= 90000 && plane._xcoor >= 10000 && plane._ycoor >= 10000 && plane._ycoor <= 90000)
+                {
                     TrackedDataInfo.Add(plane);
-
-
-
 
                     Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
                                       plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " +
@@ -47,10 +44,13 @@ namespace ATM_System
                                       " milliseconds \nVelocity: " + plane._velocity + " m/s\nCourse: " +
                                       plane._compassCourse + " degrees\n");
 
-                
+                }
+
+
+
+
 
             }
-            
         }
 
 
