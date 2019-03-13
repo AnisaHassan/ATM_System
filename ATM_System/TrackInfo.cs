@@ -9,13 +9,20 @@ using TransponderReceiver;
 
 namespace ATM_System
 {
-    public class TrackInfo
+    public class TrackInfo : ITrackInfo
     {
+        
+        //Used to recive event from TrackReciever class
         private ITrackReciever _dataReciever;
         public List<Plane> TrackedDataInfo { get; set; }
-        public EventHandler<DataCalcEventArgs> dataEvent;
 
 
+        //Used to new Event 
+        public event EventHandler<DataCalcEventArgs> AirspaceDataReady;
+        //public List<Plane> ListOfPlanesInAirspace { get; set; }
+
+
+        //public List<Plane> DataInfo { get; set; }
         public TrackInfo(ITrackReciever dataReciever)
         {
             // This will store the real or the fake transponder data receiver
@@ -38,17 +45,19 @@ namespace ATM_System
                 {
                     TrackedDataInfo.Add(plane);
 
-                    Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
-                                      plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " +
-                                      plane._time.Year + "/" + plane._time.Month + "/" + plane._time.Day +
-                                      ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
-                                      plane._time.Second + " and " + plane._time.Millisecond +
-                                      " milliseconds \nVelocity: " + plane._velocity + " m/s\nCourse: " +
-                                      plane._compassCourse + " degrees\n");
+                    //Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
+                    //                  plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " +
+                    //                  plane._time.Year + "/" + plane._time.Month + "/" + plane._time.Day +
+                    //                  ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
+                    //                  plane._time.Second + " and " + plane._time.Millisecond +
+                    //                  " milliseconds \nVelocity: " + plane._velocity + " m/s\nCourse: " +
+                    //                  plane._compassCourse + " degrees\n");
 
                 }
 
-                dataEvent?.Invoke(sender, new DataCalcEventArgs(TrackedDataInfo));
+                //ListOfPlanesInAirspace = new List<Plane>();
+                //ListOfPlanesInAirspace = TrackedDataInfo;
+                AirspaceDataReady?.Invoke(sender, new DataCalcEventArgs(TrackedDataInfo));
 
 
 
@@ -58,7 +67,7 @@ namespace ATM_System
         }
 
 
-
+        
     }
 
 }

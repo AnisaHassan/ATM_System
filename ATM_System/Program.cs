@@ -18,9 +18,10 @@ namespace ATM_System
 
             ITrackReciever trackReciever = new TrackReciever(receiver);
 
-            TrackInfo trackInfo = new TrackInfo(trackReciever);
+            ITrackInfo trackInfo = new TrackInfo(trackReciever);
+            DataCalculator datacalc = new DataCalculator(trackInfo);
             
-            IPrint console = new ConsolePrint();
+
 
             Console.ReadKey();
 

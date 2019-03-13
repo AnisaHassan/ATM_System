@@ -8,6 +8,6 @@ namespace ATM_System
 {
    public interface ITrackInfo
     {
-        event EventHandler<DataCalcEventArgs> dataEvent;
+        event EventHandler<DataCalcEventArgs> AirspaceDataReady;
     }
 }
