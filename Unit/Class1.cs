@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATM_System
+namespace Unit
 {
-    public class ITrackInfo
+    public class Class1
     {
-        public event EventHandler<DataCalcEventArgs> AirspaceDataReady;
     }
 }
