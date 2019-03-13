@@ -36,6 +36,9 @@ namespace ATM_System
                 
                     TrackedDataInfo.Add(plane);
 
+
+
+
                     Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
                                       plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " +
                                       plane._time.Year + "/" + plane._time.Month + "/" + plane._time.Day +
@@ -43,26 +46,11 @@ namespace ATM_System
                                       plane._time.Second + " and " + plane._time.Millisecond +
                                       " milliseconds \nVelocity: " + plane._velocity + " m/s\nCourse: " +
                                       plane._compassCourse + " degrees\n");
+
                 
-                    
-
-               
-
-
-
-
 
             }
-            //foreach (var _plane in TrackedDataInfo)
-            //{
-            //    Console.WriteLine("Tag: " + _plane._tag + "\nX-coordinate: " + _plane._xcoor + " meters\nY-coordinate: " +
-            //                      _plane._ycoor + " meters\nAltitude: " + _plane._altitude + " meters\nTime stamp: " +
-            //                      _plane._time.Year + "/" + _plane._time.Month + "/" + _plane._time.Day +
-            //                      ", at " + _plane._time.Hour + ":" + _plane._time.Minute + ":" +
-            //                      _plane._time.Second + " and " + _plane._time.Millisecond +
-            //                      " milliseconds \nVelocity: " + _plane._velocity + " m/s\nCourse: " +
-            //                      _plane._compassCourse + " degrees\n");
-            //}
+            
         }
 
 
