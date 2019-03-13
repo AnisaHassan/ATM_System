@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsolePrint.cs" />
+    <Compile Include="DataCalcEventArgs.cs" />
     <Compile Include="DataCalculator.cs" />
     <Compile Include="Interfaces\IDataCalculator.cs" />
     <Compile Include="Interfaces\IPrint.cs" />
