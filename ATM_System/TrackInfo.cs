@@ -28,33 +28,34 @@ namespace ATM_System
 
         private void AirSpace(object sender, TrackedDataEventArgs e)
         {
-            // AirSpace(TrackedDataInfo);
 
             foreach (var plane in TrackedDataInfo)
             {
+                if (plane._xcoor <= 90000 && plane._xcoor >= 10000 && plane._ycoor >= 10000 &&
+                    plane._ycoor <= 90000)
+                
+                    TrackedDataInfo.Add(plane);
 
-                Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
-                                  plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " +
-                                  plane._time.Year + "/" + plane._time.Month + "/" + plane._time.Day +
-                                  ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
-                                  plane._time.Second + " and " + plane._time.Millisecond +
-                                  " milliseconds \nVelocity: " + plane._velocity + " m/s\nCourse: " +
-                                  plane._compassCourse + " degrees\n");
+
+
+
+                    Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
+                                      plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " +
+                                      plane._time.Year + "/" + plane._time.Month + "/" + plane._time.Day +
+                                      ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
+                                      plane._time.Second + " and " + plane._time.Millisecond +
+                                      " milliseconds \nVelocity: " + plane._velocity + " m/s\nCourse: " +
+                                      plane._compassCourse + " degrees\n");
+
+                
+
             }
+            
         }
 
 
 
-        public void AirSpace(List<Plane> planelist)
-
-        {
-            TrackedDataInfo = new List<Plane>();
-
-
-                    TrackedDataInfo.Add(_plane);
-                //Mangler du ikke {} omkring planelist.Add(_plane); ???
-
-            }
+    }
 
 }
 
