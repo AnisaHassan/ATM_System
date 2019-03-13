@@ -11,9 +11,8 @@ namespace ATM_System
     public class TrackInfo
     {
         private ITrackReciever _dataReciever;
-        public List<Plane> TrackedDataInfo { get; }
-        private IDataCalculator _dataCalculator;
-       
+        public List<Plane> TrackedDataInfo { get; set; }
+
 
         public TrackInfo(ITrackReciever dataReciever)
         {
@@ -21,48 +20,55 @@ namespace ATM_System
             this._dataReciever = dataReciever;
 
             // Attach to the event of the real or the fake TDR
-            this._dataReciever.TrackedDataReady += ReceiverOnTrackedDataReady;
+            this._dataReciever.TrackedDataReady += AirSpace;
 
         }
 
-       
 
-        private void ReceiverOnTrackedDataReady(object sender, TrackedDataEventArgs e)
+
+        private void AirSpace(object sender, TrackedDataEventArgs e)
         {
-            // AirSpace(TrackedDataInfo);
 
             foreach (var plane in e.TrackedInfo)
             {
+                if (plane._xcoor <= 90000 && plane._xcoor >= 10000 && plane._ycoor >= 10000 &&
+                    plane._ycoor <= 90000)
+                
+                    TrackedDataInfo.Add(plane);
 
-                Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
-                                  plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " +
-                                  plane._time.Year + "/" + plane._time.Month + "/" + plane._time.Day +
-                                  ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
-                                  plane._time.Second + " and " + plane._time.Millisecond +
-                                  " milliseconds \nVelocity: " + plane._velocity + " m/s\nCourse: " +
-                                  plane._compassCourse + " degrees\n");
+                    Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
+                                      plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " +
+                                      plane._time.Year + "/" + plane._time.Month + "/" + plane._time.Day +
+                                      ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
+                                      plane._time.Second + " and " + plane._time.Millisecond +
+                                      " milliseconds \nVelocity: " + plane._velocity + " m/s\nCourse: " +
+                                      plane._compassCourse + " degrees\n");
+                
+                    
+
+               
+
+
+
+
+
             }
+            //foreach (var _plane in TrackedDataInfo)
+            //{
+            //    Console.WriteLine("Tag: " + _plane._tag + "\nX-coordinate: " + _plane._xcoor + " meters\nY-coordinate: " +
+            //                      _plane._ycoor + " meters\nAltitude: " + _plane._altitude + " meters\nTime stamp: " +
+            //                      _plane._time.Year + "/" + _plane._time.Month + "/" + _plane._time.Day +
+            //                      ", at " + _plane._time.Hour + ":" + _plane._time.Minute + ":" +
+            //                      _plane._time.Second + " and " + _plane._time.Millisecond +
+            //                      " milliseconds \nVelocity: " + _plane._velocity + " m/s\nCourse: " +
+            //                      _plane._compassCourse + " degrees\n");
+            //}
         }
 
 
-
-        public void AirSpace(List<Plane> planelist)
-
-        {
-            TrackedDataInfo = new List<Plane>();
-
-            foreach (var _plane in planelist)
-            {
-                if (_plane._xcoor <= 90000 && _plane._xcoor >= 10000 && _plane._ycoor >= 10000 &&
-                    _plane._ycoor <= 90000)
-
-                    TrackedDataInfo.Add(_plane);
-                //Mangler du ikke {} omkring planelist.Add(_plane); ???
-
-            }
-
-        }
 
     }
 
 }
+
+
