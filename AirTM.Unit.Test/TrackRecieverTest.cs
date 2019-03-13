@@ -9,7 +9,7 @@ using ATM_System;
 
 
 
-namespace AirTM_Unit_Test
+namespace AirTM.Unit.Test
 {
     [TestFixture]
     public class TrackRecieverTest
