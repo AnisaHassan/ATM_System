@@ -8,12 +8,12 @@ namespace ATM_System
 {
     public class ConsolePrint : IPrint
     {
-        public void PrintPlane(List<Plane> planelise)
+        public void PrintPlane(List<Plane> planeliste)
         {
 
-            if (planelise.Count != 0)
+            if (planeliste.Count != 0)
             {
-                foreach (var plane in planelise)
+                foreach (var plane in planeliste)
                 {
                     System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
                                              " meters\nY-coordinate: " +

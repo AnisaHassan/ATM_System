@@ -11,7 +11,7 @@ namespace ATM_System
     public class TrackInfo
     {
         private ITrackReciever _dataReciever;
-        public List<Plane> TrackedDataInfo { get; }
+        public List<Plane> TrackedDataInfo { get; set; }
         private IDataCalculator _dataCalculator;
        
 
@@ -29,9 +29,9 @@ namespace ATM_System
 
         private void ReceiverOnTrackedDataReady(object sender, TrackedDataEventArgs e)
         {
-            // AirSpace(TrackedDataInfo);
+            //AirSpace(TrackedDataInfo);
 
-            foreach (var plane in e.TrackedInfo)
+            foreach (var plane in TrackedDataInfo)
             {
 
                 Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
@@ -43,9 +43,6 @@ namespace ATM_System
                                   plane._compassCourse + " degrees\n");
             }
         }
-
-
-
         public void AirSpace(List<Plane> planelist)
 
         {
@@ -57,9 +54,8 @@ namespace ATM_System
                     _plane._ycoor <= 90000)
 
                     TrackedDataInfo.Add(_plane);
-                //Mangler du ikke {} omkring planelist.Add(_plane); ???
-
             }
+           
 
         }
 
