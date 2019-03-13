@@ -16,7 +16,7 @@ namespace ATM_System
         public List<Plane> ReceivedDataList { get; set; }
 
         // Using constructor injection for dependency/ies
-        public TrackReciever(ITransponderReceiver receiver, TrackInfo trackInfo)
+        public TrackReciever(ITransponderReceiver receiver)
         {
             // This will store the real or the fake transponder data receiver
             this.receiver = receiver;
@@ -24,7 +24,7 @@ namespace ATM_System
             // Attach to the event of the real or the fake TDR
             this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
 
-            _trackinfo = trackInfo;
+           
         }
 
         private void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
@@ -35,7 +35,8 @@ namespace ATM_System
             {
                 // Move data to TrackInfo
                 ReceivedDataList = TrackedInfo(list);
-                _trackinfo.AirSpace(ReceivedDataList);
+
+                //_trackinfo.AirSpace(ReceivedDataList);
 
                 TrackedDataReady.Invoke(sender, new TrackedDataEventArgs(ReceivedDataList));
 

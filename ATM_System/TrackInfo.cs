@@ -11,7 +11,7 @@ namespace ATM_System
     public class TrackInfo
     {
         private ITrackReciever _dataReciever;
-        public List<Plane> TrackedDataInfo { get; set; }
+        public List<Plane> TrackedDataInfo { get; }
         private IDataCalculator _dataCalculator;
        
 
@@ -25,16 +25,23 @@ namespace ATM_System
 
         }
 
-        
-
-        public TrackInfo(IDataCalculator dataCalculator)
-        {
-            _dataCalculator = dataCalculator;
-        }
+       
 
         private void ReceiverOnTrackedDataReady(object sender, TrackedDataEventArgs e)
         {
-            AirSpace(TrackedDataInfo);
+            //AirSpace(TrackedDataInfo);
+
+            foreach (var plane in TrackedDataInfo)
+            {
+
+                Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
+                                  plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " +
+                                  plane._time.Year + "/" + plane._time.Month + "/" + plane._time.Day +
+                                  ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
+                                  plane._time.Second + " and " + plane._time.Millisecond +
+                                  " milliseconds \nVelocity: " + plane._velocity + " m/s\nCourse: " +
+                                  plane._compassCourse + " degrees\n");
+            }
         }
         public void AirSpace(List<Plane> planelist)
 
