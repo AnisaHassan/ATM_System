@@ -11,7 +11,8 @@ namespace ATM_System
 {
     public class TrackInfo : ITrackInfo
     {
-        
+     
+
         //Used to recive event from TrackReciever class
         private ITrackReciever _dataReciever;
         public List<Plane> TrackedDataInfo { get; set; }
@@ -29,9 +30,15 @@ namespace ATM_System
             this._dataReciever.TrackedDataReady += AirSpace;
         }
 
+        public TrackInfo()
+        {
+
+        }
 
 
-        private void AirSpace(object sender, TrackedDataEventArgs e)
+
+
+        public void AirSpace(object sender, TrackedDataEventArgs e)
         {
              TrackedDataInfo = new List<Plane>();
 
