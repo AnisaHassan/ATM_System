@@ -9,5 +9,8 @@ namespace ATM_System
     public interface ITrackInfo
     {
         event EventHandler<DataCalcEventArgs> AirspaceDataReady;
+        
+        List<Plane> PlanesInAirSpaceList { get; set; }
+        List<Plane> Airspace(List<Plane> planeliste);
     }
 }

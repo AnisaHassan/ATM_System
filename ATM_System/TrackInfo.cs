@@ -20,6 +20,7 @@ namespace ATM_System
 
         //Used to new Event 
         public event EventHandler<DataCalcEventArgs> AirspaceDataReady;
+        public List<Plane> PlanesInAirSpaceList { get; set; }
 
         public TrackInfo(ITrackReciever dataReciever)
         {
@@ -41,7 +42,6 @@ namespace ATM_System
 
             foreach (var plane in list)
             {
-
                 TrackedDataInfo = Airspace(list);
 
                 //Send information videre
@@ -52,7 +52,7 @@ namespace ATM_System
 
         public List<Plane> Airspace(List<Plane> planeliste)
         {
-            List<Plane> PlanesInAirSpaceList = new List<Plane>();
+            PlanesInAirSpaceList = new List<Plane>();
 
             foreach (var plane in planeliste)
             {
