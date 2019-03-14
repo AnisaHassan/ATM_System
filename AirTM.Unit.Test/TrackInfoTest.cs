@@ -15,7 +15,7 @@ namespace AirTM.Unit.Test
         public class TrackRecieverTest
         {
             private TrackInfo _uut;
-            private List<string> stringList;
+           // private List<string> stringList;
             private List<Plane> planeList;
 
             [SetUp]
@@ -23,12 +23,17 @@ namespace AirTM.Unit.Test
             {
                 _uut = new TrackInfo();
 
-                string plane = "39045;12932";
+                //string plane = "39045;12932";
+                Plane p = new Plane();
+                {
+                    //ATR423; 39045; 12932; 14000; 20151006213456789
+                    p._xcoor = 39045;
+                    p._ycoor = 12932;
+                }
+                planeList = new List<Plane>();
+                planeList.Add(p);
 
-                stringList = new List<string>();
-
-                stringList.Add(plane);
-                planeList = _uut.TrackedDataInfo(stringList);
+                planeList = _uut.Airspace(planeList);
 
             }
         }
