@@ -35,6 +35,13 @@ namespace AirTM.Unit.Test
 
                 planeList = _uut.Airspace(planeList);
 
+
+            }
+
+            [Test]
+            public void plane_is_inAirSpace()
+            {
+                Assert.That(planeList[0]._xcoor, Is.LessThanOrEqualTo(39045));
             }
         }
     }
