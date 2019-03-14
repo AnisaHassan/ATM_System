@@ -15,34 +15,41 @@ namespace AirTM.Unit.Test
         public class TrackRecieverTest
         {
             private TrackInfo _uut;
-           // private List<string> stringList;
-            private List<Plane> planeList;
+            private List<Plane> PlanesInAirSpaceList;
 
             [SetUp]
             public void SetUp()
             {
                 _uut = new TrackInfo();
 
-                //string plane = "39045;12932";
-                Plane p = new Plane();
-                {
-                    //ATR423; 39045; 12932; 14000; 20151006213456789
-                    p._xcoor = 39045;
-                    p._ycoor = 12932;
-                }
-                planeList = new List<Plane>();
-                planeList.Add(p);
-
-                planeList = _uut.Airspace(planeList);
-
 
             }
 
-            [Test]
-            public void plane_is_inAirSpace()
+
+            [TestCase(10000, 10000, 1)]
+            [TestCase(10001, 1000, 1)]
+            [TestCase(10000, 10001, 1)]
+            [TestCase(10000, 9999, 0)]
+            [TestCase(9999, 10000, 0)]
+            [TestCase(9999, 9999, 0)]
+            [TestCase(10001, 9999, 0)]
+            [TestCase(9999, 10001, 0)]
+            public void plane_is_inAirSpace(int x_coor, int y_coor, int count)
             {
-                Assert.That(planeList[0]._xcoor, Is.LessThanOrEqualTo(39045));
+                PlanesInAirSpaceList = new List<Plane>();
+                Plane p = new Plane();
+                p._xcoor = x_coor;
+                p._ycoor = y_coor;
+
+                PlanesInAirSpaceList.Add(p);
+
+                _uut.TrackedDataInfo = _uut.Airspace(PlanesInAirSpaceList);
+
+
+                Assert.That(_uut.TrackedDataInfo.Count, Is.EqualTo(count));
+
             }
+
         }
     }
 }
