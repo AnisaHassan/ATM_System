@@ -31,7 +31,7 @@ namespace AirTM.Unit.Test
             planeList = _uut.TrackedInfo(stringList);
 
         }
-
+        //Test af metoden TrackedInfo
         [Test]
         public void planeList_tag_isCorrect()
         {
