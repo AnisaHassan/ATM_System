@@ -12,7 +12,6 @@ namespace ATM_System
     public class TrackInfo : ITrackInfo
     {
 
-
         //Used to recive event from TrackReciever class
         private ITrackReciever _dataReciever;
         public List<Plane> TrackedDataInfo { get; set; }
@@ -20,6 +19,7 @@ namespace ATM_System
 
         //Used to new Event 
         public event EventHandler<DataCalcEventArgs> AirspaceDataReady;
+        public List<Plane> PlanesInAirSpaceList { get; set; }
 
         public TrackInfo(ITrackReciever dataReciever)
         {
@@ -30,18 +30,17 @@ namespace ATM_System
             this._dataReciever.TrackedDataReady += ReceiverOnTrackedInfoDataReady;
         }
 
-        public TrackInfo() { }
+        public TrackInfo()
+        {
+        }
 
         public void ReceiverOnTrackedInfoDataReady(object sender, TrackedDataEventArgs e)
         {
-            //TrackedDataInfo = new List<Plane>();
+            TrackedDataInfo = new List<Plane>();
             var list = e.TrackedInfo;
-
-
 
             foreach (var plane in list)
             {
-
                 TrackedDataInfo = Airspace(list);
 
                 //Send information videre
@@ -52,24 +51,22 @@ namespace ATM_System
 
         public List<Plane> Airspace(List<Plane> planeliste)
         {
-            List<Plane> PlanesInAirSpaceList = new List<Plane>();
+            PlanesInAirSpaceList = new List<Plane>();
 
             foreach (var plane in planeliste)
             {
-                Plane p = new Plane();
 
                 //Calculate if the plan is in our airspace
-                if (p._xcoor <= 90000 && p._xcoor >= 10000 && p._ycoor >= 10000 && p._ycoor <= 90000)
+                if (plane._xcoor <= 90000 && plane._xcoor >= 10000 && plane._ycoor >= 10000 && plane._ycoor <= 90000)
                 {
-                    PlanesInAirSpaceList.Add(p);
+                    //Plane p = new Plane();
+                    PlanesInAirSpaceList.Add(plane);
 
-                   
                 }
-                
+
             }
-
             return PlanesInAirSpaceList;
-        }
 
+        }
     }
 }

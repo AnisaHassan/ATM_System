@@ -19,7 +19,7 @@ namespace ATM_System
             ITrackReciever trackReciever = new TrackReciever(receiver);
 
             ITrackInfo trackInfo = new TrackInfo(trackReciever);
-            DataCalculator datacalc = new DataCalculator(trackInfo);
+            IDataCalculator datacalc = new DataCalculator(trackInfo);
             
 
 
