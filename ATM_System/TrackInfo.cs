@@ -56,12 +56,13 @@ namespace ATM_System
 
             foreach (var plane in planeliste)
             {
-                Plane p = new Plane();
+                
 
                 //Calculate if the plan is in our airspace
-                if (p._xcoor <= 90000 && p._xcoor >= 10000 && p._ycoor >= 10000 && p._ycoor <= 90000)
+                if (plane._xcoor <= 90000 && plane._xcoor >= 10000 && plane._ycoor >= 10000 && plane._ycoor <= 90000)
                 {
-                    PlanesInAirSpaceList.Add(p);
+                    //Plane p = new Plane();
+                    PlanesInAirSpaceList.Add(plane);
 
                    
                 }
