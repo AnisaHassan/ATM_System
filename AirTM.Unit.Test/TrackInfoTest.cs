@@ -28,6 +28,7 @@ namespace AirTM.Unit.Test
             [TestCase(10000, 10000, 1)]
             [TestCase(10001, 1000, 1)]
             [TestCase(10000, 10001, 1)]
+            [TestCase(10001, 10001, 1)]
             //[TestCase(10000, 9999, 0)]
             //[TestCase(9999, 10000, 0)]
             //[TestCase(9999, 9999, 0)]
