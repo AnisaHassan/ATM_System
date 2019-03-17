@@ -8,7 +8,8 @@ namespace ATM_System
 {
    public interface IDataCalculator
    {
-     
+       List<Plane> nyliste { get; set; }
+
     }
 
 

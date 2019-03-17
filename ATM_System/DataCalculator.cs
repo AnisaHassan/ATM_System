@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TransponderReceiver; 
 
 namespace ATM_System
 {
-    public class DataCalculator
+    public class DataCalculator: IDataCalculator
     {
         private ITrackInfo _dataCalcRecieved;
         public List<Plane> nyliste { get; set; }
