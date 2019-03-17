@@ -57,5 +57,41 @@ namespace ATM_System
         //    planeNew._compassCourse = 90 - ((Math.Atan(slope) * 1800) / Math.PI);
 
         //}
+
+        //public void CalculateVelocity(List<Plane> planeOld, List<Plane> planeNew)
+        //{
+        //    foreach (var planeO in planeOld)
+        //    {
+        //        foreach (var planeN in planeNew)
+        //        {
+        //            double distance = Math.Sqrt(Math.Pow(planeO._xcoor - planeN._xcoor, 2) +
+        //                                        Math.Pow(planeO._ycoor - planeN._ycoor, 2) +
+        //                                        Math.Pow(planeO._altitude - planeN._altitude, 2));
+        //            double time = (planeO._time - planeN._time).TotalSeconds;
+
+        //            planeN._velocity = (distance / time);
+        //        }
+        //    }
+
+
+        //}
+
+        //public void CalculateCourse(List<Plane> planeOld, List<Plane> planeNew)
+        //{
+        //    foreach (var planeO in planeOld)
+        //    {
+        //        foreach (var planeN in planeNew)
+        //        {
+        //            if (planeN._tag == planeO._tag)
+        //            {
+        //                double slope = (planeO._ycoor - planeN._ycoor) / (planeO._xcoor - planeN._xcoor);
+
+        //                planeN._compassCourse = 90 - ((Math.Atan(slope) * 1800) / Math.PI);
+        //            }
+
+        //        }
+        //    }
+
+        //}
     }
 }
