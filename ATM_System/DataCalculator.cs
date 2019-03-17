@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TransponderReceiver; 
 
 namespace ATM_System
 {
-    public class DataCalculator : IDataCalculator
+    public class DataCalculator: IDataCalculator
     {
         private ITrackInfo _dataCalcRecieved;
-        public List<Plane> CalculatedDataList { get; set; }
+        public List<Plane> nyliste { get; set; }
+        public List<Plane> gammelliste { get; set; }
 
         public DataCalculator(ITrackInfo dataCalcRecieved)
         {
@@ -20,11 +22,12 @@ namespace ATM_System
 
         public void UseList(object sender, DataCalcEventArgs e)
         {
-
-            var list = e.DataList;     
-
+            nyliste = new List<Plane>();
+            var list = e.DataList;
+            
             foreach (var plane in list)
             {
+                nyliste = list;
                 Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
                                   plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " +
                                   plane._time.Year + "/" + plane._time.Month + "/" + plane._time.Day +
