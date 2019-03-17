@@ -12,7 +12,7 @@ namespace AirTM.Unit.Test
     class TrackInfoTest
     {
         [TestFixture]
-        public class TrackRecieverTest
+        public class TrackInfotest
         {
             private TrackInfo _uut;
             private List<Plane> PlanesInAirSpaceList;
@@ -36,7 +36,7 @@ namespace AirTM.Unit.Test
             [TestCase(9999, 10001, 0)]
             public void plane_is_inAirSpace(int x_coor, int y_coor, int count)
             {
-                PlanesInAirSpaceList = new List<Plane>();
+                List<Plane> PlanesInAirSpaceList = new List<Plane>();
                 Plane p = new Plane();
                 p._xcoor = x_coor;
                 p._ycoor = y_coor;
