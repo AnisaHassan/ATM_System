@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using TransponderReceiver; 
@@ -17,20 +18,23 @@ namespace ATM_System
             this._dataCalcRecieved = dataCalcRecieved;
 
             this._dataCalcRecieved.AirspaceDataReady += UseList;
+            nyliste = new List<Plane>();
+            gammelliste = new List<Plane>();
         }
 
         public void UseList(object sender, DataCalcEventArgs e)
         {
-            nyliste = new List<Plane>();
-            var list = e.DataList;
+            gammelliste = nyliste;
+            nyliste = e.DataList;
             
-            foreach (var plane in list)
+            foreach (var plane in nyliste)
             {
-                nyliste.Add(plane);
+                //nyliste.Add(plane);
 
-                CalculateVelocity(list, nyliste);
+                CalculateVelocity(gammelliste, nyliste);
 
-                CalculateCourse(list, nyliste);
+                CalculateCourse(gammelliste, nyliste);
+
                 Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
                                   plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " +
                                   plane._time.Year + "/" + plane._time.Month + "/" + plane._time.Day +
@@ -69,17 +73,28 @@ namespace ATM_System
                 foreach (var planeN in planeNew)
                 {
                     if (planeN._tag == planeO._tag)
+                  
                     {
-                        if (planeO._xcoor-planeN._xcoor !=0)
-                        {
-                            double slope = (planeO._ycoor - planeN._ycoor) / (planeO._xcoor - planeN._xcoor);
+                        double xdif = planeO._xcoor - planeN._xcoor;
+                        double ydif = planeO._ycoor - planeN._ycoor;
 
-                            planeN._compassCourse = 90 - ((Math.Atan(slope) * 180) / Math.PI);
+                        if (xdif == 0)
+                        {
+                            planeN._compassCourse = 0;
+                            
                         }
 
                         else
                         {
-                            planeN._compassCourse = 0;
+                            //double slope = ydif / xdif;
+
+                            double gr = (Math.Atan2(ydif, xdif) * 180.0 / Math.PI);
+                            if (gr < 0 )
+                            {
+                               gr = gr + 360;
+                                planeN._compassCourse = gr;
+                            }
+                            //((Math.Atan(slope) * 180) / Math.PI);
                         }
                         
                     }
