@@ -11,7 +11,7 @@ namespace ATM_System
     {
         private ITrackInfo _dataCalcRecieved;
         public List<Plane> nyliste { get; set; }
-
+        
         public DataCalculator(ITrackInfo dataCalcRecieved)
         {
             this._dataCalcRecieved = dataCalcRecieved;
