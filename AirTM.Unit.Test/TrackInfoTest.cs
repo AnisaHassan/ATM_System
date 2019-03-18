@@ -16,6 +16,7 @@ namespace AirTM.Unit.Test
         public class TrackInfotest
         {
             private ITrackInfo _uut;
+            public List<Plane> TrackedDataInfo { get; set; }
 
             [SetUp]
             public void SetUp()
@@ -26,30 +27,29 @@ namespace AirTM.Unit.Test
 
 
             [TestCase(10000, 10000, 1)]
-            [TestCase(10001, 1000, 1)]
+            [TestCase(10001, 1000, 0)]
             [TestCase(10000, 10001, 1)]
             [TestCase(10001, 10001, 1)]
-            //[TestCase(10000, 9999, 0)]
-            //[TestCase(9999, 10000, 0)]
-            //[TestCase(9999, 9999, 0)]
-            //[TestCase(10001, 9999, 0)]
-            //[TestCase(9999, 10001, 0)]
+            [TestCase(9999, 10000, 0)]
+            [TestCase(10000, 9999, 0)]
+          
             public void plane_is_inAirSpace(int x_coor, int y_coor, int count)
             {
-                PlanesInAirSpaceList = new List<Plane>();
+                TrackedDataInfo = new List<Plane>();
                 Plane p = new Plane();
                 p._xcoor = x_coor;
                 p._ycoor = y_coor;
 
-                planelist.Add(p);
+                TrackedDataInfo.Add(p);
 
-                _uut.Airspace(planelist);
+                _uut.Airspace(TrackedDataInfo);
 
 
                 Assert.That(_uut.PlanesInAirSpaceList.Count, Is.EqualTo(count));
 
             }
 
+           
         }
     }
 }
