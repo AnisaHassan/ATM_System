@@ -69,7 +69,6 @@ namespace ATM_System
                 }
             }
 
-
         }
 
         public void CalculateCourse(List<Plane> planeOld, List<Plane> planeNew)
