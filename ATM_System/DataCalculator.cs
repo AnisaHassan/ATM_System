@@ -55,7 +55,11 @@ namespace ATM_System
            
                 Print(gammelliste);
 
+<<<<<<< HEAD
            
+=======
+            Print(gammelliste);
+>>>>>>> 9fb2b91ebc06a28dc8b29a60e6e11f291285a5ec
         }
 
 
@@ -86,7 +90,7 @@ namespace ATM_System
         }
 
         public void CalculateCourse(List<Plane> planeOld, List<Plane> planeNew)
-        {
+        {   
             foreach (var planeO in planeOld)
             {
                 foreach (var planeN in planeNew)
@@ -129,22 +133,15 @@ namespace ATM_System
 
         }
 
+<<<<<<< HEAD
         public void Print(List<Plane> gammelliste)
+=======
+        public void Print(List<Plane> gammellist)
+>>>>>>> 9fb2b91ebc06a28dc8b29a60e6e11f291285a5ec
         {
+            gammellist = gammelliste;
             _print.PrintPlane(gammelliste);
-
-
-            //list = gammelliste;
-            //foreach (var plane in list)
-            //{
-            //    System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
-            //                             " meters\nY-coordinate: " +
-            //                             plane._ycoor + " meters\nAltitude: " + plane._altitude +
-            //                             " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
-            //                             "/" + plane._time.Day +
-            //                             ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
-            //                             plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
-            //}
+            
         }
     }
 }

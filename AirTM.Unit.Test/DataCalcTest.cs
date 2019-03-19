@@ -15,6 +15,7 @@ namespace AirTM.Unit.Test
     {
         private IDataCalculator uut;
         private List<Plane> planelist;
+        public List<Plane> TrackedDataInfo { get; set; }
 
         private List<Plane> gammelliste;
         private Plane _plane1;
@@ -23,34 +24,35 @@ namespace AirTM.Unit.Test
       public void SetUp()
       {
           uut = new DataCalculator();
-          var dateTime1 = new DateTime(2019, 06, 05, 10, 54, 34);
-          var dateTime2 = new DateTime(2019, 06, 05, 10, 54, 50);
+            var dateTime1 = new DateTime(2019, 06, 05, 10, 54, 34);
+            var dateTime2 = new DateTime(2019, 06, 05, 10, 54, 50);
             _plane1 = new Plane
-          {
-              _tag = "ART123",
-              _xcoor = 12345,
-              _ycoor = 67891,
-              _altitude = 23456,
-              _time = dateTime1,
-            
-
-          };
-
-          _plane2 = new Plane
-          {
-              _tag = "ART123",
-              _xcoor = 98765,
-              _ycoor = 43210,
-              _altitude = 12345,
-              _time = dateTime2,
+            {
+                _tag = "ART123",
+                _xcoor = 12345,
+                _ycoor = 67891,
+                _altitude = 23456,
+                _time = dateTime1,
 
 
+            };
 
-          };
+            _plane2 = new Plane
+            {
+                _tag = "ART123",
+                _xcoor = 98765,
+                _ycoor = 43210,
+                _altitude = 12345,
+                _time = dateTime2,
 
-      }
-        [Test]
-      public void velocity_isCorrect()
+
+
+            };
+
+        }
+
+      [Test]
+        public void velocity_isCorrect()
       {
           planelist = new List<Plane>();
           planelist.Add(_plane1);
