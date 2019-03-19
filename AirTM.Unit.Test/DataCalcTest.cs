@@ -56,10 +56,12 @@ namespace AirTM.Unit.Test
           planelist.Add(_plane1);
           gammelliste = new List<Plane>();
           gammelliste.Add(_plane2);
+          
 
             uut.CalculateVelocity(gammelliste, planelist);
-          Assert.That(Math.Round(planelist[0]._velocity, 2), Is.EqualTo(5659.97));
-      }
+            Assert.That(gammelliste[0]._velocity, Is.EqualTo(5659.97));
+
+        }
         [Test]
         public void compass_isCorrect()
         {

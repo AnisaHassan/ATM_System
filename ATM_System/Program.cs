@@ -22,7 +22,7 @@ namespace ATM_System
 
             //Til udskrivning:
             DataCalculator datacalculator = new DataCalculator(trackInfo);
-            datacalculator._print = new ConsolePrint();
+            //datacalculator._print = new ConsolePrint();
 
             Console.ReadKey();
 
