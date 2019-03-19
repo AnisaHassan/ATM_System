@@ -22,6 +22,10 @@ namespace ATM_System
             this._dataCalcRecieved = dataCalcRecieved;
 
             this._dataCalcRecieved.AirspaceDataReady += UseList;
+
+            gammelliste = new List<Plane>();
+
+            _print = new ConsolePrint();
             
         }
 
@@ -31,29 +35,35 @@ namespace ATM_System
         {
             //nyliste.Clear();
             
-            foreach (var plane in e.DataList)
-            {
-                nyliste.Add(plane);
+            //foreach (var plane in e.DataList)
+            //{
+            //    nyliste.Add(plane);
                 
+            //}
+            nyliste = e.DataList;
+            if (gammelliste != null)
+            {
+                CalculateVelocity(nyliste);
+
+                CalculateCourse(gammelliste, nyliste);
             }
-
-            CalculateVelocity(gammelliste, nyliste);
             
-            CalculateCourse(gammelliste, nyliste);
 
-            gammelliste = new List<Plane>(nyliste);
+           gammelliste = nyliste;
+           // gammelliste = new List<Plane>(nyliste);
 
+           
+                Print(gammelliste);
 
-
-            Print(gammelliste);
+           
         }
 
 
-        public void CalculateVelocity(List<Plane> planeOld, List<Plane> planeNew)
+        public void CalculateVelocity(List<Plane> nyliste)
         {
-            foreach (var planeO in planeOld)
+            foreach (var planeO in gammelliste)
             {
-                foreach (var planeN in planeNew)
+                foreach (var planeN in nyliste)
                 {
                     if (planeN._tag == planeO._tag)
 
@@ -68,14 +78,15 @@ namespace ATM_System
                     }
 
                     //jeg tænker det er den 'gammle' liste der skal gemme velocity, da den 'nye' liste ikke skal gemmes her?
-                    planeO._velocity = Math.Round(velocity, 2);
+                    
+                    planeN._velocity = Math.Round(velocity, 2);
                 }
             }
 
         }
 
         public void CalculateCourse(List<Plane> planeOld, List<Plane> planeNew)
-        {   
+        {
             foreach (var planeO in planeOld)
             {
                 foreach (var planeN in planeNew)
@@ -118,11 +129,22 @@ namespace ATM_System
 
         }
 
-        public void Print(List<Plane> gammellist)
+        public void Print(List<Plane> gammelliste)
         {
-            gammellist = gammelliste;
             _print.PrintPlane(gammelliste);
-            
+
+
+            //list = gammelliste;
+            //foreach (var plane in list)
+            //{
+            //    System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
+            //                             " meters\nY-coordinate: " +
+            //                             plane._ycoor + " meters\nAltitude: " + plane._altitude +
+            //                             " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
+            //                             "/" + plane._time.Day +
+            //                             ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
+            //                             plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
+            //}
         }
     }
 }

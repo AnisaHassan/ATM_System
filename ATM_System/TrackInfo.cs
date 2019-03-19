@@ -42,11 +42,13 @@ namespace ATM_System
             foreach (var plane in list)
             {
                 TrackedDataInfo = Airspace(list);
+                
+                    //Send information videre
+                    AirspaceDataReady?.Invoke(sender, new DataCalcEventArgs(TrackedDataInfo));
 
-                //Send information videre
-                AirspaceDataReady?.Invoke(sender, new DataCalcEventArgs(TrackedDataInfo));
-
+                
             }
+
         }
 
         public List<Plane> Airspace(List<Plane> planeliste)
