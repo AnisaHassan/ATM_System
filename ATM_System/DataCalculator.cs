@@ -15,7 +15,8 @@ namespace ATM_System
         public List<Plane> gammelliste { get; set; }
 
         private double velocity;
-        //public IPrint _print { get; set; }
+        //Til udskrivning
+        public IPrint _print { get; set; }
         public DataCalculator(ITrackInfo dataCalcRecieved)
         {
             this._dataCalcRecieved = dataCalcRecieved;
@@ -28,28 +29,23 @@ namespace ATM_System
         
         public void UseList(object sender, DataCalcEventArgs e)
         {
-            var list = e.DataList;
             //nyliste.Clear();
             
-            foreach (var plane in list)
+            foreach (var plane in e.DataList)
             {
                 nyliste.Add(plane);
-
-                System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
-                                         " meters\nY-coordinate: " +
-                                         plane._ycoor + " meters\nAltitude: " + plane._altitude +
-                                         " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
-                                         "/" + plane._time.Day +
-                                         ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
-                                         plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
+                
             }
 
             CalculateVelocity(gammelliste, nyliste);
-
+            
             CalculateCourse(gammelliste, nyliste);
 
             gammelliste = new List<Plane>(nyliste);
-            //Print();
+
+
+
+            Print();
         }
 
 
@@ -122,9 +118,22 @@ namespace ATM_System
 
         }
 
-        //public void Print()
-        //{
-        //    _print.PrintPlane(gammelliste);
-        //}
+        public void Print()
+        {
+            _print.PrintPlane(gammelliste);
+
+
+            //list = gammelliste;
+            //foreach (var plane in list)
+            //{
+            //    System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
+            //                             " meters\nY-coordinate: " +
+            //                             plane._ycoor + " meters\nAltitude: " + plane._altitude +
+            //                             " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
+            //                             "/" + plane._time.Day +
+            //                             ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
+            //                             plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
+            //}
+        }
     }
 }

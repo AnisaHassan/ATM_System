@@ -118,8 +118,6 @@ namespace AirTM.Unit.Test
         {
             Assert.That(planeList[0]._time.Millisecond, Is.EqualTo(789));
         }
-
-
-
+        
     }
 }
