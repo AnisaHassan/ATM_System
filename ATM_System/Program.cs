@@ -15,13 +15,14 @@ namespace ATM_System
         {
             // Using the real transponder data receiver
             ITransponderReceiver receiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
-
             ITrackReciever trackReciever = new TrackReciever(receiver);
-
             ITrackInfo trackInfo = new TrackInfo(trackReciever);
             IDataCalculator datacalc = new DataCalculator(trackInfo);
-            
+            IPrint consoleprinter = new ConsolePrint();
 
+            //Til udskrivning:
+            DataCalculator datacalculator = new DataCalculator(trackInfo);
+            //datacalculator._print = new ConsolePrint();
 
             Console.ReadKey();
 
