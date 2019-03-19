@@ -8,5 +8,6 @@ namespace ATM_System
 {
     class SeperationChecker : ISeperationChecker
     {
+
     }
 }

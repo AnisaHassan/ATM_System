@@ -19,6 +19,11 @@ namespace ATM_System
             this._dataCalcRecieved.AirspaceDataReady += UseList;
         }
 
+        public DataCalculator()
+        {
+           
+        }
+
         public void UseList(object sender, DataCalcEventArgs e)
         {
             nyliste = new List<Plane>();
