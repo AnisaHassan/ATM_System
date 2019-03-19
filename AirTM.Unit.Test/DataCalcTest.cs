@@ -29,20 +29,20 @@ namespace AirTM.Unit.Test
 
           _plane1 = new Plane
           {
-              _tag = "ART423",
+              _tag = "ART123",
               _xcoor = 12345,
-              _ycoor = 98765,
-              _altitude = 19987,
+              _ycoor = 67891,
+              _altitude = 12345,
               _time = dateTime1,
            
           };
 
           _plane2 = new Plane
           {
-              _tag = "ART423",
-              _xcoor = 92345,
-              _ycoor = 88765,
-              _altitude = 19987,
+              _tag = "ART123",
+              _xcoor = 98765,
+              _ycoor = 45678,
+              _altitude = 12345,
               _time = dateTime2,
 
 
@@ -59,7 +59,7 @@ namespace AirTM.Unit.Test
           gammelliste.Add(_plane2);
 
           uut.CalculateVelocity(gammelliste, planelist);
-          Assert.That(Math.Round(planelist[0]._velocity, 2), Is.EqualTo(40311.29));
+          Assert.That(Math.Round(planelist[0]._velocity, 2), Is.EqualTo(44614.55));
       }
 
 
