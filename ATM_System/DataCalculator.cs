@@ -13,6 +13,7 @@ namespace ATM_System
         private ITrackInfo _dataCalcRecieved;
         public List<Plane> nyliste { get; set; }
         public List<Plane> gammelliste { get; set; }
+        public IPrint _print { get; set; }
         public DataCalculator(ITrackInfo dataCalcRecieved)
         {
             this._dataCalcRecieved = dataCalcRecieved;
@@ -31,15 +32,6 @@ namespace ATM_System
             foreach (var plane in list)
             {
                 nyliste.Add(plane);
-                
-
-                //Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor + " meters\nY-coordinate: " +
-                //                  plane._ycoor + " meters\nAltitude: " + plane._altitude + " meters\nTime stamp: " +
-                //                  plane._time.Year + "/" + plane._time.Month + "/" + plane._time.Day +
-                //                  ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
-                //                  plane._time.Second + " and " + plane._time.Millisecond +
-                //                  " milliseconds \nVelocity: " + plane._velocity + " m/s\nCourse: " +
-                //                  plane._compassCourse + " degrees\n");
             }
 
             CalculateVelocity(gammelliste, nyliste);
@@ -47,6 +39,7 @@ namespace ATM_System
             CalculateCourse(gammelliste, nyliste);
 
             gammelliste = new List<Plane>(nyliste);
+            Print();
         }
 
 
@@ -107,6 +100,11 @@ namespace ATM_System
                 }
             }
 
+        }
+
+        public void Print()
+        {
+            _print.PrintPlane(gammelliste);
         }
     }
 }
