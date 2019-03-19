@@ -23,14 +23,14 @@ namespace AirTM.Unit.Test
       public void SetUp()
       {
           uut = new DataCalculator();
-          var dateTime1 = new DateTime(2018, 04, 05, 20, 20, 18);
-          var dateTime2 = new DateTime(2018, 04, 05, 20, 20, 20);
+          var dateTime1 = new DateTime(2019, 06, 05, 10, 54, 34);
+          var dateTime2 = new DateTime(2019, 06, 05, 10, 54, 50);
             _plane1 = new Plane
           {
               _tag = "ART123",
               _xcoor = 12345,
               _ycoor = 67891,
-              _altitude = 12345,
+              _altitude = 23456,
               _time = dateTime1,
             
 
@@ -40,7 +40,7 @@ namespace AirTM.Unit.Test
           {
               _tag = "ART123",
               _xcoor = 98765,
-              _ycoor = 45678,
+              _ycoor = 43210,
               _altitude = 12345,
               _time = dateTime2,
 
@@ -58,7 +58,7 @@ namespace AirTM.Unit.Test
           gammelliste.Add(_plane2);
 
             uut.CalculateVelocity(gammelliste, planelist);
-          Assert.That(Math.Round(planelist[0]._velocity, 2), Is.EqualTo(44614.55));
+          Assert.That(Math.Round(planelist[0]._velocity, 2), Is.EqualTo(5659.97));
       }
         [Test]
         public void compass_isCorrect()
@@ -69,7 +69,7 @@ namespace AirTM.Unit.Test
             gammelliste.Add(_plane2);
 
             uut.CalculateCourse(gammelliste, planelist);
-            Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(346));
+            Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(344));
         }
 
     

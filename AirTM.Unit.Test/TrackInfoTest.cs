@@ -32,7 +32,7 @@ namespace AirTM.Unit.Test
             [TestCase(10001, 10001, 1)]
             [TestCase(9999, 10000, 0)]
             [TestCase(10000, 9999, 0)]
-            public void plane_is_inAirSpace(int x_coor, int y_coor, int count)
+            public void check_plane_isinAirSpace(int x_coor, int y_coor, int count)
             {
                 TrackedDataInfo = new List<Plane>();
                 Plane p = new Plane();
