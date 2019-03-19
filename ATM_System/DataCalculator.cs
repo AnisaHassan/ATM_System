@@ -12,14 +12,15 @@ namespace ATM_System
     {
         private ITrackInfo _dataCalcRecieved;
         public List<Plane> nyliste { get; set; }
-        
+        public List<Plane> gammelliste { get; set; }
+
         public DataCalculator(ITrackInfo dataCalcRecieved)
         {
             this._dataCalcRecieved = dataCalcRecieved;
 
             this._dataCalcRecieved.AirspaceDataReady += UseList;
             nyliste = new List<Plane>();
-            gammelliste = new List<Plane>();
+             gammelliste = new List<Plane>();
         }
 
         public DataCalculator()
