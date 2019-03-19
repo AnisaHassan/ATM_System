@@ -13,7 +13,9 @@ namespace ATM_System
         private ITrackInfo _dataCalcRecieved;
         public List<Plane> nyliste { get; set; }
         public List<Plane> gammelliste { get; set; }
-        public IPrint _print { get; set; }
+
+        private double velocity;
+        //public IPrint _print { get; set; }
         public DataCalculator(ITrackInfo dataCalcRecieved)
         {
             this._dataCalcRecieved = dataCalcRecieved;
@@ -27,11 +29,19 @@ namespace ATM_System
         public void UseList(object sender, DataCalcEventArgs e)
         {
             var list = e.DataList;
-            nyliste.Clear();
+            //nyliste.Clear();
             
             foreach (var plane in list)
             {
                 nyliste.Add(plane);
+
+                System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
+                                         " meters\nY-coordinate: " +
+                                         plane._ycoor + " meters\nAltitude: " + plane._altitude +
+                                         " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
+                                         "/" + plane._time.Day +
+                                         ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
+                                         plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
             }
 
             CalculateVelocity(gammelliste, nyliste);
@@ -39,7 +49,7 @@ namespace ATM_System
             CalculateCourse(gammelliste, nyliste);
 
             gammelliste = new List<Plane>(nyliste);
-            Print();
+            //Print();
         }
 
 
@@ -55,10 +65,14 @@ namespace ATM_System
                         double distance = Math.Sqrt(Math.Pow(planeO._xcoor - planeN._xcoor, 2) +
                                                     Math.Pow(planeO._ycoor - planeN._ycoor, 2) +
                                                     Math.Pow(planeO._altitude - planeN._altitude, 2));
+
                         double time = (planeO._time - planeN._time).TotalSeconds;
 
-                        planeN._velocity = (distance / time);
+                        velocity = distance / time;
                     }
+
+                    //jeg tænker det er den 'gammle' liste der skal gemme velocity, da den 'nye' liste ikke skal gemmes her?
+                    planeO._velocity = Math.Round(velocity, 2);
                 }
             }
 
@@ -77,10 +91,16 @@ namespace ATM_System
                         double ydif = planeO._ycoor - planeN._ycoor;
 
                         if (xdif == 0)
-                        {
-                            planeN._compassCourse = 0;
+                        {    
+                               // Hvad så hvis ydiff er større eller mindre end 0?
+
+                                planeN._compassCourse = 0;
                             
                         }
+                        //mangler vi ikke nogle flere if sætninger?
+                        // Hvad så hvis ydif er lig 0 og xdif er større eller mindre end 0?
+                        //Eller de begge er større eller mindre end 0?, eller en er mindre og den anden er større?
+
 
                         else
                         {
@@ -102,9 +122,9 @@ namespace ATM_System
 
         }
 
-        public void Print()
-        {
-            _print.PrintPlane(gammelliste);
-        }
+        //public void Print()
+        //{
+        //    _print.PrintPlane(gammelliste);
+        //}
     }
 }
