@@ -9,13 +9,18 @@ namespace ATM_System
     public class ConsolePrint : IPrint
     {
         private List<Plane> _gammellist;
+
+        public ConsolePrint()
+        {
+            _gammellist = new List<Plane>();
+        }
         public void PrintPlane(List<Plane> gammellist)
         {
             _gammellist = gammellist;
 
-            if (gammellist.Count != 0)
+            if (_gammellist != null)
             {
-                foreach (var plane in gammellist)
+                foreach (var plane in _gammellist)
                 {
                     System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
                                              " meters\nY-coordinate: " +
@@ -23,7 +28,8 @@ namespace ATM_System
                                              " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
                                              "/" + plane._time.Day +
                                              ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
-                                             plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
+                                             plane._time.Second + " and " + plane._time.Millisecond + " milliseconds\nVelocity: " + plane._velocity + " m/s\nCourse: " +
+                                    plane._compassCourse + " degrees\n");
                 }
             }
         }
