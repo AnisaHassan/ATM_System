@@ -16,14 +16,17 @@ namespace AirTM.Unit.Test
         public class TrackInfotest
         {
             private ITrackInfo _uut;
+            private ITransponderReceiver _fakeTransponderReceiver;
             public List<Plane> TrackedDataInfo { get; set; }
+            private List<string> stringList;
+
 
             [SetUp]
             public void SetUp()
             {
                 _uut = new TrackInfo();
-                
             }
+
 
 
             [TestCase(10000, 10000, 1)]
