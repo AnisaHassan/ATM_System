@@ -29,9 +29,9 @@ namespace AirTM.Unit.Test
         
             stringList = new List<string>();
             stringList.Add("ATR423;39045;12932;14000;20151006213456789");
-            stringList.Add("BCD123;10005;85001;12000;20151006213456789");
-            stringList.Add("XYZ987;85000;75654;4000;20151006213456789");
-            stringList.Add("XYZ987;90059;90654;4000;20151006213456789");
+            stringList.Add("ABC121;12305;87501;13000;20151006213456779");
+            stringList.Add("DEF182;46000;87654;12000;20151006213456769");
+            stringList.Add("XKJ967;90239;99876;11000;20151006213456759");
 
             planeList = _uut.TrackedInfo(stringList);
 
