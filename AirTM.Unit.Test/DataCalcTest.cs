@@ -23,18 +23,17 @@ namespace AirTM.Unit.Test
       public void SetUp()
       {
           uut = new DataCalculator();
-
           var dateTime1 = new DateTime(2018, 04, 05, 20, 20, 18);
           var dateTime2 = new DateTime(2018, 04, 05, 20, 20, 20);
-
-          _plane1 = new Plane
+            _track1 = new Plane
           {
               _tag = "ART123",
               _xcoor = 12345,
               _ycoor = 67891,
               _altitude = 12345,
               _time = dateTime1,
-           
+            
+
           };
 
           _plane2 = new Plane
@@ -46,17 +45,18 @@ namespace AirTM.Unit.Test
               _time = dateTime2,
 
 
+
           };
-          
+          planelist = new List<Plane>
+          {
+              _track1,
+              _track2
+          };
 
         }
         [Test]
       public void velocity_isCorrect()
       {
-          planelist = new List<Plane>();
-          planelist.Add(_plane1);
-          gammelliste = new List<Plane>();
-          gammelliste.Add(_plane2);
 
           uut.CalculateVelocity(gammelliste, planelist);
           Assert.That(Math.Round(planelist[0]._velocity, 2), Is.EqualTo(44614.55));
@@ -75,5 +75,5 @@ namespace AirTM.Unit.Test
 
 
 
-    }
+}
 }
