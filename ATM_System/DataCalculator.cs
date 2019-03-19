@@ -45,7 +45,7 @@ namespace ATM_System
 
 
 
-            Print();
+            Print(gammelliste);
         }
 
 
@@ -118,22 +118,11 @@ namespace ATM_System
 
         }
 
-        public void Print()
+        public void Print(List<Plane> gammellist)
         {
+            gammellist = gammelliste;
             _print.PrintPlane(gammelliste);
-
-
-            //list = gammelliste;
-            //foreach (var plane in list)
-            //{
-            //    System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
-            //                             " meters\nY-coordinate: " +
-            //                             plane._ycoor + " meters\nAltitude: " + plane._altitude +
-            //                             " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
-            //                             "/" + plane._time.Day +
-            //                             ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
-            //                             plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
-            //}
+            
         }
     }
 }
