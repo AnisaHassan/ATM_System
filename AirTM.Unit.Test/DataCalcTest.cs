@@ -72,12 +72,7 @@ namespace AirTM.Unit.Test
             Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(346));
         }
 
-      [Test]
-        public void coursecompass_isCorrect()
-      {
-          uut.CalculateCourse(gammelliste, planelist);
-          Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(44614.55));
-        }
+    
 
 
 }
