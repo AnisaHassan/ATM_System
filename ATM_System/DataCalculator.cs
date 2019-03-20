@@ -53,7 +53,7 @@ namespace ATM_System
            
                 Print(gammelliste);
 
-            gammelliste.Clear();
+           
 
            
         }
