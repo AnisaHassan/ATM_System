@@ -17,13 +17,15 @@ namespace AirTM.Unit.Test
         {
             private ITrackInfo _uut;
             public List<Plane> TrackedDataInfo { get; set; }
+            private List<string> stringList;
+
 
             [SetUp]
             public void SetUp()
             {
                 _uut = new TrackInfo();
-                
             }
+
 
 
             [TestCase(10000, 10000, 1)]

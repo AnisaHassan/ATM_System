@@ -53,6 +53,8 @@ namespace ATM_System
            
                 Print(gammelliste);
 
+            gammelliste.Clear();
+
            
         }
 
@@ -66,9 +68,9 @@ namespace ATM_System
                     if (planeN._tag == planeO._tag)
 
                     {
-                        double distance = Math.Sqrt(Math.Pow(planeO._xcoor - planeN._xcoor, 2) +
-                                                    Math.Pow(planeO._ycoor - planeN._ycoor, 2) +
-                                                    Math.Pow(planeO._altitude - planeN._altitude, 2));
+                        double distance = Math.Sqrt(Math.Pow(planeN._xcoor- planeO._xcoor , 2) +
+                                                    Math.Pow(planeN._ycoor - planeO._ycoor, 2) +
+                                                    Math.Pow(planeN._altitude - planeO._altitude, 2));
 
                         double time = (planeO._time - planeN._time).TotalSeconds;
 
