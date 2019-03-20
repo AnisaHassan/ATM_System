@@ -13,7 +13,7 @@ namespace AirTM.Unit.Test
     [TestFixture]
     public class DataCalcTest
     {
-        private IDataCalculator uut;
+        private DataCalculator uut;
         private List<Plane> planelist;
         public List<Plane> TrackedDataInfo { get; set; }
 
@@ -23,7 +23,8 @@ namespace AirTM.Unit.Test
       [SetUp]
       public void SetUp()
       {
-          uut = new DataCalculator();
+
+          uut = new DataCalculator(new TrackInfo());
             var dateTime1 = new DateTime(2019, 06, 05, 10, 54, 34);
             var dateTime2 = new DateTime(2019, 06, 05, 10, 54, 50);
             _plane1 = new Plane
@@ -58,10 +59,12 @@ namespace AirTM.Unit.Test
           planelist.Add(_plane1);
           gammelliste = new List<Plane>();
           gammelliste.Add(_plane2);
-          
 
-            uut.CalculateVelocity(gammelliste, planelist);
-            Assert.That(gammelliste[0]._velocity, Is.EqualTo(5659.97));
+          uut.gammelliste = gammelliste;
+          uut.nyliste = planelist;
+          uut.CalculateVelocity();
+
+          Assert.That(uut.nyliste[0]._velocity, Is.EqualTo(5659.97));
 
         }
         [Test]
@@ -72,12 +75,29 @@ namespace AirTM.Unit.Test
             gammelliste = new List<Plane>();
             gammelliste.Add(_plane2);
 
-            uut.CalculateCourse(gammelliste, planelist);
+            // uut.CalculateCourse(gammelliste, planelist);
             Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(344));
         }
 
-    
+        [Test]
+        public void correctListIsCreated()
+        {
+            planelist = new List<Plane>();
+            planelist.Add(_plane1);
+            gammelliste = new List<Plane>();
+            gammelliste.Add(_plane2);
+            DataCalcEventArgs testArgs = new DataCalcEventArgs(gammelliste);
+
+            uut.UseList(this, testArgs);
+            testArgs = new DataCalcEventArgs(planelist);
+            uut.UseList(this, testArgs);
+
+            Assert.That(uut.gammelliste[0]._velocity, Is.EqualTo(5659.97));
+
+        }
 
 
-}
+
+
+    }
 }

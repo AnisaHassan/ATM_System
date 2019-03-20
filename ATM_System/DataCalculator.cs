@@ -29,8 +29,6 @@ namespace ATM_System
             
         }
 
-        public DataCalculator() { }
-        
         public void UseList(object sender, DataCalcEventArgs e)
         {
             //nyliste.Clear();
@@ -43,9 +41,9 @@ namespace ATM_System
             nyliste = e.DataList;
             if (gammelliste != null)
             {
-                CalculateVelocity(nyliste);
+                CalculateVelocity();
 
-                CalculateCourse(gammelliste, nyliste);
+                CalculateCourse();
             }
             
 
@@ -59,7 +57,7 @@ namespace ATM_System
         }
 
 
-        public void CalculateVelocity(List<Plane> nyliste)
+        public void CalculateVelocity()
         {
             foreach (var planeO in gammelliste)
             {
@@ -85,11 +83,11 @@ namespace ATM_System
 
         }
 
-        public void CalculateCourse(List<Plane> planeOld, List<Plane> planeNew)
+        public void CalculateCourse()
         {
-            foreach (var planeO in planeOld)
+            foreach (var planeO in gammelliste)
             {
-                foreach (var planeN in planeNew)
+                foreach (var planeN in nyliste)
                 {
                     if (planeN._tag == planeO._tag)
                   
