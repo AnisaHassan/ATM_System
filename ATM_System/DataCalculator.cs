@@ -29,8 +29,6 @@ namespace ATM_System
             
         }
 
-        public DataCalculator() { }
-        
         public void UseList(object sender, DataCalcEventArgs e)
         {
             //nyliste.Clear();
@@ -43,9 +41,9 @@ namespace ATM_System
             nyliste = e.DataList;
             if (gammelliste != null)
             {
-                CalculateVelocity(nyliste);
+                CalculateVelocity();
 
-                CalculateCourse(gammelliste, nyliste);
+                CalculateCourse();
             }
             
 
@@ -55,11 +53,13 @@ namespace ATM_System
            
                 Print(gammelliste);
 
+            gammelliste.Clear();
+
            
         }
 
 
-        public void CalculateVelocity(List<Plane> nyliste)
+        public void CalculateVelocity()
         {
             foreach (var planeO in gammelliste)
             {
@@ -68,9 +68,9 @@ namespace ATM_System
                     if (planeN._tag == planeO._tag)
 
                     {
-                        double distance = Math.Sqrt(Math.Pow(planeO._xcoor - planeN._xcoor, 2) +
-                                                    Math.Pow(planeO._ycoor - planeN._ycoor, 2) +
-                                                    Math.Pow(planeO._altitude - planeN._altitude, 2));
+                        double distance = Math.Sqrt(Math.Pow(planeN._xcoor- planeO._xcoor , 2) +
+                                                    Math.Pow(planeN._ycoor - planeO._ycoor, 2) +
+                                                    Math.Pow(planeN._altitude - planeO._altitude, 2));
 
                         double time = (planeO._time - planeN._time).TotalSeconds;
 
@@ -85,11 +85,11 @@ namespace ATM_System
 
         }
 
-        public void CalculateCourse(List<Plane> planeOld, List<Plane> planeNew)
+        public void CalculateCourse()
         {
-            foreach (var planeO in planeOld)
+            foreach (var planeO in gammelliste)
             {
-                foreach (var planeN in planeNew)
+                foreach (var planeN in nyliste)
                 {
                     if (planeN._tag == planeO._tag)
                   
