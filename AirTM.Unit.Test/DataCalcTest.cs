@@ -44,9 +44,6 @@ namespace AirTM.Unit.Test
                 _ycoor = 43210,
                 _altitude = 12345,
                 _time = dateTime2,
-
-
-
             };
 
         }
@@ -54,7 +51,9 @@ namespace AirTM.Unit.Test
       [Test]
         public void velocity_isCorrect()
       {
-          planelist = new List<Plane>();
+          
+
+            planelist = new List<Plane>();
           planelist.Add(_plane1);
           gammelliste = new List<Plane>();
           gammelliste.Add(_plane2);
@@ -67,6 +66,8 @@ namespace AirTM.Unit.Test
         [Test]
         public void compass_isCorrect()
         {
+
+
             planelist = new List<Plane>();
             planelist.Add(_plane1);
             gammelliste = new List<Plane>();
@@ -76,8 +77,8 @@ namespace AirTM.Unit.Test
             Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(344));
         }
 
-    
 
 
-}
+
+    }
 }
