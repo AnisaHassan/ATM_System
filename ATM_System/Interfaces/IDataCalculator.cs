@@ -10,9 +10,10 @@ namespace ATM_System
    {
 
        List<Plane> nyliste { get; set; }
+       List<Plane> gammelliste { get; set; }
 
-       void CalculateVelocity();
-       void CalculateCourse();
+        void CalculateVelocity();
+       void CalculateCourse(List<Plane> gammelliste, List<Plane> nyliste);
 
    }
 

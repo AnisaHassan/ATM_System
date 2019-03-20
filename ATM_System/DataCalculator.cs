@@ -43,7 +43,7 @@ namespace ATM_System
             {
                 CalculateVelocity();
 
-                CalculateCourse();
+                CalculateCourse(gammelliste, nyliste);
             }
             
 
@@ -85,43 +85,49 @@ namespace ATM_System
 
         }
 
-        public void CalculateCourse()
+        public void CalculateCourse(List<Plane> gammelliste, List<Plane> nyliste)
         {
             foreach (var planeO in gammelliste)
             {
                 foreach (var planeN in nyliste)
                 {
                     if (planeN._tag == planeO._tag)
-                  
+
                     {
                         double xdif = planeO._xcoor - planeN._xcoor;
                         double ydif = planeO._ycoor - planeN._ycoor;
 
                         if (xdif == 0)
-                        {    
-                               // Hvad så hvis ydiff er større eller mindre end 0?
+                        {
 
-                                planeN._compassCourse = 0;
-                            
+
+                            planeN._compassCourse = 0;
+
                         }
-                        //mangler vi ikke nogle flere if sætninger?
-                        // Hvad så hvis ydif er lig 0 og xdif er større eller mindre end 0?
-                        //Eller de begge er større eller mindre end 0?, eller en er mindre og den anden er større?
+
 
 
                         else
                         {
                             //double slope = ydif / xdif;
 
-                            double gr = (Math.Atan2(ydif, xdif) * 180.0 / Math.PI);
-                            if (gr < 0 )
+
+                            double radians = Math.Atan2(ydif, xdif);
+                            double angle = radians * (180 / Math.PI);
+                            if (angle < 0)
                             {
-                               gr = gr + 360;
+                                double gr = 90 + angle;
                                 planeN._compassCourse = gr;
                             }
-                            //((Math.Atan(slope) * 180) / Math.PI);
+                            else
+                            {
+                                double gr = 90 - angle;
+                                planeN._compassCourse = gr;
+                            }
+
+
                         }
-                        
+
                     }
 
                 }
