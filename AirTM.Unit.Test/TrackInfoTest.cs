@@ -17,7 +17,7 @@ namespace AirTM.Unit.Test
         {
             private ITrackInfo _uut;
             public List<Plane> TrackedDataInfo { get; set; }
-            private List<string> stringList;
+     
 
 
             [SetUp]

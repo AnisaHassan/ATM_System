@@ -20,12 +20,13 @@ namespace AirTM.Unit.Test
         private List<Plane> gammelliste;
         private Plane _plane1;
         private Plane _plane2;
-      [SetUp]
-      public void SetUp()
-      {
-          uut = new DataCalculator();
-            var dateTime1 = new DateTime(2019, 06, 05, 10, 54, 34);
-            var dateTime2 = new DateTime(2019, 06, 05, 10, 54, 50);
+
+        [SetUp]
+        public void SetUp()
+        {
+            uut = new DataCalculator();
+            DateTime dateTime1 = new DateTime(2019, 06, 05, 10, 54, 34);
+            DateTime dateTime2 = new DateTime(2019, 06, 05, 10, 54, 50);
             _plane1 = new Plane
             {
                 _tag = "ART123",
@@ -48,37 +49,40 @@ namespace AirTM.Unit.Test
 
         }
 
-      [Test]
-        public void velocity_isCorrect()
-      {
-          
-
-            planelist = new List<Plane>();
-          planelist.Add(_plane1);
-          gammelliste = new List<Plane>();
-          gammelliste.Add(_plane2);
-          
-
-            uut.CalculateVelocity(gammelliste, planelist);
-            Assert.That(gammelliste[0]._velocity, Is.EqualTo(5659.97));
-
-        }
         [Test]
-        public void compass_isCorrect()
-        {
+            public void velocity_isCorrect()
+            {
 
 
-            planelist = new List<Plane>();
-            planelist.Add(_plane1);
-            gammelliste = new List<Plane>();
-            gammelliste.Add(_plane2);
+                planelist = new List<Plane>();
+                planelist.Add(_plane1);
+                planelist.Add(_plane2);
 
-            uut.CalculateCourse(gammelliste, planelist);
-            Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(344));
+
+
+                uut.CalculateVelocity(planelist);
+                Assert.That(planelist[0]._velocity, Is.EqualTo(5659.97));
+
+            }
+            [
+
+            Test]
+
+            public void compass_isCorrect()
+            {
+
+
+                planelist = new List<Plane>();
+                planelist.Add(_plane1);
+                gammelliste = new List<Plane>();
+                planelist.Add(_plane2);
+
+                uut.CalculateCourse(gammelliste, planelist);
+                Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(344));
+            }
+
         }
 
 
-
-
-    }
+    
 }
