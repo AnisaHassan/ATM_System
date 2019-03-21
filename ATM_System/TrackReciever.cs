@@ -31,14 +31,14 @@ namespace ATM_System
         {
             var list = e.TransponderData;
 
-            foreach (var data in list)
-            {
+           // foreach (var data in list)
+            //{
                 // Move data to TrackInfo
                 ReceivedDataList = TrackedInfo(list);
 
     
                 TrackedDataReady?.Invoke(sender, new TrackedDataEventArgs(ReceivedDataList));
-            }
+        //    }
 
         }
 

@@ -73,11 +73,17 @@ namespace ATM_System
                     if (planeN._tag == planeO._tag)
 
                     {
-                        double distance = Math.Sqrt(Math.Pow(planeN._xcoor- planeO._xcoor , 2) +
-                                                    Math.Pow(planeN._ycoor - planeO._ycoor, 2) +
-                                                    Math.Pow(planeN._altitude - planeO._altitude, 2));
+                        double xdif = Math.Abs(planeO._xcoor - planeN._xcoor);
+                        double ydif = Math.Abs(planeO._ycoor - planeN._ycoor);
+                        double adif = Math.Abs(planeN._altitude - planeO._altitude);
+
+                        double distance = Math.Sqrt(Math.Pow(xdif , 2) +
+                                                    Math.Pow(ydif, 2) +
+                                                    Math.Pow(adif, 2));
 
                         double time = (planeO._time - planeN._time).TotalSeconds;
+
+                        time = Math.Abs(time);
 
                         velocity = distance / time;
                     }
@@ -99,8 +105,8 @@ namespace ATM_System
                     if (planeN._tag == planeO._tag)
 
                     {
-                        double xdif = planeO._xcoor - planeN._xcoor;
-                        double ydif = planeO._ycoor - planeN._ycoor;
+                        double xdif = Math.Abs(planeO._xcoor - planeN._xcoor);
+                        double ydif = Math.Abs(planeO._ycoor - planeN._ycoor);
 
                         if (xdif == 0)
                         {
