@@ -31,7 +31,7 @@ namespace AirTM.Unit.Test
             var dateTime1 = new DateTime(2019, 06, 05, 10, 54, 34);
             var dateTime2 = new DateTime(2019, 06, 05, 10, 54, 50);
             var dateTime3 = new DateTime(2019, 06, 05, 10, 50, 00);
-            var dateTime4 = new DateTime(2019, 06, 05, 10, 50, 10);
+            var dateTime4 = new DateTime(2019, 06, 05, 10, 50, 02);
             _plane1 = new Plane
             {
                 _tag = "ART123",
@@ -73,21 +73,7 @@ namespace AirTM.Unit.Test
             };
         }
 
-        [Test]
-        public void velocity_isCorrect()
-        {
-            planelist = new List<Plane>();
-            planelist.Add(_plane1);
-            gammelliste = new List<Plane>();
-            gammelliste.Add(_plane2);
-
-            uut.gammelliste = gammelliste;
-            uut.nyliste = planelist;
-            uut.CalculateVelocity();
-
-            Assert.That(uut.nyliste[0]._velocity, Is.EqualTo(5659.97));
-
-        }
+      
         [Test]
         public void velocity_med_3_4_Correct()
         {
@@ -100,9 +86,42 @@ namespace AirTM.Unit.Test
             uut.nyliste = planelist;
             uut.CalculateVelocity();
 
-            Assert.That(uut.nyliste[0]._velocity, Is.EqualTo(5));
+            Assert.That(uut.nyliste[0]._velocity, Is.EqualTo(2.5));
 
         }
+
+
+        [TestCase("ATR123", 900, 800, 1000, 20151006213400, "ATR423", 600, 400, 1000, "20151006213410", 250)]
+          public void Testcases(string tag, int x1, int y1, int a1, string tid1, string tag2, int x2, int y2, int a2, string tid2, double result)
+        {
+            planelist = new List<Plane>();
+            Plane p1 = new Plane();
+            p1._tag = tag;
+            p1._xcoor = x1;
+            p1._ycoor = y1;
+            p1._altitude = a1;
+            p1._time =
+                (DateTime.ParseExact(tid1, "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
+            planelist.Add(p1);
+
+            gammelliste = new List<Plane>();
+            Plane p2 = new Plane();
+            p2._tag = tag2;
+            p2._xcoor = x2;
+            p2._ycoor = y2;
+            p2._altitude = a2;
+            p2._time =
+                (DateTime.ParseExact(tid2, "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
+            gammelliste.Add(p2);
+
+
+            uut.gammelliste = gammelliste;
+            uut.nyliste = planelist;
+            uut.CalculateVelocity();
+
+            Assert.That(uut.nyliste[0]._velocity, Is.EqualTo(result).Within(00.01));
+        }
+
         [Test]
         public void compass_isCorrect()
         {
