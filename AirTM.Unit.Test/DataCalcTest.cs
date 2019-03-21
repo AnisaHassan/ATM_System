@@ -91,7 +91,7 @@ namespace AirTM.Unit.Test
         }
 
 
-        [TestCase("ATR123", 900, 800, 1000, 20151006213400, "ATR423", 600, 400, 1000, "20151006213410", 250)]
+        [TestCase("ATR123", 900, 800, 1000, "20151006213400", "ATR123", 600, 400, 1000, "20151006213410", 50)]
           public void Testcases(string tag, int x1, int y1, int a1, string tid1, string tag2, int x2, int y2, int a2, string tid2, double result)
         {
             planelist = new List<Plane>();
@@ -119,7 +119,7 @@ namespace AirTM.Unit.Test
             uut.nyliste = planelist;
             uut.CalculateVelocity();
 
-            Assert.That(uut.nyliste[0]._velocity, Is.EqualTo(result).Within(00.01));
+            Assert.That(uut.gammelliste[0]._velocity, Is.EqualTo(result).Within(00.01));
         }
 
         [Test]
