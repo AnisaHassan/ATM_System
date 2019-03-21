@@ -33,5 +33,10 @@ namespace ATM_System
                 }
             }
         }
+
+        public void PrintWithWarning(List<Plane> gammellist)
+        {
+            
+        }
     }
 }

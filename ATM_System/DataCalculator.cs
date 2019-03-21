@@ -4,7 +4,8 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using TransponderReceiver; 
+using ATM_System.Events;
+using TransponderReceiver;
 
 namespace ATM_System
 {
@@ -16,7 +17,10 @@ namespace ATM_System
 
         private double velocity;
         //Til udskrivning
-        public IPrint _print { get; set; }
+
+
+       public event EventHandler<SeperationEventArgs> CalcedDataReady;
+
         public DataCalculator(ITrackInfo dataCalcRecieved)
         {
             this._dataCalcRecieved = dataCalcRecieved;
@@ -25,9 +29,10 @@ namespace ATM_System
 
             gammelliste = new List<Plane>();
 
-            _print = new ConsolePrint();
+           // _print = new ConsolePrint();
             
         }
+
 
         public void UseList(object sender, DataCalcEventArgs e)
         {
@@ -51,11 +56,11 @@ namespace ATM_System
            // gammelliste = new List<Plane>(nyliste);
 
            
-                Print(gammelliste);
+               // Print(gammelliste);
 
-           
 
-           
+           CalcedDataReady?.Invoke(sender, new SeperationEventArgs(gammelliste));
+
         }
 
 
@@ -135,22 +140,22 @@ namespace ATM_System
 
         }
 
-        public void Print(List<Plane> gammelliste)
-        {
-            _print.PrintPlane(gammelliste);
+        //public void Print(List<Plane> gammelliste)
+        //{
+        //    _print.PrintPlane(gammelliste);
 
 
-            //list = gammelliste;
-            //foreach (var plane in list)
-            //{
-            //    System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
-            //                             " meters\nY-coordinate: " +
-            //                             plane._ycoor + " meters\nAltitude: " + plane._altitude +
-            //                             " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
-            //                             "/" + plane._time.Day +
-            //                             ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
-            //                             plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
-            //}
-        }
+        //    //list = gammelliste;
+        //    //foreach (var plane in list)
+        //    //{
+        //    //    System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
+        //    //                             " meters\nY-coordinate: " +
+        //    //                             plane._ycoor + " meters\nAltitude: " + plane._altitude +
+        //    //                             " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
+        //    //                             "/" + plane._time.Day +
+        //    //                             ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
+        //    //                             plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
+        //    //}
+        //}
     }
 }

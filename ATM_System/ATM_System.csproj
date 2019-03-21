@@ -55,10 +55,10 @@
     <Compile Include="ConsolePrint.cs" />
     <Compile Include="Events\DataCalcEventArgs.cs" />
     <Compile Include="DataCalculator.cs" />
+    <Compile Include="Events\SeperationEventArgs.cs" />
     <Compile Include="Interfaces\IDataCalculator.cs" />
     <Compile Include="Interfaces\IPrint.cs" />
     <Compile Include="Interfaces\ISeperationChecker.cs" />
-    <Compile Include="Interfaces\ISeperationHandler.cs" />
     <Compile Include="Interfaces\ITrackReciever.cs" />
     <Compile Include="Interfaces\ITrackInfo.cs" />
     <Compile Include="Log.cs" />
