@@ -68,22 +68,19 @@ namespace AirTM.Unit.Test
 
         }
 
-        [
-
-            Test]
-
-        public void compass_isCorrect()
-        {
+        //[Test]
+        //public void compass_isCorrect()
+        //{
 
 
-            planelist = new List<Plane>();
-            planelist.Add(_plane1);
-            gammelliste = new List<Plane>();
-            planelist.Add(_plane2);
+        //    planelist = new List<Plane>();
+        //    planelist.Add(_plane1);
+        //    gammelliste = new List<Plane>();
+        //    planelist.Add(_plane2);
 
-            // uut.CalculateCourse(gammelliste, planelist);
-            Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(344));
-        }
+        //    // uut.CalculateCourse(gammelliste, planelist);
+        //    Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(344));
+        //}
 
         [Test]
         public void correctListIsCreated()
