@@ -78,7 +78,7 @@ namespace AirTM.Unit.Test
             };
         }
 
-        
+        //TEST AF VELOCITY
         [Test]
         public void velocity_med_3_4_Correct()
         {
@@ -129,40 +129,44 @@ namespace AirTM.Unit.Test
             Assert.That(uut.nyliste[0]._velocity, Is.EqualTo(result).Within(00.01));
         }
 
-        [TestCase("ATR123",1, 2, 1, 2, 45)]
-        [TestCase("ATR1232", 0, 1, 0, 0, 90)]
 
-
-        public void calculatecourseTestcase(string tag, int x1, int x2, int y1, int y2, double result)
+         //TEST AF COURSE
+        [Test]
+        [TestCase("ATR123", 1, 2, 0, "ATR123", 1, 2, 0, 0)]
+        [TestCase("TRE123", 0, 1, 0, "TRE123", 0, 0, 0, 180)]
+        public void calculatecourseTestcase(string tag1, int x1, int y1, int a1, string tag2, int x2, int y2, int a2,  double result)
         {
-           
+            
             gammelliste = new List<Plane>();
             Plane p1 = new Plane();
-            p1._tag = tag;
+            p1._tag = tag1;
             p1._xcoor = x1;
             p1._ycoor = y1;
-
+            p1._altitude = a1;
+            p1._time  = DateTime.Now;
             gammelliste.Add(p1);
+            uut.gammelliste = gammelliste;
+
 
             planelist = new List<Plane>();
             Plane p2 = new Plane();
-            p2._tag = tag;
+            p2._tag = tag2;
             p2._xcoor = x2;
             p2._ycoor = y2;
-          
+            p2._altitude = a2;
+            p2._time = DateTime.Now;
             planelist.Add(p2);
-
-
-            uut.gammelliste = gammelliste;
             uut.nyliste = planelist;
-         
-      
+
             uut.CalculateCourse(gammelliste, planelist);
-            Assert.That(Math.Round(uut.nyliste[0]._compassCourse), Is.EqualTo(result).Within(00.01));
 
-
-
+            Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(result).Within(00.01));
+            
         }
+
+
+
+       
 
         [Test]
         public void compass_isCorrect()
