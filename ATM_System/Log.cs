@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace ATM_System
 {
-    class Log : ISeperationHandler
+    class Log : IPrint
     {
-
+        public void PrintPlane(List<Plane> planeliste)
+        {
+         
+        }
     }
 }

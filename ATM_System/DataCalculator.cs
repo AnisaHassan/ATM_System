@@ -4,7 +4,8 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using TransponderReceiver; 
+using ATM_System.Events;
+using TransponderReceiver;
 
 namespace ATM_System
 {
@@ -16,7 +17,10 @@ namespace ATM_System
 
         private double velocity;
         //Til udskrivning
-        public IPrint _print { get; set; }
+
+
+       public event EventHandler<SeperationEventArgs> CalcedDataReady;
+
         public DataCalculator(ITrackInfo dataCalcRecieved)
         {
             this._dataCalcRecieved = dataCalcRecieved;
@@ -25,9 +29,10 @@ namespace ATM_System
 
             gammelliste = new List<Plane>();
 
-            _print = new ConsolePrint();
+           // _print = new ConsolePrint();
             
         }
+
 
         public void UseList(object sender, DataCalcEventArgs e)
         {
@@ -43,7 +48,7 @@ namespace ATM_System
             {
                 CalculateVelocity();
 
-                CalculateCourse();
+                CalculateCourse(gammelliste, nyliste);
             }
             
 
@@ -51,11 +56,11 @@ namespace ATM_System
            // gammelliste = new List<Plane>(nyliste);
 
            
-                Print(gammelliste);
+               // Print(gammelliste);
 
-           
 
-           
+           CalcedDataReady?.Invoke(sender, new SeperationEventArgs(gammelliste));
+
         }
 
 
@@ -68,11 +73,17 @@ namespace ATM_System
                     if (planeN._tag == planeO._tag)
 
                     {
-                        double distance = Math.Sqrt(Math.Pow(planeN._xcoor- planeO._xcoor , 2) +
-                                                    Math.Pow(planeN._ycoor - planeO._ycoor, 2) +
-                                                    Math.Pow(planeN._altitude - planeO._altitude, 2));
+                        double xdif = Math.Abs(planeO._xcoor - planeN._xcoor);
+                        double ydif = Math.Abs(planeO._ycoor - planeN._ycoor);
+                        double adif = Math.Abs(planeN._altitude - planeO._altitude);
+
+                        double distance = Math.Sqrt(Math.Pow(xdif , 2) +
+                                                    Math.Pow(ydif, 2) +
+                                                    Math.Pow(adif, 2));
 
                         double time = (planeO._time - planeN._time).TotalSeconds;
+
+                        time = Math.Abs(time);
 
                         velocity = distance / time;
                     }
@@ -85,43 +96,66 @@ namespace ATM_System
 
         }
 
-        public void CalculateCourse()
+        public void CalculateCourse(List<Plane> gammelliste, List<Plane> nyliste)
         {
             foreach (var planeO in gammelliste)
             {
                 foreach (var planeN in nyliste)
                 {
                     if (planeN._tag == planeO._tag)
-                  
+
                     {
-                        double xdif = planeO._xcoor - planeN._xcoor;
-                        double ydif = planeO._ycoor - planeN._ycoor;
+                        double xdif = planeN._xcoor - planeO._xcoor;
+                        double ydif = planeN._ycoor - planeO._ycoor;
 
                         if (xdif == 0)
-                        {    
-                               // Hvad så hvis ydiff er større eller mindre end 0?
+                        {
 
-                                planeN._compassCourse = 0;
-                            
+
+                            planeN._compassCourse = 0;
+
                         }
-                        //mangler vi ikke nogle flere if sætninger?
-                        // Hvad så hvis ydif er lig 0 og xdif er større eller mindre end 0?
-                        //Eller de begge er større eller mindre end 0?, eller en er mindre og den anden er større?
 
-
-                        else
+                        if (xdif > 0 && ydif > 0)
                         {
                             //double slope = ydif / xdif;
 
-                            double gr = (Math.Atan2(ydif, xdif) * 180.0 / Math.PI);
-                            if (gr < 0 )
-                            {
-                               gr = gr + 360;
+
+                            double radians = Math.Atan2(ydif, xdif);
+                            double angle = radians * (180 / Math.PI);
+                            //if (angle < 0)
+                            //{
+                            //    double gr = 90 + angle;
+                            //    planeN._compassCourse = gr;
+                            //}
+                            //else
+                            //{
+                                double gr = 90 - angle;
                                 planeN._compassCourse = gr;
-                            }
-                            //((Math.Atan(slope) * 180) / Math.PI);
+                            //}
                         }
-                        
+                        if (xdif < 0 && ydif > 0)
+                        {
+                            double radians = Math.Atan2(Math.Abs(ydif), Math.Abs(xdif));
+                            double angle = radians * (180 / Math.PI);
+                            double gr = angle + 270;
+                            planeN._compassCourse = gr;
+                        }
+                        if (xdif < 0 && ydif < 0)
+                        {
+                            double radians = Math.Atan2(Math.Abs(ydif), Math.Abs(xdif));
+                            double angle = radians * (180 / Math.PI);
+                            double gr = (270 - angle);
+                            planeN._compassCourse = gr;
+                        }
+                        if (xdif > 0 && ydif < 0 )
+                        {
+                            double radians = Math.Atan2(Math.Abs(ydif), Math.Abs(xdif));
+                            double angle = radians * (180 / Math.PI);
+                            double gr = 90 + angle;
+                            planeN._compassCourse = gr;
+                        }
+
                     }
 
                 }
@@ -129,22 +163,22 @@ namespace ATM_System
 
         }
 
-        public void Print(List<Plane> gammelliste)
-        {
-            _print.PrintPlane(gammelliste);
+        //public void Print(List<Plane> gammelliste)
+        //{
+        //    _print.PrintPlane(gammelliste);
 
 
-            //list = gammelliste;
-            //foreach (var plane in list)
-            //{
-            //    System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
-            //                             " meters\nY-coordinate: " +
-            //                             plane._ycoor + " meters\nAltitude: " + plane._altitude +
-            //                             " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
-            //                             "/" + plane._time.Day +
-            //                             ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
-            //                             plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
-            //}
-        }
+        //    //list = gammelliste;
+        //    //foreach (var plane in list)
+        //    //{
+        //    //    System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
+        //    //                             " meters\nY-coordinate: " +
+        //    //                             plane._ycoor + " meters\nAltitude: " + plane._altitude +
+        //    //                             " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
+        //    //                             "/" + plane._time.Day +
+        //    //                             ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
+        //    //                             plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
+        //    //}
+        //}
     }
 }

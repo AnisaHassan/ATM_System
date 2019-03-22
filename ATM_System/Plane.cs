@@ -16,8 +16,8 @@ namespace ATM_System
 
         public double _compassCourse { get; set; }
         public double _velocity { get; set; }
-
         
-        
+        public Plane()
+        { }
     }
 }

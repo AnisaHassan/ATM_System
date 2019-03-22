@@ -39,15 +39,15 @@ namespace ATM_System
             TrackedDataInfo = new List<Plane>();
             var list = e.TrackedInfo;
 
-            foreach (var plane in list)
-            {
+            //foreach (var plane in list)
+            //{
                 TrackedDataInfo = Airspace(list);
                 
                     //Send information videre
                     AirspaceDataReady?.Invoke(sender, new DataCalcEventArgs(TrackedDataInfo));
 
                 
-            }
+           // }
 
         }
 

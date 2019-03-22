@@ -53,12 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsolePrint.cs" />
-    <Compile Include="DataCalcEventArgs.cs" />
+    <Compile Include="Events\DataCalcEventArgs.cs" />
     <Compile Include="DataCalculator.cs" />
+    <Compile Include="Events\SeperationEventArgs.cs" />
     <Compile Include="Interfaces\IDataCalculator.cs" />
     <Compile Include="Interfaces\IPrint.cs" />
     <Compile Include="Interfaces\ISeperationChecker.cs" />
-    <Compile Include="Interfaces\ISeperationHandler.cs" />
     <Compile Include="Interfaces\ITrackReciever.cs" />
     <Compile Include="Interfaces\ITrackInfo.cs" />
     <Compile Include="Log.cs" />
@@ -66,7 +66,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeperationChecker.cs" />
-    <Compile Include="TrackedDataEventArgs.cs" />
+    <Compile Include="Events\TrackedDataEventArgs.cs" />
     <Compile Include="TrackInfo.cs" />
     <Compile Include="TrackReciever.cs" />
   </ItemGroup>

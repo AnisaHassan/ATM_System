@@ -18,7 +18,9 @@ namespace ATM_System
             ITrackReciever trackReciever = new TrackReciever(receiver);
             ITrackInfo trackInfo = new TrackInfo(trackReciever);
             IDataCalculator datacalc = new DataCalculator(trackInfo);
+            ISeperationChecker seperationChecker = new SeperationChecker(datacalc);
             IPrint consoleprinter = new ConsolePrint();
+            IPrint logprinter = new Log();
 
             //Til udskrivning:
             DataCalculator datacalculator = new DataCalculator(trackInfo);
