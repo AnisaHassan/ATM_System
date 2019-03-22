@@ -11,6 +11,7 @@ namespace ATM_System
 {
     public class DataCalculator: IDataCalculator
     {
+        
         private ITrackInfo _dataCalcRecieved;
         public List<Plane> nyliste { get; set; }
         public List<Plane> gammelliste { get; set; }
