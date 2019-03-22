@@ -134,7 +134,7 @@ namespace AirTM.Unit.Test
             gammelliste.Add(_plane2);
 
             uut.CalculateCourse(gammelliste, planelist);
-            Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(74));
+            Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(286));
         }
 
         [Test]
