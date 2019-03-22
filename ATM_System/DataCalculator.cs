@@ -110,29 +110,15 @@ namespace ATM_System
 
                         if (xdif == 0)
                         {
-
-
                             planeN._compassCourse = 0;
-
                         }
 
                         if (xdif > 0 && ydif > 0)
                         {
-                            //double slope = ydif / xdif;
-
-
                             double radians = Math.Atan2(ydif, xdif);
                             double angle = radians * (180 / Math.PI);
-                            //if (angle < 0)
-                            //{
-                            //    double gr = 90 + angle;
-                            //    planeN._compassCourse = gr;
-                            //}
-                            //else
-                            //{
                                 double gr = 90 - angle;
                                 planeN._compassCourse = gr;
-                            //}
                         }
                         if (xdif < 0 && ydif > 0)
                         {
@@ -156,6 +142,11 @@ namespace ATM_System
                             planeN._compassCourse = gr;
                         }
 
+                        else
+                        {
+                            planeN._compassCourse = 0;
+                        }
+
                     }
 
                 }
@@ -163,22 +154,5 @@ namespace ATM_System
 
         }
 
-        //public void Print(List<Plane> gammelliste)
-        //{
-        //    _print.PrintPlane(gammelliste);
-
-
-        //    //list = gammelliste;
-        //    //foreach (var plane in list)
-        //    //{
-        //    //    System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
-        //    //                             " meters\nY-coordinate: " +
-        //    //                             plane._ycoor + " meters\nAltitude: " + plane._altitude +
-        //    //                             " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
-        //    //                             "/" + plane._time.Day +
-        //    //                             ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
-        //    //                             plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
-        //    //}
-        //}
     }
 }
