@@ -129,12 +129,12 @@ namespace AirTM.Unit.Test
 
 
             planelist = new List<Plane>();
-            planelist.Add(_plane1);
+            planelist.Add(_plane2);
             gammelliste = new List<Plane>();
-            gammelliste.Add(_plane2);
+            gammelliste.Add(_plane1);
 
             uut.CalculateCourse(gammelliste, planelist);
-            Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(74));
+            Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(106).Within(00.01));
         }
 
         [Test]
