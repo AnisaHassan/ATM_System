@@ -133,7 +133,10 @@ namespace AirTM.Unit.Test
          //TEST AF COURSE
         [Test]
         [TestCase("ATR123", 1, 2, 0, "ATR123", 1, 2, 0, 0)]
-        [TestCase("TRE123", 0, 1, 0, "TRE123", 0, 0, 0, 180)]
+        [TestCase("TRE123", 0, 1, 0, "TRE123", 0, 0, 1, 180)]
+        [TestCase("NHM546", 1, -1,-1, "NHM546", 2, -1,1, 270)]
+        [TestCase("LKS165", 2, 2, 1, "LKS165", 1, 2, 1, 90)]
+
         public void calculatecourseTestcase(string tag1, int x1, int y1, int a1, string tag2, int x2, int y2, int a2,  double result)
         {
             
@@ -163,7 +166,6 @@ namespace AirTM.Unit.Test
             Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(result).Within(00.01));
             
         }
-
 
 
        
