@@ -29,16 +29,17 @@ namespace ATM_System
         public TrackReciever() { }
         private void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
         {
+           // ReceivedDataList = new List<Plane>();
             var list = e.TransponderData;
 
-           // foreach (var data in list)
-            //{
-                // Move data to TrackInfo
-                ReceivedDataList = TrackedInfo(list);
+           
+           // Move data to TrackInfo
+            ReceivedDataList = TrackedInfo(list);
 
     
-                TrackedDataReady?.Invoke(sender, new TrackedDataEventArgs(ReceivedDataList));
-        //    }
+            TrackedDataReady?.Invoke(sender, new TrackedDataEventArgs(ReceivedDataList));
+            
+        
 
         }
 
