@@ -91,8 +91,9 @@ namespace AirTM.Unit.Test
         }
 
 
-        [TestCase("ATR123", 900, 800, 1000, "20151006213400", "ATR123", 600, 400, 1000, "20151006213410", 50)]
-          public void Testcases(string tag, int x1, int y1, int a1, string tid1, string tag2, int x2, int y2, int a2, string tid2, double result)
+        [TestCase("ATR123", 900, 800, 1000, "20151006213400000", "ATR123", 600, 400, 1000, "20151006213410000", 50)]
+        [TestCase("ATR123", 9, 8, 1, "20190605105000000", "ATR123", 6, 4, 1, "20190605105002000", 2.5)]
+        public void Testcases(string tag, int x1, int y1, int a1, string tid1, string tag2, int x2, int y2, int a2, string tid2, double result)
         {
             planelist = new List<Plane>();
             Plane p1 = new Plane();
@@ -114,7 +115,7 @@ namespace AirTM.Unit.Test
                 (DateTime.ParseExact(tid2, "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
             gammelliste.Add(p2);
 
-
+           
             uut.gammelliste = gammelliste;
             uut.nyliste = planelist;
             uut.CalculateVelocity();

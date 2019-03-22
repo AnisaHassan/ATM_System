@@ -105,8 +105,8 @@ namespace ATM_System
                     if (planeN._tag == planeO._tag)
 
                     {
-                        double xdif = Math.Abs(planeO._xcoor - planeN._xcoor);
-                        double ydif = Math.Abs(planeO._ycoor - planeN._ycoor);
+                        double xdif = planeN._xcoor - planeO._xcoor;
+                        double ydif = planeN._ycoor - planeO._ycoor;
 
                         if (xdif == 0)
                         {
@@ -116,27 +116,44 @@ namespace ATM_System
 
                         }
 
-
-
-                        else
+                        if (xdif > 0 && ydif > 0)
                         {
                             //double slope = ydif / xdif;
 
 
                             double radians = Math.Atan2(ydif, xdif);
                             double angle = radians * (180 / Math.PI);
-                            if (angle < 0)
-                            {
-                                double gr = 90 + angle;
-                                planeN._compassCourse = gr;
-                            }
-                            else
-                            {
+                            //if (angle < 0)
+                            //{
+                            //    double gr = 90 + angle;
+                            //    planeN._compassCourse = gr;
+                            //}
+                            //else
+                            //{
                                 double gr = 90 - angle;
                                 planeN._compassCourse = gr;
-                            }
-
-
+                            //}
+                        }
+                        if (xdif < 0 && ydif > 0)
+                        {
+                            double radians = Math.Atan2(Math.Abs(ydif), Math.Abs(xdif));
+                            double angle = radians * (180 / Math.PI);
+                            double gr = angle + 270;
+                            planeN._compassCourse = gr;
+                        }
+                        if (xdif < 0 && ydif < 0)
+                        {
+                            double radians = Math.Atan2(Math.Abs(ydif), Math.Abs(xdif));
+                            double angle = radians * (180 / Math.PI);
+                            double gr = (270 - angle);
+                            planeN._compassCourse = gr;
+                        }
+                        if (xdif > 0 && ydif < 0 )
+                        {
+                            double radians = Math.Atan2(Math.Abs(ydif), Math.Abs(xdif));
+                            double angle = radians * (180 / Math.PI);
+                            double gr = 90 + angle;
+                            planeN._compassCourse = gr;
                         }
 
                     }
