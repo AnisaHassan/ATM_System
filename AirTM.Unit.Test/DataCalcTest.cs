@@ -129,8 +129,8 @@ namespace AirTM.Unit.Test
             Assert.That(uut.nyliste[0]._velocity, Is.EqualTo(result).Within(00.01));
         }
 
-        [TestCase("ATR123",1, 2, 1, 2, 45)]
-        [TestCase("ATR1232", 0, 1, 0, 0, 90)]
+        [TestCase("ATR123",1, 2, 1, 2, 180)]
+        [TestCase("ATR123", 0, 1, 0, 0, 0)]
 
 
         public void calculatecourseTestcase(string tag, int x1, int x2, int y1, int y2, double result)
@@ -155,9 +155,9 @@ namespace AirTM.Unit.Test
 
             uut.gammelliste = gammelliste;
             uut.nyliste = planelist;
-         
-      
-            uut.CalculateCourse(gammelliste, planelist);
+
+
+            uut.CalculateVelocity();
             Assert.That(Math.Round(uut.nyliste[0]._compassCourse), Is.EqualTo(result).Within(00.01));
 
 
