@@ -30,7 +30,7 @@ namespace AirTM.Unit.Test
             uut = new DataCalculator(new TrackInfo());
             var dateTime1 = new DateTime(2019, 06, 05, 10, 54, 34);
             var dateTime2 = new DateTime(2019, 06, 05, 10, 54, 50);
-            var dateTime3 = new DateTime(2019, 06, 05, 10, 50, 00);
+            var dateTime3 = new DateTime(2019, 06, 05, 10, 50, 00); 
             var dateTime4 = new DateTime(2019, 06, 05, 10, 50, 02);
             _plane1 = new Plane
             {
@@ -95,7 +95,7 @@ namespace AirTM.Unit.Test
         [TestCase("ATR123", 9, 8, 1, "20190605105000000", "ATR123", 6, 4, 1, "20190605105002000", 2.5)]
         public void Testcases(string tag, int x1, int y1, int a1, string tid1, string tag2, int x2, int y2, int a2, string tid2, double result)
         {
-            planelist = new List<Plane>();
+            gammelliste = new List<Plane>();
             Plane p1 = new Plane();
             p1._tag = tag;
             p1._xcoor = x1;
@@ -103,9 +103,9 @@ namespace AirTM.Unit.Test
             p1._altitude = a1;
             p1._time =
                 (DateTime.ParseExact(tid1, "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
-            planelist.Add(p1);
+            gammelliste.Add(p1);
 
-            gammelliste = new List<Plane>();
+            planelist = new List<Plane>();
             Plane p2 = new Plane();
             p2._tag = tag2;
             p2._xcoor = x2;
@@ -113,14 +113,14 @@ namespace AirTM.Unit.Test
             p2._altitude = a2;
             p2._time =
                 (DateTime.ParseExact(tid2, "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
-            gammelliste.Add(p2);
+            planelist.Add(p2);
 
            
             uut.gammelliste = gammelliste;
             uut.nyliste = planelist;
             uut.CalculateVelocity();
 
-            Assert.That(uut.gammelliste[0]._velocity, Is.EqualTo(result).Within(00.01));
+            Assert.That(uut.nyliste[0]._velocity, Is.EqualTo(result).Within(00.01));
         }
 
         [Test]
