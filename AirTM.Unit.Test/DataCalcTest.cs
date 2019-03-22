@@ -26,7 +26,6 @@ namespace AirTM.Unit.Test
         [SetUp]
         public void SetUp()
         {
-
             uut = new DataCalculator(new TrackInfo());
             var dateTime1 = new DateTime(2019, 06, 05, 10, 54, 34);
             var dateTime2 = new DateTime(2019, 06, 05, 10, 54, 50);
