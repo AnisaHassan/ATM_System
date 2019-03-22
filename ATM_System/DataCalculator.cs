@@ -109,9 +109,22 @@ namespace ATM_System
                         double xdif = planeN._xcoor - planeO._xcoor;
                         double ydif = planeN._ycoor - planeO._ycoor;
 
-                        if (xdif == 0)
+                        if (xdif == 0 && ydif > 0)
                         {
                             planeN._compassCourse = 0;
+                        }
+                        if (xdif == 0 && ydif < 0)
+                        {
+                            planeN._compassCourse = 180;
+                        }
+
+                        if (xdif < 0 && ydif == 0)
+                        {
+                            planeN._compassCourse = 90;
+                        }
+                        if (xdif > 0 && ydif == 0)
+                        {
+                            planeN._compassCourse = 270;
                         }
 
                         if (xdif > 0 && ydif > 0)
@@ -143,10 +156,7 @@ namespace ATM_System
                             planeN._compassCourse = gr;
                         }
 
-                        else
-                        {
-                            planeN._compassCourse = 0;
-                        }
+                    
 
                     }
 

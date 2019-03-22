@@ -23,7 +23,7 @@ namespace ATM_System
             IPrint logprinter = new Log();
 
             //Til udskrivning:
-            DataCalculator datacalculator = new DataCalculator(trackInfo);
+            //DataCalculator datacalculator = new DataCalculator(trackInfo);
             //datacalculator._print = new ConsolePrint();
 
             Console.ReadKey();
