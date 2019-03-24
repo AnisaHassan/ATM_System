@@ -12,20 +12,20 @@ namespace ATM_System
         private IDataCalculator _calcedRecieved;
         
         private List<Plane> _planelist;
-        public IPrint _print { get; set; }
+        private IPrint _printToLog;
+        private IPrint _printToConsole;
 
-        public SeperationChecker(IDataCalculator calcedRecieved)
+        public SeperationChecker(IDataCalculator calcedRecieved, IPrint console, IPrint fil)
         {
             this._calcedRecieved = calcedRecieved;
 
             this._calcedRecieved.CalcedDataReady += CheckDistance;
-
             _planelist = new List<Plane>();
+            _printToLog = new Log();
 
-           
         }
 
-
+      
 
         public void CheckDistance(object sender, SeperationEventArgs e)
         {
@@ -44,50 +44,33 @@ namespace ATM_System
 
                         if (disth < 5000 && distv < 300)
                         {
-                            PrinttoLog(_planelist);
+                            PrintToLog(_planelist);
+                            PrintWarning();
                         }
-                        else
-                        {
-                            PrinttoConsole(_planelist);
-                        }
+                        
                     }
                 }
             }
         }
 
-
-
-        public void PrinttoLog(List<Plane> gammelliste)
+        
+        public void PrintToLog(List<Plane> gammelliste)
         {
-            _print = new Log();
-            _print.PrintPlane(gammelliste);
-
-        }
-
-        public void PrintWarning(List<Plane> gammelliste)
-        {
-            _print = new ConsolePrint();
             
+            _printToLog.PrintPlane(gammelliste);
+
         }
 
-        public void PrinttoConsole(List<Plane> gammelliste)
+        public void PrintWarning()
         {
-            _print = new ConsolePrint();
-            _print.PrintPlane(gammelliste);
+            //denne her skal udkrive en linje med en advarelse..?
+            string separationwarringningTConsole = "WARNING! Separation to small between " + 'plane1._tag' + " and " + 'plane2._tag' + " at " + 'blabla._time';
+            //jeg kan ikke 'hente' de fly jeg skal udskrive..
 
+            _printToConsole.PrintPlane(separationwarringningTConsole);
 
-            //list = gammelliste;
-            //foreach (var plane in list)
-            //{
-            //    System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
-            //                             " meters\nY-coordinate: " +
-            //                             plane._ycoor + " meters\nAltitude: " + plane._altitude +
-            //                             " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
-            //                             "/" + plane._time.Day +
-            //                             ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
-            //                             plane._time.Second + " and " + plane._time.Millisecond + " milliseconds");
-            //}
         }
+
     }
 }
 

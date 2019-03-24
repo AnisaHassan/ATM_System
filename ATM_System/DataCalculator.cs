@@ -17,10 +17,10 @@ namespace ATM_System
         public List<Plane> gammelliste { get; set; }
 
         private double velocity;
-        //Til udskrivning
+        private IPrint _printToConsole;
 
 
-       public event EventHandler<SeperationEventArgs> CalcedDataReady;
+        public event EventHandler<SeperationEventArgs> CalcedDataReady;
 
         public DataCalculator(ITrackInfo dataCalcRecieved)
         {
@@ -30,8 +30,8 @@ namespace ATM_System
 
             gammelliste = new List<Plane>();
 
-           // _print = new ConsolePrint();
-            
+            _printToConsole = new ConsolePrint();
+
         }
 
 
@@ -165,6 +165,10 @@ namespace ATM_System
 
         }
 
-      
+
+        public void PrintToConsole(List<Plane> gammelliste)
+        {
+            _printToConsole.PrintPlane(gammelliste);
+        }
     }
 }
