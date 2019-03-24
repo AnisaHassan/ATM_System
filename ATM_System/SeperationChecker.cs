@@ -15,7 +15,7 @@ namespace ATM_System
         private IPrint _printToLog;
         private IPrint _printToConsole;
 
-        public SeperationChecker(IDataCalculator calcedRecieved, IPrint console, IPrint fil)
+        public SeperationChecker(IDataCalculator calcedRecieved)
         {
             this._calcedRecieved = calcedRecieved;
 
@@ -34,9 +34,16 @@ namespace ATM_System
             
             PrintToConsole(_planelist);
 
-            foreach (var plane1 in _planelist)
+            DistanceChecker(_planelist);
+        }
+
+
+        public void DistanceChecker(List<Plane> liste)
+        {
+
+            foreach (var plane1 in liste)
             {
-                foreach (var plane2 in _planelist)
+                foreach (var plane2 in liste)
                 {
                     if (plane1._tag != plane2._tag)
                     {
@@ -51,13 +58,12 @@ namespace ATM_System
                             PrintToLog(plane1, plane2, DateTime.Now);
                             PrintWarning(plane1, plane2, DateTime.Now);
                         }
-                        
+
                     }
                 }
             }
         }
 
-        
         public void PrintToLog(Plane plane1, Plane plane2, DateTime time)
         {
             

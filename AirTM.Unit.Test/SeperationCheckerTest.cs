@@ -47,7 +47,7 @@ namespace AirTM.Unit.Test
             p._velocity = 80;
             _fakeplaneList.Add(p);
 
-            _fakeplaneList = _uut.CheckDistance(_)
+            _fakeplaneList = _uut.CheckDistance(_);
             _fakedataCalculator.CalcedDataReady += Raise.EventWith(this, new DataCalcEventArgs(_fakeplaneList));
 
             _fakeConsolePrint.Received().PrintPlane(_fakeplaneList);
