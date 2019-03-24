@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ATM_System
 {
-    class Log : IPrint
+    public class Log : IPrint
     {
         public void PrintPlane(List<Plane> planeliste)
         {
