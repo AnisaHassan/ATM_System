@@ -34,9 +34,12 @@ namespace ATM_System
             }
         }
 
-        public void PrintWithWarning(List<Plane> gammellist)
+        public void PrintWarning(Plane plane1, Plane plane2, DateTime time)
         {
-            
+            //denne her skal udkrive en linje med en advarelse..?
+            string separationwarringningTConsole = "WARNING! Separation to small between " + plane1._tag + " and " + plane2._tag + " at " + time;
+            //jeg kan ikke 'hente' de fly jeg skal udskrive..
+
         }
     }
 }

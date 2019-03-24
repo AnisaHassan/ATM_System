@@ -166,9 +166,6 @@ namespace ATM_System
         }
 
 
-        public void PrintToConsole(List<Plane> gammelliste)
-        {
-            _printToConsole.PrintPlane(gammelliste);
-        }
+        
     }
 }

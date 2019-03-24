@@ -11,9 +11,13 @@ namespace ATM_System
     {
         public void PrintPlane(List<Plane> planeliste)
         {
+            
+        }
+        public void PrintWarning(Plane plane1, Plane plane2, DateTime time)
+        {
             using (StreamWriter fileWriter = new FileInfo("Seperationslog.txt").AppendText())
             {
-                fileWriter.WriteLine(planeliste);
+                fileWriter.WriteLine("WARNING! Separation to small between " + plane1._tag + " and " + plane2._tag + " at " + time);
             }
 
         }

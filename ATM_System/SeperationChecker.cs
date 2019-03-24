@@ -22,6 +22,7 @@ namespace ATM_System
             this._calcedRecieved.CalcedDataReady += CheckDistance;
             _planelist = new List<Plane>();
             _printToLog = new Log();
+            _printToConsole = new ConsolePrint();
 
         }
 
@@ -30,6 +31,9 @@ namespace ATM_System
         public void CheckDistance(object sender, SeperationEventArgs e)
         {
             _planelist = e.CalcedInfo;
+            
+            PrintToConsole(_planelist);
+
             foreach (var plane1 in _planelist)
             {
                 foreach (var plane2 in _planelist)
@@ -44,8 +48,8 @@ namespace ATM_System
 
                         if (disth < 5000 && distv < 300)
                         {
-                            PrintToLog(_planelist);
-                            PrintWarning();
+                            PrintToLog(plane1, plane2, DateTime.Now);
+                            PrintWarning(plane1, plane2, DateTime.Now);
                         }
                         
                     }
@@ -54,21 +58,22 @@ namespace ATM_System
         }
 
         
-        public void PrintToLog(List<Plane> gammelliste)
+        public void PrintToLog(Plane plane1, Plane plane2, DateTime time)
         {
             
-            _printToLog.PrintPlane(gammelliste);
+            _printToLog.PrintWarning(plane1, plane2, time);
 
         }
 
-        public void PrintWarning()
+        public void PrintWarning(Plane plane1, Plane plane2, DateTime time)
         {
-            //denne her skal udkrive en linje med en advarelse..?
-            string separationwarringningTConsole = "WARNING! Separation to small between " + 'plane1._tag' + " and " + 'plane2._tag' + " at " + 'blabla._time';
-            //jeg kan ikke 'hente' de fly jeg skal udskrive..
+           _printToConsole.PrintWarning(plane1, plane2, time);
 
-            _printToConsole.PrintPlane(separationwarringningTConsole);
+        }
 
+        public void PrintToConsole(List<Plane> gammelliste)
+        {
+            _printToConsole.PrintPlane(gammelliste);
         }
 
     }
