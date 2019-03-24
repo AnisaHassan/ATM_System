@@ -19,26 +19,20 @@ namespace ATM_System
         {
             this._calcedRecieved = calcedRecieved;
 
-            this._calcedRecieved.CalcedDataReady += ReceiverCalculatedDataReady;
+            this._calcedRecieved.CalcedDataReady += CheckDistance;
             _planelist = new List<Plane>();
             _printToLog = new Log();
             _printToConsole = new ConsolePrint();
 
         }
 
-        public void ReceiverCalculatedDataReady(object sender, SeperationEventArgs e)
+      
+
+        public void CheckDistance(object sender, SeperationEventArgs e)
         {
             _planelist = e.CalcedInfo;
-
-            PrintToConsole(_planelist);
-
-        }
-
-        public void CheckDistance(List<Plane> _list)
-        {
-            //_planelist = e.CalcedInfo;
             
-            //PrintToConsole(_planelist);
+            PrintToConsole(_planelist);
 
             foreach (var plane1 in _planelist)
             {

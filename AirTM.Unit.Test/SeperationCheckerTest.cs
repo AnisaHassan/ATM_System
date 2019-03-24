@@ -20,7 +20,6 @@ namespace AirTM.Unit.Test
         private IPrint _fakeLogPrint;
         private SeperationChecker _uut;
         private List<Plane> _fakeplaneList;
-        private List<Plane> _SeperatedList;
 
 
         [SetUp] 
@@ -48,7 +47,7 @@ namespace AirTM.Unit.Test
             p._velocity = 80;
             _fakeplaneList.Add(p);
 
-            _SeperatedList = _uut.CheckDistance(_fakeplaneList);
+            _fakeplaneList = _uut.CheckDistance(_)
             _fakedataCalculator.CalcedDataReady += Raise.EventWith(this, new DataCalcEventArgs(_fakeplaneList));
 
             _fakeConsolePrint.Received().PrintPlane(_fakeplaneList);
