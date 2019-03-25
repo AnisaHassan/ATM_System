@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATM_System
 {
-    interface ISeperationChecker
+    public interface ISeperationChecker
     {
     }
 }

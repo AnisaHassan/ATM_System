@@ -38,7 +38,7 @@ namespace ATM_System
         public void PrintWarning(Plane plane1, Plane plane2)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("WARNING! Separation to small between " + plane1._tag + " and " + plane2._tag + " at " + plane2._time);
+            Console.WriteLine("WARNING! Separation too small between " + plane1._tag + " and " + plane2._tag + " at " + plane2._time);
 
         }
     }

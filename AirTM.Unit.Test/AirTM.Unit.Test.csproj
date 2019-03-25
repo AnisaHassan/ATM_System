@@ -60,7 +60,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsolePrintTest.cs" />
     <Compile Include="DataCalcTest.cs" />
+    <Compile Include="LogTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeperationCheckerTest.cs" />
     <Compile Include="TrackInfoTest.cs" />
