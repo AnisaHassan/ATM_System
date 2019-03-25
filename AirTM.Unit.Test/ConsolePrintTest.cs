@@ -19,8 +19,6 @@ namespace AirTM.Unit.Test
         {
             _uut = new ConsolePrint();
             
-            
-
         }
 
         [Test]
