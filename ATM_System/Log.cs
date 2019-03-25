@@ -9,6 +9,11 @@ namespace ATM_System
 {
     public class Log : IPrint
     {
+        public void PrintPlane(List<Plane> planeliste)
+        {
+            throw new NotImplementedException();
+        }
+
         public void PrintWarning(Plane plane1, Plane plane2)
         {
             FileStream output = new FileStream("Seperationslog.txt", FileMode.Append, FileAccess.Write);
@@ -18,6 +23,5 @@ namespace ATM_System
 
         }
 
-        public void PrintPlane(List<Plane> planeliste) {  }
     }
 }

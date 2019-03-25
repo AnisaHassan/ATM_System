@@ -54,7 +54,7 @@ namespace ATM_System
                         double disth = Math.Sqrt(Math.Pow(xdif, 2) + Math.Pow(ydif, 2));
                         int distv = Math.Abs(liste[i]._altitude - liste[j]._altitude);
 
-                        if (disth < 5000 && distv < 30000)
+                        if (disth < 5000 && distv < 300)
                         {
                             PrintWarning(liste[i], liste[j]);
                         }
