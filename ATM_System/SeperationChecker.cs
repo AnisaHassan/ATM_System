@@ -41,21 +41,22 @@ namespace ATM_System
         public void DistanceChecker(List<Plane> liste)
         {
 
-            foreach (var plane1 in liste)
+            for (int i = 0; i < liste.Count - 1; i++)
             {
-                foreach (var plane2 in liste)
+                for (int j = i + 1; j < liste.Count; j++)
                 {
-                    if (plane1._tag != plane2._tag)
+                    if (liste[i]._tag != liste[j]._tag)
                     {
-                        double xdif = Math.Abs(plane1._xcoor - plane2._xcoor);
-                        double ydif = Math.Abs(plane1._ycoor - plane2._ycoor);
+
+                        double xdif = Math.Abs(liste[i]._xcoor - liste[j]._xcoor);
+                        double ydif = Math.Abs(liste[i]._ycoor - liste[j]._ycoor);
 
                         double disth = Math.Sqrt(Math.Pow(xdif, 2) + Math.Pow(ydif, 2));
-                        int distv = Math.Abs(plane1._altitude - plane2._altitude);
+                        int distv = Math.Abs(liste[i]._altitude - liste[j]._altitude);
 
-                        if (disth < 5000 && distv < 300)
+                        if (disth < 5000 && distv < 30000)
                         {
-                            PrintWarning(plane1, plane2);
+                            PrintWarning(liste[i], liste[j]);
                         }
 
                     }

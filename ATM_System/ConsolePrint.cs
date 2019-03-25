@@ -22,6 +22,7 @@ namespace ATM_System
             {
                 foreach (var plane in _gammellist)
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
                     System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
                                              " meters\nY-coordinate: " +
                                              plane._ycoor + " meters\nAltitude: " + plane._altitude +
