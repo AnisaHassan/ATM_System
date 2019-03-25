@@ -34,6 +34,7 @@ namespace ATM_System
 
            
            // Move data to TrackInfo
+            ReceivedDataList = new List<Plane>();
             ReceivedDataList = TrackedInfo(list);
 
     
