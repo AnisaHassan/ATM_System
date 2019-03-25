@@ -9,7 +9,7 @@ namespace ATM_System
     public interface IPrint
     {
         void PrintPlane(List<Plane> planeliste);
-        void PrintWarning(Plane plane1, Plane plane2, DateTime time);
+        void PrintWarning(Plane plane1, Plane plane2);
 
     }
 }

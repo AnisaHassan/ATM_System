@@ -55,8 +55,7 @@ namespace ATM_System
 
                         if (disth < 5000 && distv < 300)
                         {
-                            PrintToLog(plane1, plane2, DateTime.Now);
-                            PrintWarning(plane1, plane2, DateTime.Now);
+                            PrintWarning(plane1, plane2);
                         }
 
                     }
@@ -64,16 +63,12 @@ namespace ATM_System
             }
         }
 
-        public void PrintToLog(Plane plane1, Plane plane2, DateTime time)
-        {
-            
-            _printToLog.PrintWarning(plane1, plane2, time);
+       
 
-        }
-
-        public void PrintWarning(Plane plane1, Plane plane2, DateTime time)
+        public void PrintWarning(Plane plane1, Plane plane2)
         {
-           _printToConsole.PrintWarning(plane1, plane2, time);
+            _printToLog.PrintWarning(plane1, plane2);
+            _printToConsole.PrintWarning(plane1, plane2);
 
         }
 
