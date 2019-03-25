@@ -11,6 +11,7 @@ namespace ATM_System
         event EventHandler<DataCalcEventArgs> AirspaceDataReady;
         
         List<Plane> PlanesInAirSpaceList { get; set; }
+     
         List<Plane> Airspace(List<Plane> planeliste);
      
     }

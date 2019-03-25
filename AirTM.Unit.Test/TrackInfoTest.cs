@@ -16,7 +16,7 @@ namespace AirTM.Unit.Test
         public class TrackInfotest
         {
             private ITrackInfo _uut;
-            public List<Plane> TrackedDataInfo { get; set; }
+            public List<Plane> list{ get; set; }
             private ITrackReciever _fakeTrackReciever;
      
 
@@ -30,7 +30,7 @@ namespace AirTM.Unit.Test
 
 
             [Test]
-            public void correctListIsCreated()
+            public void TrackInfo_Recived_correct_liste()
             {
              
                 Plane p = new Plane();
@@ -54,11 +54,14 @@ namespace AirTM.Unit.Test
 
                 _fakeTrackReciever.TrackedDataReady += Raise.EventWith(this, new TrackedDataEventArgs(planelist));
 
-                Assert.That(_uut.Airspace(planelist).Count, Is.EqualTo(2));
+             
 
+                Assert.That(_uut.Airspace(planelist).Count, Is.EqualTo(2));
 
             }
 
+
+          
 
 
             [TestCase(10000, 10000, 1)]
@@ -69,17 +72,17 @@ namespace AirTM.Unit.Test
             [TestCase(10000, 9999, 0)]
             public void check_plane_isinAirSpace(int x_coor, int y_coor, int count)
             {
-                TrackedDataInfo = new List<Plane>();
+                list = new List<Plane>();
                 Plane p = new Plane();
                 p._xcoor = x_coor;
                 p._ycoor = y_coor;
 
-                TrackedDataInfo.Add(p);
+                list.Add(p);
 
-                _uut.Airspace(TrackedDataInfo);
+                _uut.Airspace(list);
 
 
-                Assert.That(_uut.PlanesInAirSpaceList.Count, Is.EqualTo(count));
+              Assert.That(_uut.PlanesInAirSpaceList.Count, Is.EqualTo(count));
 
             }
 
