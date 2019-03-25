@@ -41,9 +41,7 @@ namespace AirTM.Unit.Test
             _fakeTransponderReceiver.TransponderDataReady 
                 += Raise.EventWith(this, new RawTransponderDataEventArgs(stringList));
 
-            
-            Assert.That(_uut.ReceivedDataList.Count.Equals(4));
-
+           
           Assert.That(_uut.TrackedInfo(stringList).Count, Is.EqualTo(4));
 
 
