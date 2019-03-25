@@ -27,14 +27,14 @@ namespace ATM_System
         }
 
         public TrackReciever() { }
-        private void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
+        public void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
         {
            // ReceivedDataList = new List<Plane>();
             var list = e.TransponderData;
 
            
            // Move data to TrackInfo
-            ReceivedDataList = new List<Plane>();
+           
             ReceivedDataList = TrackedInfo(list);
 
     
@@ -72,6 +72,7 @@ namespace ATM_System
             }
 
             return ConverteretInfo;
+
 
 
         }

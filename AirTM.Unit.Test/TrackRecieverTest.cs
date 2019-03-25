@@ -16,6 +16,7 @@ namespace AirTM.Unit.Test
     public class TrackRecieverTest
     {
         private ITransponderReceiver _fakeTransponderReceiver;
+        private ITrackInfo _fakeTrackInfo;
         private TrackReciever _uut;
         private List<string> stringList;
         private List<Plane> planeList;
@@ -24,6 +25,7 @@ namespace AirTM.Unit.Test
         public void SetUp()
         {
             _fakeTransponderReceiver = Substitute.For<ITransponderReceiver>();
+            _fakeTrackInfo = Substitute.For<ITrackInfo>();
             _uut = new TrackReciever();
                         
 
@@ -40,8 +42,6 @@ namespace AirTM.Unit.Test
 
             _fakeTransponderReceiver.TransponderDataReady 
                 += Raise.EventWith(this, new RawTransponderDataEventArgs(stringList));
-
-           
           Assert.That(_uut.TrackedInfo(stringList).Count, Is.EqualTo(4));
 
 
@@ -205,26 +205,37 @@ namespace AirTM.Unit.Test
 
 
 
-        /// <summary>
-        /// / PRØVER AT FO ReceivedDataList TIL AT VIRKE!
-        /// </summary>
+        ///// <summary>
+        ///// / PRØVER AT FO ReceivedDataList TIL AT VIRKE!
+        ///// </summary>
         //[Test]
         //public void TrackReciver_delivered_correct_to_TrackInto()
         //{
+        //    Plane p1 = new Plane();
+        //    p1._tag = "ATR321";
+        //    p1._xcoor = 39045;
+        //    p1._ycoor = 12932;
+        //    p1._altitude = 14000;
+        //    p1._time = (DateTime.ParseExact("20151006213456789", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
+
+        //    List<Plane> _planelist = new List<Plane>();
+        //    _planelist.Add(p1);
+
+
+
+
         //    stringList = new List<string>();
         //    stringList.Add("ATR423;39045;12932;14000;20151006213456789");
-        //    stringList.Add("ABC121;12305;87501;13000;20151006213456779");
-        //    stringList.Add("DEF182;46000;87654;12000;20151006213456769");
-        //    stringList.Add("XKJ967;90239;99876;11000;20151006213456759");
-
+        
         //    _fakeTransponderReceiver.TransponderDataReady
         //        += Raise.EventWith(this, new RawTransponderDataEventArgs(stringList));
 
-        //   var list = _uut.TrackedInfo(stringList);
+        //    _uut.TrackedInfo(stringList);
 
-        //    Assert.That(_uut.ReceivedDataList.Count, Is.EqualTo(4));
+        //    Assert.That(_uut.ReceivedDataList.Count, Is.EqualTo(1));
 
-
+            
+        //    planeList = _uut.TrackedInfo(stringList);
 
         //}
     }

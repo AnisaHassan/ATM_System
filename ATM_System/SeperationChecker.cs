@@ -75,6 +75,7 @@ namespace ATM_System
 
         public void PrintToConsole(List<Plane> gammelliste)
         {
+            _printToConsole = new ConsolePrint();
             _printToConsole.PrintPlane(gammelliste);
         }
 
