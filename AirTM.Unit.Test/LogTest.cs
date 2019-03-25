@@ -16,7 +16,7 @@ using NSubstitute.ReceivedExtensions;
 namespace AirTM.Unit.Test
 {
     [TestFixture]
-   public class LogTest
+    public class LogTest
     {
         private IPrint _uut;
 
@@ -48,5 +48,41 @@ namespace AirTM.Unit.Test
                 Is.EqualTo("WARNING! Separation to small between TRE123 and ARE321 at 30-04-2019 15:57:30"));
         }
 
+
+
+        [Test]
+        public void Log_with_Full_Planes()
+        {
+
+            Plane p = new Plane();
+            p._tag = "TRE123";
+            p._xcoor = 10000;
+            p._ycoor = 10000;
+            p._altitude = 100000;
+            p._time = (DateTime.ParseExact("20190430121230000", "yyyyMMddHHmmssfff",
+                System.Globalization.CultureInfo.InvariantCulture));
+            p._compassCourse = 90;
+            p._velocity = 80;
+
+
+            Plane p1 = new Plane();
+            p1._tag = "ATR321";
+            p1._xcoor = 10;
+            p1._ycoor = 10;
+            p1._altitude = 10;
+            p1._time = (DateTime.ParseExact("20190430121230210", "yyyyMMddHHmmssfff",
+                System.Globalization.CultureInfo.InvariantCulture));
+            p1._compassCourse = 90;
+            p1._velocity = 80;
+
+            _uut.PrintWarning(p, p1);
+
+            var file = File.ReadAllLines("seperationslog.txt");
+            var fil = file[0];
+            Assert.That(fil,
+                Is.EqualTo("WARNING! Separation to small between TRE123 and ATR321 at 30-04-2019 12:12:30"));
+
+
+        }
     }
 }
