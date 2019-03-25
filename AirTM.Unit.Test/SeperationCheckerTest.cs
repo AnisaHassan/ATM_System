@@ -10,6 +10,7 @@ using ATM_System;
 using ATM_System.Events;
 using NSubstitute;
 using NSubstitute.Core;
+using NSubstitute.ReceivedExtensions;
 
 
 namespace AirTM.Unit.Test
@@ -256,6 +257,39 @@ namespace AirTM.Unit.Test
             _fakeLogPrint.DidNotReceive().PrintWarning(p, p1);
 
         }
-        
+
+
+        [Test]
+        public void correctListIsCreated()
+        {
+            List<Plane> planelist = new List<Plane>();
+            Plane p = new Plane();
+            p._tag = "TRE123";
+            p._xcoor = 10000;
+            p._ycoor = 10000;
+            p._altitude = 100000;
+            p._time = (DateTime.ParseExact("20190430121230210", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
+            p._compassCourse = 90;
+            p._velocity = 80;
+            
+            Plane p1 = new Plane();
+            p1._tag = "ATR321";
+            p1._xcoor = 10;
+            p1._ycoor = 10;
+            p1._altitude = 10;
+            p1._time = (DateTime.ParseExact("20190430121230210", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
+            p1._compassCourse = 90;
+            p1._velocity = 80;
+            planelist.Add(p);
+            planelist.Add(p1);
+
+            _fakedataCalculator.CalcedDataReady += Raise.EventWith(this, new SeperationEventArgs(planelist));
+
+            Assert.That(_uut._planelist.Count, Is.EqualTo(2));
+
+
+
+
+        }
     }
 }

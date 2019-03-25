@@ -11,7 +11,7 @@ namespace ATM_System
     {
         private IDataCalculator _calcedRecieved;
         
-        private List<Plane> _planelist;
+        public List<Plane> _planelist;
         private IPrint _printToLog;
         private IPrint _printToConsole;
 
