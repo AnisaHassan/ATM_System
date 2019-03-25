@@ -23,7 +23,7 @@ namespace AirTM.Unit.Test
         private IPrint _fakeLogPrint;
         private List<Plane> _fakeplaneList;
         private IDataCalculator _fakedataCalculator;
-        private FakeConsolePrint _print;
+
 
 
         [SetUp] 
@@ -33,7 +33,7 @@ namespace AirTM.Unit.Test
             _fakeLogPrint = Substitute.For<IPrint>();
             _fakedataCalculator = Substitute.For<IDataCalculator>();
             _uut = new SeperationChecker(_fakedataCalculator, _fakeLogPrint, _fakeConsolePrint);
-            _print = new FakeConsolePrint();
+            
         }
 
 

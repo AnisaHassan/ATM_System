@@ -51,7 +51,7 @@ namespace AirTM.Unit.Test
             string text = _uut._text;
 
             Assert.That(text,
-               Is.EqualTo("WARNING! Separation too small between" + " TRE123 and ATR321 at 30/04/19 12.12.30"));
+               Is.EqualTo("WARNING! Separation too small between" + " TRE123 and ATR321 at 30-04-2019 12:12:30"));
 
 
         }
