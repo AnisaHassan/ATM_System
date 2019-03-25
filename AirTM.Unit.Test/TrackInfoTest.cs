@@ -17,6 +17,7 @@ namespace AirTM.Unit.Test
         {
             private ITrackInfo _uut;
             public List<Plane> TrackedDataInfo { get; set; }
+            private ITrackReciever _fakeTrackReciever;
      
 
 
@@ -24,6 +25,38 @@ namespace AirTM.Unit.Test
             public void SetUp()
             {
                 _uut = new TrackInfo();
+                _fakeTrackReciever = new TrackReciever();
+            }
+
+
+            [Test]
+            public void correctListIsCreated()
+            {
+             
+                Plane p = new Plane();
+                p._tag = "TRE123";
+                p._xcoor = 10000;
+                p._ycoor = 10000;
+                p._altitude = 100;
+                p._time = (DateTime.ParseExact("20190430121230210", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
+              
+
+                Plane p1 = new Plane();
+                p1._tag = "ATR321";
+                p1._xcoor = 80000;
+                p1._ycoor = 90000;
+                p1._altitude = 100;
+                p1._time = (DateTime.ParseExact("20190430121230210", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
+
+                List<Plane> planelist = new List<Plane>();
+                planelist.Add(p);
+                planelist.Add(p1);
+
+                _fakeTrackReciever.TrackedDataReady += Raise.EventWith(this, new TrackedDataEventArgs(planelist));
+
+                Assert.That(_uut.Airspace(planelist).Count, Is.EqualTo(2));
+
+
             }
 
 
