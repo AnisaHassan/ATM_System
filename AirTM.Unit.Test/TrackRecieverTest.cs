@@ -210,24 +210,24 @@ namespace AirTM.Unit.Test
         /// <summary>
         /// / PRØVER AT FO ReceivedDataList TIL AT VIRKE!
         /// </summary>
-        [Test]
-        public void TrackReciver_delivered_correct_to_TrackInto()
-        {
-            stringList = new List<string>();
-            stringList.Add("ATR423;39045;12932;14000;20151006213456789");
-            stringList.Add("ABC121;12305;87501;13000;20151006213456779");
-            stringList.Add("DEF182;46000;87654;12000;20151006213456769");
-            stringList.Add("XKJ967;90239;99876;11000;20151006213456759");
+        //[Test]
+        //public void TrackReciver_delivered_correct_to_TrackInto()
+        //{
+        //    stringList = new List<string>();
+        //    stringList.Add("ATR423;39045;12932;14000;20151006213456789");
+        //    stringList.Add("ABC121;12305;87501;13000;20151006213456779");
+        //    stringList.Add("DEF182;46000;87654;12000;20151006213456769");
+        //    stringList.Add("XKJ967;90239;99876;11000;20151006213456759");
 
-            _fakeTransponderReceiver.TransponderDataReady
-                += Raise.EventWith(this, new RawTransponderDataEventArgs(stringList));
+        //    _fakeTransponderReceiver.TransponderDataReady
+        //        += Raise.EventWith(this, new RawTransponderDataEventArgs(stringList));
 
-           var list = _uut.TrackedInfo(stringList);
+        //   var list = _uut.TrackedInfo(stringList);
 
-            Assert.That(_uut.ReceivedDataList.Count, Is.EqualTo(4));
+        //    Assert.That(_uut.ReceivedDataList.Count, Is.EqualTo(4));
 
 
 
-        }
+        //}
     }
 }
