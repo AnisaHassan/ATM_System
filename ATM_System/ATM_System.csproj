@@ -63,6 +63,7 @@
     <Compile Include="Interfaces\ITrackInfo.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Plane.cs" />
+    <Compile Include="PrintWarning.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeperationChecker.cs" />

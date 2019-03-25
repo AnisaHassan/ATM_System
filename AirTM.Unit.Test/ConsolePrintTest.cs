@@ -40,7 +40,7 @@ namespace AirTM.Unit.Test
         [Test]
         public void ConsolePrint_Is_Correct_And_Prints()
         {
-            List<Plane> _fakeplaneList = new List<Plane>();
+             _fakeplaneList = new List<Plane>();
             Plane p = new Plane();
             p._tag = "TRE123";
             p._xcoor = 10;
