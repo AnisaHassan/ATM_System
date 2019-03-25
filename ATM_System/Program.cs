@@ -20,7 +20,7 @@ namespace ATM_System
             IDataCalculator datacalc = new DataCalculator(trackInfo);
             IPrint consoleprinter = new ConsolePrint();
             IPrint logprinter = new Log();
-            ISeperationChecker seperationChecker = new SeperationChecker(datacalc);
+            ISeperationChecker seperationChecker = new SeperationChecker(datacalc, logprinter, consoleprinter);
          
 
             //Til udskrivning:

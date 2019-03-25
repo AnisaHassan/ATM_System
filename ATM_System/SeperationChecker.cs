@@ -15,14 +15,14 @@ namespace ATM_System
         private IPrint _printToLog;
         private IPrint _printToConsole;
 
-        public SeperationChecker(IDataCalculator calcedRecieved)
+        public SeperationChecker(IDataCalculator calcedRecieved, IPrint printer1, IPrint printer2)
         {
             this._calcedRecieved = calcedRecieved;
 
             this._calcedRecieved.CalcedDataReady += CheckDistance;
             _planelist = new List<Plane>();
-            _printToLog = new Log();
-            _printToConsole = new ConsolePrint();
+            _printToLog = printer1;
+            _printToConsole = printer2;
 
         }
 

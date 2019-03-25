@@ -30,7 +30,7 @@ namespace AirTM.Unit.Test
             _fakeConsolePrint = Substitute.For<IPrint>();
             _fakeLogPrint = Substitute.For<IPrint>();
             _fakedataCalculator = Substitute.For<IDataCalculator>();
-            _uut = new SeperationChecker(_fakedataCalculator);
+            _uut = new SeperationChecker(_fakedataCalculator, _fakeLogPrint, _fakeConsolePrint);
         }
 
 
@@ -82,7 +82,6 @@ namespace AirTM.Unit.Test
             _fakeplaneList.Add(p);
             _fakeplaneList.Add(p1);
             _uut.DistanceChecker(_fakeplaneList);
-            _uut.Exe
             _fakeConsolePrint.Received(1).PrintWarning(p,p1);
            
         }
@@ -114,7 +113,7 @@ namespace AirTM.Unit.Test
             _fakeplaneList.Add(p1);
             _uut.DistanceChecker(_fakeplaneList);
 
-            _fakeLogPrint.Received().PrintWarning(p, p1);
+            _fakeLogPrint.DidNotReceive().PrintWarning(p, p1);
 
         }
 
