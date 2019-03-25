@@ -83,6 +83,7 @@ namespace AirTM.Unit.Test
             _fakeplaneList.Add(p1);
             _uut.DistanceChecker(_fakeplaneList);
             _fakeConsolePrint.Received(1).PrintWarning(p,p1);
+
            
         }
 
@@ -116,8 +117,6 @@ namespace AirTM.Unit.Test
             _fakeLogPrint.DidNotReceive().PrintWarning(p, p1);
 
         }
-
-
-
+        
     }
 }
