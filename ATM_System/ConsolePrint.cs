@@ -9,10 +9,13 @@ namespace ATM_System
     public class ConsolePrint : IPrint
     {
         private List<Plane> _gammellist;
+        public string _text { get; set; }
 
         public ConsolePrint()
         {
             _gammellist = new List<Plane>();
+           // _text = new String();
+            
         }
         public void PrintPlane(List<Plane> gammellist)
         {
@@ -23,7 +26,7 @@ namespace ATM_System
                 foreach (var plane in _gammellist)
                 {
                     Console.ForegroundColor = ConsoleColor.White;
-                    System.Console.WriteLine("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
+                    _text = ("Tag: " + plane._tag + "\nX-coordinate: " + plane._xcoor +
                                              " meters\nY-coordinate: " +
                                              plane._ycoor + " meters\nAltitude: " + plane._altitude +
                                              " meters\nTime stamp: " + plane._time.Year + "/" + plane._time.Month +
@@ -31,6 +34,7 @@ namespace ATM_System
                                              ", at " + plane._time.Hour + ":" + plane._time.Minute + ":" +
                                              plane._time.Second + " and " + plane._time.Millisecond + " milliseconds\nVelocity: " + plane._velocity + " m/s\nCourse: " +
                                     plane._compassCourse + " degrees\n");
+                    Console.WriteLine(_text);
                 }
             }
         }
@@ -38,8 +42,8 @@ namespace ATM_System
         public void PrintWarning(Plane plane1, Plane plane2)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("WARNING! Separation too small between " + plane1._tag + " and " + plane2._tag + " at " + plane2._time);
-
+            _text = ("WARNING! Separation too small between " + plane1._tag + " and " + plane2._tag + " at " + plane2._time);
+            Console.WriteLine(_text);
         }
     }
 }

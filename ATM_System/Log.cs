@@ -9,6 +9,7 @@ namespace ATM_System
 {
     public class Log : IPrint
     {
+        public string _text { get; set; }
         public void PrintPlane(List<Plane> planeliste)
         {
             throw new NotImplementedException();
