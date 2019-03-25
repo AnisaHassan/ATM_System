@@ -36,28 +36,165 @@ namespace AirTM.Unit.Test
 
 
         [Test]
-        public void ConsolePrint_Is_Correct_And_Prints_1()
+        public void ConsolePrint_Is_Recives_list_Correct()
         {
              _fakeplaneList = new List<Plane>();
             Plane p = new Plane();
             p._tag = "TRE123";
             p._xcoor = 10;
-            p._ycoor = 10;
-            p._altitude = 10;
-            p._time = DateTime.Now;
+            p._ycoor = 20;
+            p._altitude = 30;
+            p._time = new DateTime(2019, 04, 30, 15, 57, 30, 123);
             p._compassCourse = 90;
             p._velocity = 80;
             _fakeplaneList.Add(p);
 
             _fakedataCalculator.CalcedDataReady += Raise.EventWith(this, new SeperationEventArgs(_fakeplaneList));
-
-
             _fakeConsolePrint.Received(1).PrintPlane(_fakeplaneList);
            
         }
 
         [Test]
-        public void ConsoleWarringPrint_Is_Correct_And_Recived_1()
+        public void ConsolePrint_Prints_Correct_tag()
+        {
+            var _fakeplaneList = new List<Plane>();
+            Plane p = new Plane();
+            p._tag = "TRE123";
+            p._xcoor = 10;
+            p._ycoor = 20;
+            p._altitude = 30;
+            p._time = new DateTime(2019, 04, 30, 15, 57, 30, 123);
+            p._compassCourse = 90;
+            p._velocity = 80;
+            _fakeplaneList.Add(p);
+
+            _fakeConsolePrint.PrintPlane(_fakeplaneList);
+            _fakeConsolePrint.Received().PrintPlane(Arg.Is<List<Plane>>(_plane => _plane[0]._tag.Contains("TRE123")));
+
+        }
+
+
+
+        [Test]
+        public void ConsolePrint_Prints_Correct_xcoor()
+        {
+            var _fakeplaneList = new List<Plane>();
+            Plane p = new Plane();
+            p._tag = "TRE123";
+            p._xcoor = 10;
+            p._ycoor = 20;
+            p._altitude = 30;
+            p._time = new DateTime(2019, 04, 30, 15, 57, 30, 123);
+            p._compassCourse = 90;
+            p._velocity = 80;
+            _fakeplaneList.Add(p);
+            
+            _fakeConsolePrint.PrintPlane(_fakeplaneList);
+            _fakeConsolePrint.Received().PrintPlane(Arg.Is<List<Plane>>(_plane => _plane[0]._xcoor.Equals(10)));
+            
+        }
+
+        [Test]
+        public void ConsolePrint_Prints_Correct_ycoor()
+        {
+            var _fakeplaneList = new List<Plane>();
+            Plane p = new Plane();
+            p._tag = "TRE123";
+            p._xcoor = 10;
+            p._ycoor = 20;
+            p._altitude = 30;
+            p._time = new DateTime(2019, 04, 30, 15, 57, 30, 123);
+            p._compassCourse = 90;
+            p._velocity = 80;
+            _fakeplaneList.Add(p);
+
+            _fakeConsolePrint.PrintPlane(_fakeplaneList);
+            _fakeConsolePrint.Received().PrintPlane(Arg.Is<List<Plane>>(_plane => _plane[0]._ycoor.Equals(20)));
+
+        }
+
+
+
+        [Test]
+        public void ConsolePrint_Prints_Correct_alititude()
+        {
+            var _fakeplaneList = new List<Plane>();
+            Plane p = new Plane();
+            p._tag = "TRE123";
+            p._xcoor = 10;
+            p._ycoor = 20;
+            p._altitude = 30;
+            p._time = new DateTime(2019, 04, 30, 15, 57, 30, 123);
+            p._compassCourse = 90;
+            p._velocity = 80;
+            _fakeplaneList.Add(p);
+            
+            _fakeConsolePrint.PrintPlane(_fakeplaneList);
+            _fakeConsolePrint.Received().PrintPlane(Arg.Is<List<Plane>>(_plane => _plane[0]._altitude.Equals(30)));
+
+        }
+
+        [Test]
+        public void ConsolePrint_Prints_Correct_time()
+        {
+            var _fakeplaneList = new List<Plane>();
+            Plane p = new Plane();
+            p._tag = "TRE123";
+            p._xcoor = 10;
+            p._ycoor = 20;
+            p._altitude = 30;
+            var _time = p._time = new DateTime(2019, 04, 30, 15, 57, 30, 123);
+            p._compassCourse = 90;
+            p._velocity = 80;
+            _fakeplaneList.Add(p);
+
+            _fakeConsolePrint.PrintPlane(_fakeplaneList);
+            _fakeConsolePrint.Received().PrintPlane(Arg.Is<List<Plane>>(_plane => _plane[0]._time.Equals(_time)));
+
+        }
+
+
+        [Test]
+        public void ConsolePrint_Prints_Correct_velocity()
+        {
+            var _fakeplaneList = new List<Plane>();
+            Plane p = new Plane();
+            p._tag = "TRE123";
+            p._xcoor = 10;
+            p._ycoor = 20;
+            p._altitude = 30;
+            var _time = p._time = new DateTime(2019, 04, 30, 15, 57, 30, 123);
+            p._compassCourse = 90;
+            p._velocity = 80;
+            _fakeplaneList.Add(p);
+            
+            _fakeConsolePrint.PrintPlane(_fakeplaneList);
+            _fakeConsolePrint.Received().PrintPlane(Arg.Is<List<Plane>>(_plane => _plane[0]._velocity.Equals(80)));
+
+        }
+
+
+        [Test]
+        public void ConsolePrint_Prints_Correct_course()
+        {
+            var _fakeplaneList = new List<Plane>();
+            Plane p = new Plane();
+            p._tag = "TRE123";
+            p._xcoor = 10;
+            p._ycoor = 20;
+            p._altitude = 30;
+            var _time = p._time = new DateTime(2019, 04, 30, 15, 57, 30, 123);
+            p._compassCourse = 90;
+            p._velocity = 80;
+            _fakeplaneList.Add(p);
+            
+            _fakeConsolePrint.PrintPlane(_fakeplaneList);
+            _fakeConsolePrint.Received().PrintPlane(Arg.Is<List<Plane>>(_plane => _plane[0]._compassCourse.Equals(90)));
+
+        }
+
+        [Test]
+        public void ConsoleWarringPrint_Is__Recived_1()
         {
             List<Plane> _fakeplaneList = new List<Plane>();
             Plane p = new Plane();
@@ -87,6 +224,8 @@ namespace AirTM.Unit.Test
            
         }
 
+
+        
         [Test]
         public void Log_Is_Correct()
         {
