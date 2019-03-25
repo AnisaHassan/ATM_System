@@ -9,6 +9,7 @@ using TransponderReceiver;
 using ATM_System;
 using ATM_System.Events;
 using NSubstitute;
+using NSubstitute.Core;
 
 
 namespace AirTM.Unit.Test
@@ -16,7 +17,7 @@ namespace AirTM.Unit.Test
     [TestFixture]
     public class SeperationCheckerTest
     {
-        private ConsolePrint _fakeConsolePrint;
+        private IPrint _fakeConsolePrint;
         private SeperationChecker _uut;
         private IPrint _fakeLogPrint;
         private List<Plane> _fakeplaneList;
@@ -26,7 +27,7 @@ namespace AirTM.Unit.Test
         [SetUp] 
         public void SetUp()
         {
-            _fakeConsolePrint = Substitute.For<ConsolePrint>();
+            _fakeConsolePrint = Substitute.For<IPrint>();
             _fakeLogPrint = Substitute.For<Log>();
             _fakedataCalculator = Substitute.For<IDataCalculator>();
             _uut = new SeperationChecker(_fakedataCalculator);
@@ -61,13 +62,13 @@ namespace AirTM.Unit.Test
             List<Plane> _fakeplaneList = new List<Plane>();
             Plane p = new Plane();
             p._tag = "TRE123";
-            p._xcoor = 10000;
-            p._ycoor = 10000;
-            p._altitude = 100000;
+            p._xcoor = 100;
+            p._ycoor = 100;
+            p._altitude = 100;
             //p._time = (DateTime.ParseExact("20190430121230210", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
             p._compassCourse = 90;
             p._velocity = 80;
-            _fakeplaneList.Add(p);
+            
 
             Plane p1 = new Plane();
             p1._tag = "ATR321";
@@ -81,8 +82,8 @@ namespace AirTM.Unit.Test
             _fakeplaneList.Add(p);
             _fakeplaneList.Add(p1);
             _uut.DistanceChecker(_fakeplaneList);
-
             _fakeConsolePrint.Received().PrintWarning(p,p1, DateTime.Now);
+           
         }
 
         [Test]
