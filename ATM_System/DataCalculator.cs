@@ -37,13 +37,7 @@ namespace ATM_System
 
         public void UseList(object sender, DataCalcEventArgs e)
         {
-            //nyliste.Clear();
             
-            //foreach (var plane in e.DataList)
-            //{
-            //    nyliste.Add(plane);
-                
-            //}
             nyliste = e.DataList;
             if (gammelliste != null)
             {
@@ -54,11 +48,7 @@ namespace ATM_System
             
 
            gammelliste = nyliste;
-           // gammelliste = new List<Plane>(nyliste);
-
-           
-               // Print(gammelliste);
-
+          
 
            CalcedDataReady?.Invoke(sender, new SeperationEventArgs(gammelliste));
 
@@ -89,7 +79,7 @@ namespace ATM_System
                         velocity = distance / time;
                     }
 
-                    //jeg tænker det er den 'gammle' liste der skal gemme velocity, da den 'nye' liste ikke skal gemmes her?
+                   
                     
                     planeN._velocity = Math.Round(velocity, 2);
                 }
