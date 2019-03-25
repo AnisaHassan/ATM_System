@@ -36,7 +36,7 @@ namespace AirTM.Unit.Test
 
 
         [Test]
-        public void ConsolePrint_Is_Correct()
+        public void ConsolePrint_Is_Correct_And_Prints_1()
         {
             List<Plane> _fakeplaneList = new List<Plane>();
             Plane p = new Plane();
@@ -52,12 +52,12 @@ namespace AirTM.Unit.Test
             _fakedataCalculator.CalcedDataReady += Raise.EventWith(this, new SeperationEventArgs(_fakeplaneList));
 
 
-            //Den printer to flyet 2 gange, but why?
-            _fakeConsolePrint.Received().PrintPlane(_fakeplaneList);
+            _fakeConsolePrint.Received(1).PrintPlane(_fakeplaneList);
+           
         }
 
         [Test]
-        public void ConsoleWarringPrint_Is_Correct()
+        public void ConsoleWarringPrint_Is_Correct_And_Recived_1()
         {
             List<Plane> _fakeplaneList = new List<Plane>();
             Plane p = new Plane();
