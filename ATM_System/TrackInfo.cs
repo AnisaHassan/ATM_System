@@ -30,10 +30,6 @@ namespace ATM_System
             this._dataReciever.TrackedDataReady += ReceiverOnTrackedInfoDataReady;
         }
 
-        public TrackInfo()
-        {
-        }
-
         public void ReceiverOnTrackedInfoDataReady(object sender, TrackedDataEventArgs e)
         {
             //TrackedDataInfo = new List<Plane>();
