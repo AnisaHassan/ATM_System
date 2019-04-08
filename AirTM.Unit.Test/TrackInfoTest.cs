@@ -16,7 +16,6 @@ namespace AirTM.Unit.Test
         public class TrackInfotest
         {
             private ITrackInfo _uut;
-            public List<Plane> list{ get; set; }
             private ITrackReciever _fakeTrackReciever;
      
 
@@ -65,7 +64,7 @@ namespace AirTM.Unit.Test
             [TestCase(10000, 9999, 0)]
             public void check_plane_isinAirSpace(int x_coor, int y_coor, int count)
             {
-                list = new List<Plane>();
+               List<Plane> list = new List<Plane>();
                 Plane p = new Plane();
                 p._xcoor = x_coor;
                 p._ycoor = y_coor;

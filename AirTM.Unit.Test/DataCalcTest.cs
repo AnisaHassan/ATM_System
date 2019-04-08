@@ -12,12 +12,11 @@ namespace AirTM.Unit.Test
     [TestFixture]
     public class DataCalcTest
     {
-        private ITransponderReceiver _fakeTransponderReceiver;
-        private DataCalculator uut;
-        private List<Plane> planelist;
-        public List<Plane> TrackedDataInfo { get; set; }
- 
+        private ITrackInfo _fakeTrackInfo;
+        private DataCalculator _uut;
 
+
+        private List<Plane> planelist;
         private List<Plane> gammelliste;
         private Plane _plane1;
         private Plane _plane2;
@@ -27,8 +26,9 @@ namespace AirTM.Unit.Test
         [SetUp]
         public void SetUp()
         {
-            _fakeTransponderReceiver = Substitute.For<ITransponderReceiver>();
-            uut = new DataCalculator(new TrackInfo());
+            _fakeTrackInfo = Substitute.For<ITrackInfo>();
+            _uut = new DataCalculator(_fakeTrackInfo);
+
             var dateTime1 = new DateTime(2019, 06, 05, 10, 54, 34);
             var dateTime2 = new DateTime(2019, 06, 05, 10, 54, 50);
             var dateTime3 = new DateTime(2019, 06, 05, 10, 50, 00); 
@@ -74,6 +74,33 @@ namespace AirTM.Unit.Test
             };
         }
 
+        [Test]
+        public void Test_Input_correct()
+        {
+            List<Plane> planelist = null;
+            List<Plane> pl = new List<Plane>();
+            Plane p = new Plane();
+            p._tag = "ATR123";
+            p._xcoor = 900;
+            p._ycoor = 800;
+            p._altitude = 100;
+            DateTime date = new DateTime(2015, 10, 06, 21, 34, 56, 798);
+            p._time = (DateTime.ParseExact("20151006213456798", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
+
+            pl.Add(p);
+
+            _uut.CalcedDataReady += (o, e) => { planelist = e.CalcedInfo; }; //Simulates formatted data ready event
+            _fakeTrackInfo.AirspaceDataReady += Raise.EventWith(this, new DataCalcEventArgs(pl));
+
+            Assert.That(planelist[0]._tag, Is.EqualTo("ATR123"));
+            Assert.That(planelist[0]._xcoor, Is.EqualTo(900));
+            Assert.That(planelist[0]._ycoor, Is.EqualTo(800));
+            Assert.That(planelist[0]._altitude, Is.EqualTo(100));
+            Assert.That(planelist[0]._time, Is.EqualTo(date));
+            Assert.That(planelist[0]._compassCourse, Is.EqualTo(0));
+            Assert.That(planelist[0]._velocity, Is.EqualTo(0));
+        }
+
         //TEST AF VELOCITY
         [Test]
         public void velocity_med_3_4_Correct()
@@ -86,11 +113,11 @@ namespace AirTM.Unit.Test
             gammelliste = new List<Plane>();
             gammelliste.Add(_plane4);
 
-            uut.gammelliste = gammelliste;
-            uut.nyliste = planelist;
-            uut.CalculateVelocity();
+            _uut.gammelliste = gammelliste;
+            _uut.nyliste = planelist;
+            _uut.CalculateVelocity();
 
-            Assert.That(uut.nyliste[0]._velocity, Is.EqualTo(2.5));
+            Assert.That(_uut.nyliste[0]._velocity, Is.EqualTo(2.5));
 
         }
 
@@ -121,11 +148,11 @@ namespace AirTM.Unit.Test
             planelist.Add(p2);
 
            
-            uut.gammelliste = gammelliste;
-            uut.nyliste = planelist;
-            uut.CalculateVelocity();
+            _uut.gammelliste = gammelliste;
+            _uut.nyliste = planelist;
+            _uut.CalculateVelocity();
 
-            Assert.That(uut.nyliste[0]._velocity, Is.EqualTo(result).Within(00.01));
+            Assert.That(_uut.nyliste[0]._velocity, Is.EqualTo(result).Within(00.01));
         }
 
 
@@ -147,7 +174,7 @@ namespace AirTM.Unit.Test
             p1._altitude = a1;
             p1._time  = DateTime.Now;
             gammelliste.Add(p1);
-            uut.gammelliste = gammelliste;
+            _uut.gammelliste = gammelliste;
 
 
             planelist = new List<Plane>();
@@ -158,9 +185,9 @@ namespace AirTM.Unit.Test
             p2._altitude = a2;
             p2._time = DateTime.Now;
             planelist.Add(p2);
-            uut.nyliste = planelist;
+            _uut.nyliste = planelist;
 
-            uut.CalculateCourse(gammelliste, planelist);
+            _uut.CalculateCourse(gammelliste, planelist);
 
             Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(result).Within(00.01));
             
@@ -180,7 +207,7 @@ namespace AirTM.Unit.Test
             gammelliste.Add(_plane1);
 
 
-            uut.CalculateCourse(gammelliste, planelist);
+            _uut.CalculateCourse(gammelliste, planelist);
             Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(106).Within(00.01));
         }
 
@@ -196,11 +223,11 @@ namespace AirTM.Unit.Test
             gammelliste.Add(_plane2);
             DataCalcEventArgs testArgs = new DataCalcEventArgs(gammelliste);
 
-            uut.UseList(this, testArgs);
+            _uut.UseList(this, testArgs);
             testArgs = new DataCalcEventArgs(planelist);
-            uut.UseList(this, testArgs);
+            _uut.UseList(this, testArgs);
 
-            Assert.That(uut.gammelliste[0]._velocity, Is.EqualTo(5659.97));
+            Assert.That(_uut.gammelliste[0]._velocity, Is.EqualTo(5659.97));
 
         }
 
