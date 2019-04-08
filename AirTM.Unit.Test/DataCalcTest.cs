@@ -105,9 +105,6 @@ namespace AirTM.Unit.Test
         [Test]
         public void velocity_med_3_4_Correct()
         {
-            //Lambda
-           // uut.CalcedDataReady += (o, e) => { planelist = e.CalcedInfo; }; //Simulates formatted data ready event
-
             planelist = new List<Plane>();
             planelist.Add(_plane3);
             gammelliste = new List<Plane>();
@@ -151,7 +148,6 @@ namespace AirTM.Unit.Test
             _uut.gammelliste = gammelliste;
             _uut.nyliste = planelist;
             _uut.CalculateVelocity();
-
             Assert.That(_uut.nyliste[0]._velocity, Is.EqualTo(result).Within(00.01));
         }
 
@@ -188,7 +184,6 @@ namespace AirTM.Unit.Test
             _uut.nyliste = planelist;
 
             _uut.CalculateCourse(gammelliste, planelist);
-
             Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(result).Within(00.01));
             
         }
@@ -199,20 +194,14 @@ namespace AirTM.Unit.Test
         [Test]
         public void compass_isCorrect()
         {
-
-
             planelist = new List<Plane>();
             planelist.Add(_plane2);
             gammelliste = new List<Plane>();
             gammelliste.Add(_plane1);
-
-
+            
             _uut.CalculateCourse(gammelliste, planelist);
             Assert.That(Math.Round(planelist[0]._compassCourse), Is.EqualTo(106).Within(00.01));
         }
-
-
-
 
         [Test]
         public void correctListIsCreated()
