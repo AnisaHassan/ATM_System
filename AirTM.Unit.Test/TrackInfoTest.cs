@@ -10,7 +10,7 @@ using NSubstitute;
 
 namespace AirTM.Unit.Test
 {
-    class TrackInfoTest
+    public class TrackInfoTest
     {
         [TestFixture]
         public class TrackInfotest
@@ -24,10 +24,38 @@ namespace AirTM.Unit.Test
             [SetUp]
             public void SetUp()
             {
-                _uut = new TrackInfo();
-                _fakeTrackReciever = new TrackReciever();
+               
+                _fakeTrackReciever = Substitute.For<ITrackReciever>();
+                _uut = new TrackInfo(_fakeTrackReciever);
             }
 
+            [Test]
+            public void Test_Input_correct()
+            {
+                List<Plane> planelist = null;
+                List<Plane> pl = new List<Plane>();
+                Plane p = new Plane();
+                p._tag = "TRE123";
+                p._xcoor = 10000;
+                p._ycoor = 10000;
+                p._altitude = 100;
+                DateTime date = new DateTime(2015, 10, 06, 21, 34, 56, 798);
+                p._time = (DateTime.ParseExact("20151006213456798", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
+
+
+                pl.Add(p);
+
+                _uut.AirspaceDataReady += (o, e) => { planelist = e.DataList; }; //Simulates formatted data ready event
+                _fakeTrackReciever.TrackedDataReady += Raise.EventWith(this, new TrackedDataEventArgs(pl));
+
+                Assert.That(planelist[0]._tag, Is.EqualTo("TRE123"));
+                Assert.That(planelist[0]._xcoor, Is.EqualTo(10000));
+                Assert.That(planelist[0]._ycoor, Is.EqualTo(10000));
+                Assert.That(planelist[0]._altitude, Is.EqualTo(100));
+                Assert.That(planelist[0]._time, Is.EqualTo(date));
+                Assert.That(planelist[0]._compassCourse, Is.EqualTo(0));
+                Assert.That(planelist[0]._velocity, Is.EqualTo(0));
+            }
 
             [Test]
             public void TrackInfo_Recived_correct_liste()
@@ -51,9 +79,7 @@ namespace AirTM.Unit.Test
                 List<Plane> planelist = new List<Plane>();
                 planelist.Add(p);
                 planelist.Add(p1);
-                //Lambda
-                //_uut.AirspaceDataReady += (o, e) => { planelist = e.DataList; }; //Simulates formatted data ready event
-
+               
                 _fakeTrackReciever.TrackedDataReady += Raise.EventWith(this, new TrackedDataEventArgs(planelist));
 
              
