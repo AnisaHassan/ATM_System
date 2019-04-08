@@ -265,7 +265,7 @@ namespace AirTM.Unit.Test
 
         
         [Test]
-        public void Log_Is_Correct()
+        public void Log_Is_Fail()
         {
             List<Plane> _fakeplaneList = new List<Plane>();
             Plane p = new Plane();
@@ -295,6 +295,35 @@ namespace AirTM.Unit.Test
 
         }
 
+        [Test]
+        public void Log_Recieved_Is_Correct()
+        {
+            List<Plane> _fakeplaneList = new List<Plane>();
+            Plane p = new Plane();
+            p._tag = "TRE123";
+            p._xcoor = 10000;
+            p._ycoor = 10000;
+            p._altitude = 100000;
+            p._time = (DateTime.ParseExact("20190430121230210", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
+            p._compassCourse = 90;
+            p._velocity = 80;
+            _fakeplaneList.Add(p);
 
+            Plane p1 = new Plane();
+            p1._tag = "ATR321";
+            p1._xcoor = 10;
+            p1._ycoor = 10;
+            p1._altitude = 10;
+            p1._time = (DateTime.ParseExact("20190430121230210", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
+            p1._compassCourse = 90;
+            p1._velocity = 80;
+
+            _fakeplaneList.Add(p);
+            _fakeplaneList.Add(p1);
+            _uut.DistanceChecker(_fakeplaneList);
+
+            _fakeLogPrint.Recieved().PrintWarning(p, p1);
+
+        }
     }
 }
