@@ -224,13 +224,7 @@ namespace AirTM.Unit.Test
             _fakeConsolePrint.Received().PrintPlane(Arg.Is<List<Plane>>(_plane => _plane[0]._compassCourse.Equals(90)));
 
         }
-
-
-     
-      
-
-
-
+        
         [Test]
         public void ConsoleWarringPrint_Is__Recived_1()
         {
@@ -265,7 +259,7 @@ namespace AirTM.Unit.Test
 
         
         [Test]
-        public void Log_Is_Fail()
+        public void Log_DidNotReceive_is_correct()
         {
             List<Plane> _fakeplaneList = new List<Plane>();
             Plane p = new Plane();
@@ -303,7 +297,7 @@ namespace AirTM.Unit.Test
             p._tag = "TRE123";
             p._xcoor = 10000;
             p._ycoor = 10000;
-            p._altitude = 100000;
+            p._altitude = 600;
             p._time = (DateTime.ParseExact("20190430121230210", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
             p._compassCourse = 90;
             p._velocity = 80;
@@ -311,9 +305,9 @@ namespace AirTM.Unit.Test
 
             Plane p1 = new Plane();
             p1._tag = "ATR321";
-            p1._xcoor = 10;
-            p1._ycoor = 10;
-            p1._altitude = 10;
+            p1._xcoor = 9999;
+            p1._ycoor = 9999;
+            p1._altitude = 500;
             p1._time = (DateTime.ParseExact("20190430121230210", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
             p1._compassCourse = 90;
             p1._velocity = 80;
@@ -322,8 +316,8 @@ namespace AirTM.Unit.Test
             _fakeplaneList.Add(p1);
             _uut.DistanceChecker(_fakeplaneList);
 
-            _fakeLogPrint.Recieved().PrintWarning(p, p1);
-
+            _fakeLogPrint.Received(2).PrintWarning(p, p1);
+           
         }
     }
 }
