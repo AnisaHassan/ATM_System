@@ -41,8 +41,7 @@ namespace AirTM.Unit.Test
                 p._altitude = 100;
                 DateTime date = new DateTime(2015, 10, 06, 21, 34, 56, 798);
                 p._time = (DateTime.ParseExact("20151006213456798", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
-
-
+                
                 pl.Add(p);
 
                 _uut.AirspaceDataReady += (o, e) => { planelist = e.DataList; }; //Simulates formatted data ready event
@@ -57,41 +56,7 @@ namespace AirTM.Unit.Test
                 Assert.That(planelist[0]._velocity, Is.EqualTo(0));
             }
 
-            [Test]
-            public void TrackInfo_Recived_correct_liste()
-            {
-             
-                Plane p = new Plane();
-                p._tag = "TRE123";
-                p._xcoor = 10000;
-                p._ycoor = 10000;
-                p._altitude = 100;
-                p._time = (DateTime.ParseExact("20190430121230210", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
-              
-
-                Plane p1 = new Plane();
-                p1._tag = "ATR321";
-                p1._xcoor = 80000;
-                p1._ycoor = 90000;
-                p1._altitude = 100;
-                p1._time = (DateTime.ParseExact("20190430121230210", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
-
-                List<Plane> planelist = new List<Plane>();
-                planelist.Add(p);
-                planelist.Add(p1);
-               
-                _fakeTrackReciever.TrackedDataReady += Raise.EventWith(this, new TrackedDataEventArgs(planelist));
-
-             
-
-                Assert.That(_uut.Airspace(planelist).Count, Is.EqualTo(2));
-
-            }
-
-
           
-
-
             [TestCase(10000, 10000, 1)]
             [TestCase(10001, 1000, 0)]
             [TestCase(10000, 10001, 1)]
@@ -108,8 +73,7 @@ namespace AirTM.Unit.Test
                 list.Add(p);
 
                 _uut.Airspace(list);
-
-
+                
               Assert.That(_uut.PlanesInAirSpaceList.Count, Is.EqualTo(count));
 
             }

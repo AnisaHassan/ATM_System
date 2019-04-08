@@ -205,22 +205,21 @@ namespace AirTM.Unit.Test
         //[Test]
         //public void Test_Input_correct()
         //{
-        //    // Setup test data
         //    List<Plane> planeList = null;
-
         //    List<string> stringlist = new List<string>();
-        //    stringlist.Add("ATR423;39045;12932;14000;20151006213456789");
+        //    string s = "ATR423;39045;12932;14000;20151006213456789";
+        //    stringlist.Add(s);
 
         //    _uut.TrackedDataReady += (o, e) => { planeList = e.TrackedInfo; }; //Simulates formatted data ready event
 
         //    // Act: Trigger the fake object to execute event invocation
         //    _fakeTransponderReceiver.TransponderDataReady
-        //        += Raise.EventWith(this, new RawTransponderDataEventArgs(stringList));
+        //        += Raise.EventWith(this, new RawTransponderDataEventArgs(stringlist));
 
         //    DateTime date = new DateTime(2015, 10, 06, 21, 34, 56, 789);
 
-        //    // Assert that result and expected are equal
-        //    //Assert.AreEqual(planeList[0]._tag, "ATR423");
+        //    //Assert that result and expected are equal
+        //    Assert.That(planeList[0]._tag, Is.EqualTo("ATR423"));
         //    //Assert.AreEqual(planeList[0]._xcoor, 39045);
         //    //Assert.AreEqual(planeList[0]._ycoor, 12932);
         //    //Assert.AreEqual(planeList[0]._altitude, 14000);
