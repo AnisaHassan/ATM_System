@@ -25,8 +25,6 @@ namespace ATM_System
 
            
         }
-
-        public TrackReciever() { }
         public void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
         {
            // ReceivedDataList = new List<Plane>();
