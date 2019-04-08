@@ -78,6 +78,9 @@ namespace AirTM.Unit.Test
         [Test]
         public void velocity_med_3_4_Correct()
         {
+            //Lambda
+           // uut.CalcedDataReady += (o, e) => { planelist = e.CalcedInfo; }; //Simulates formatted data ready event
+
             planelist = new List<Plane>();
             planelist.Add(_plane3);
             gammelliste = new List<Plane>();

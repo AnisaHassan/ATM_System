@@ -51,6 +51,8 @@ namespace AirTM.Unit.Test
                 List<Plane> planelist = new List<Plane>();
                 planelist.Add(p);
                 planelist.Add(p1);
+                //Lambda
+                //_uut.AirspaceDataReady += (o, e) => { planelist = e.DataList; }; //Simulates formatted data ready event
 
                 _fakeTrackReciever.TrackedDataReady += Raise.EventWith(this, new TrackedDataEventArgs(planelist));
 

@@ -202,41 +202,32 @@ namespace AirTM.Unit.Test
 
             Assert.That(planeList[0]._time.Millisecond, Is.EqualTo(789));
         }
+        [Test]
+        public void TestReception_InputThroughTransponder_ExpectedTrue()
+        {
+            // Setup test data
+            List<Plane> planeList = null;
 
+            List<string> stringlist = new List<string>();
+            stringlist.Add("ATR423;39045;12932;14000;20151006213456789");
 
+            _uut.TrackedDataReady += (o, e) => { planeList = e.TrackedInfo; }; //Simulates formatted data ready event
 
-        ///// <summary>
-        ///// / PRØVER AT FO ReceivedDataList TIL AT VIRKE!
-        ///// </summary>
-        //[Test]
-        //public void TrackReciver_delivered_correct_to_TrackInto()
-        //{
-        //    Plane p1 = new Plane();
-        //    p1._tag = "ATR321";
-        //    p1._xcoor = 39045;
-        //    p1._ycoor = 12932;
-        //    p1._altitude = 14000;
-        //    p1._time = (DateTime.ParseExact("20151006213456789", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
+            // Act: Trigger the fake object to execute event invocation
+            _fakeTransponderReceiver.TransponderDataReady
+                += Raise.EventWith(this, new RawTransponderDataEventArgs(stringList));
 
-        //    List<Plane> _planelist = new List<Plane>();
-        //    _planelist.Add(p1);
+            DateTime date = new DateTime(2015, 10, 06, 21, 34, 56, 789);
 
-
-
-
-        //    stringList = new List<string>();
-        //    stringList.Add("ATR423;39045;12932;14000;20151006213456789");
-        
-        //    _fakeTransponderReceiver.TransponderDataReady
-        //        += Raise.EventWith(this, new RawTransponderDataEventArgs(stringList));
-
-        //    _uut.TrackedInfo(stringList);
-
-        //    Assert.That(_uut.ReceivedDataList.Count, Is.EqualTo(1));
-
-            
-        //    planeList = _uut.TrackedInfo(stringList);
-
-        //}
+            // Assert that result and expected are equal
+            Assert.That(planeList[0]._xcoor, Is.EqualTo("39045"));
+            //Assert.AreEqual(planeList[0]._tag, "ATR423");
+            //Assert.AreEqual(planeList[0]._xcoor, 39045);
+            //Assert.AreEqual(planeList[0]._ycoor, 12932);
+            //Assert.AreEqual(planeList[0]._altitude, 14000);
+            //Assert.AreEqual(planeList[0]._time, date);
+            //Assert.AreEqual(planeList[0]._compassCourse, "");
+            //Assert.AreEqual(planeList[0]._velocity, 0);
+        }
     }
 }
