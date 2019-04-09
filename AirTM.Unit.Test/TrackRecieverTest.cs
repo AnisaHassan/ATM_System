@@ -16,7 +16,6 @@ namespace AirTM.Unit.Test
     public class TrackRecieverTest
     {
         private ITransponderReceiver _fakeTransponderReceiver;
-        private ITrackInfo _fakeTrackInfo;
         private TrackReciever _uut;
         private List<string> stringList;
         private List<Plane> planeList;
@@ -25,7 +24,6 @@ namespace AirTM.Unit.Test
         public void SetUp()
         {
             _fakeTransponderReceiver = Substitute.For<ITransponderReceiver>();
-            _fakeTrackInfo = Substitute.For<ITrackInfo>();
             _uut = new TrackReciever(_fakeTransponderReceiver);
                         
 

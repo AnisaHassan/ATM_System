@@ -17,13 +17,10 @@ namespace AirTM.Unit.Test
         {
             private ITrackInfo _uut;
             private ITrackReciever _fakeTrackReciever;
-     
-
 
             [SetUp]
             public void SetUp()
             {
-               
                 _fakeTrackReciever = Substitute.For<ITrackReciever>();
                 _uut = new TrackInfo(_fakeTrackReciever);
             }
