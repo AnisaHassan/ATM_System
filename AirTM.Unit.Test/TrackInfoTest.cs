@@ -17,18 +17,20 @@ namespace AirTM.Unit.Test
         {
             private ITrackInfo _uut;
             private ITrackReciever _fakeTrackReciever;
+            private DataCalcEventArgs output;
 
             [SetUp]
             public void SetUp()
             {
                 _fakeTrackReciever = Substitute.For<ITrackReciever>();
                 _uut = new TrackInfo(_fakeTrackReciever);
+                _uut.AirspaceDataReady += (o, a) => { output = a; }; //Simulates Datacalcdataready event
             }
 
             [Test]
             public void Test_Input_correct()
             {
-                List<Plane> planelist = null;
+                
                 List<Plane> pl = new List<Plane>();
                 Plane p = new Plane();
                 p._tag = "TRE123";
@@ -40,16 +42,16 @@ namespace AirTM.Unit.Test
                 
                 pl.Add(p);
 
-                _uut.AirspaceDataReady += (o, e) => { planelist = e.DataList; }; //Simulates Datacalcdataready event
+              
                 _fakeTrackReciever.TrackedDataReady += Raise.EventWith(this, new TrackedDataEventArgs(pl));
 
-                Assert.That(planelist[0]._tag, Is.EqualTo("TRE123"));
-                Assert.That(planelist[0]._xcoor, Is.EqualTo(10000));
-                Assert.That(planelist[0]._ycoor, Is.EqualTo(10000));
-                Assert.That(planelist[0]._altitude, Is.EqualTo(100));
-                Assert.That(planelist[0]._time, Is.EqualTo(date));
-                Assert.That(planelist[0]._compassCourse, Is.EqualTo(0));
-                Assert.That(planelist[0]._velocity, Is.EqualTo(0));
+                Assert.That(output.DataList[0]._tag, Is.EqualTo("TRE123"));
+                Assert.That(output.DataList[0]._xcoor, Is.EqualTo(10000));
+                Assert.That(output.DataList[0]._ycoor, Is.EqualTo(10000));
+                Assert.That(output.DataList[0]._altitude, Is.EqualTo(100));
+                Assert.That(output.DataList[0]._time, Is.EqualTo(date));
+                Assert.That(output.DataList[0]._compassCourse, Is.EqualTo(0));
+                Assert.That(output.DataList[0]._velocity, Is.EqualTo(0));
             }
 
           
