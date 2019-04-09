@@ -301,7 +301,7 @@ namespace AirTM.Unit.Test
             p._time = (DateTime.ParseExact("20190430121230210", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture));
             p._compassCourse = 90;
             p._velocity = 80;
-            _fakeplaneList.Add(p);
+     
 
             Plane p1 = new Plane();
             p1._tag = "ATR321";
@@ -316,7 +316,7 @@ namespace AirTM.Unit.Test
             _fakeplaneList.Add(p1);
             _uut.DistanceChecker(_fakeplaneList);
 
-            _fakeLogPrint.Received(2).PrintWarning(p, p1);
+            _fakeLogPrint.Received(1).PrintWarning(p, p1);
            
         }
     }

@@ -40,7 +40,7 @@ namespace AirTM.Unit.Test
                 
                 pl.Add(p);
 
-                _uut.AirspaceDataReady += (o, e) => { planelist = e.DataList; }; //Simulates formatted data ready event
+                _uut.AirspaceDataReady += (o, e) => { planelist = e.DataList; }; //Simulates Datacalcdataready event
                 _fakeTrackReciever.TrackedDataReady += Raise.EventWith(this, new TrackedDataEventArgs(pl));
 
                 Assert.That(planelist[0]._tag, Is.EqualTo("TRE123"));
