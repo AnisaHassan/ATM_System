@@ -16,11 +16,7 @@ namespace AirTM.Unit.Test
         private ITrackInfo _fakeTrackInfo;
         private IDataCalculator _uut;
         private SeperationEventArgs output;
-
-        private List<Plane> planelist;
-        private List<Plane> gammelliste;
-
-
+       
         [SetUp]
         public void SetUp()
         {
@@ -74,7 +70,7 @@ namespace AirTM.Unit.Test
         [TestCase("LKS165", 2, 2, 1, "LKS165", 1, 2, 1, 90)]
         public void calculatecourseTestcase(string tag1, int x1, int y1, int a1, string tag2, int x2, int y2, int a2, double result)
         {
-            gammelliste = new List<Plane>();
+            List<Plane> gammelliste = new List<Plane>();
             Plane p1 = new Plane();
             p1._tag = tag1;
             p1._xcoor = x1;
@@ -85,7 +81,7 @@ namespace AirTM.Unit.Test
             _uut.gammelliste = gammelliste;
 
 
-            planelist = new List<Plane>();
+            List<Plane> planelist = new List<Plane>();
             Plane p2 = new Plane();
             p2._tag = tag2;
             p2._xcoor = x2;
@@ -107,7 +103,7 @@ namespace AirTM.Unit.Test
         [TestCase("LKS165", 1, 2, 1, "LKS165", 2, 1, 1, 135)]
         public void CourseTestcase(string tag1, int x1, int y1, int a1, string tag2, int x2, int y2, int a2, double result)
         {
-            gammelliste = new List<Plane>();
+            List<Plane> gammelliste = new List<Plane>();
             Plane p1 = new Plane();
             p1._tag = tag1;
             p1._xcoor = x1;
@@ -118,7 +114,7 @@ namespace AirTM.Unit.Test
             _uut.gammelliste = gammelliste;
 
 
-            planelist = new List<Plane>();
+            List<Plane> planelist = new List<Plane>();
             Plane p2 = new Plane();
             p2._tag = tag2;
             p2._xcoor = x2;

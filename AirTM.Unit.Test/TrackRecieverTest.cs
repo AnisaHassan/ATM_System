@@ -18,7 +18,6 @@ namespace AirTM.Unit.Test
         private ITransponderReceiver _fakeTransponderReceiver;
         private ITrackReciever _uut;
         private List<string> stringList;
-        private List<Plane> planeList;
         private TrackedDataEventArgs output;
         [SetUp]
         public void SetUp()
@@ -27,8 +26,6 @@ namespace AirTM.Unit.Test
             _uut = new TrackReciever(_fakeTransponderReceiver);
 
             _uut.TrackedDataReady += (o, a) => { output = a; };
-
-
         }
 
         [Test]
@@ -64,12 +61,8 @@ namespace AirTM.Unit.Test
             _fakeTransponderReceiver.TransponderDataReady
                 += Raise.EventWith(this, new RawTransponderDataEventArgs(stringList));
 
-
             Assert.That(output.TrackedInfo.Count, Is.EqualTo(4));
-
-
         }
      
-
     }
 }
